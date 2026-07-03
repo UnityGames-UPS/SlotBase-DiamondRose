@@ -1,0 +1,7 @@
+7 red.png
+size:358,223
+filter:Linear,Linear
+pma:true
+7 red
+bounds:2,2,354,219
+offsets:2,1,357,222

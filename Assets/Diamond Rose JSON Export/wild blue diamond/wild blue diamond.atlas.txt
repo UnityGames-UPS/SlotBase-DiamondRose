@@ -1,0 +1,33 @@
+wild blue diamond.png
+size:1137,308
+filter:Linear,Linear
+pma:true
+Swipe
+bounds:1013,10,53,95
+diamond
+bounds:658,4,302,240
+offsets:5,3,317,246
+rotate:90
+glow
+bounds:2,2,389,304
+offsets:3,1,393,306
+rays
+bounds:393,3,263,303
+offsets:1,1,265,305
+vine l1
+bounds:1013,107,59,102
+offsets:10,3,89,105
+rotate:90
+vine l2
+bounds:1094,240,41,66
+offsets:0,5,46,71
+vine r1
+bounds:1068,26,60,79
+offsets:0,8,67,88
+vine r2
+bounds:1013,168,79,138
+offsets:9,0,88,143
+wild
+bounds:900,10,296,111
+offsets:4,7,313,134
+rotate:90

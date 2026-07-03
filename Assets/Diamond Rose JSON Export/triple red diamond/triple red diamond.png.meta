@@ -1,0 +1,1482 @@
+fileFormatVersion: 2
+guid: 943dbd3087b9b4cc3bed0398079b67bc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 52574730885666066
+    second: triple red diamond_0
+  - first:
+      213: 139012277950432234
+    second: triple red diamond_1
+  - first:
+      213: -8803623150862188313
+    second: triple red diamond_2
+  - first:
+      213: 8346084065331159429
+    second: triple red diamond_3
+  - first:
+      213: -7338176815417594323
+    second: triple red diamond_4
+  - first:
+      213: 428599170317926997
+    second: triple red diamond_5
+  - first:
+      213: 8441995148528003009
+    second: triple red diamond_6
+  - first:
+      213: -702796684266250111
+    second: triple red diamond_7
+  - first:
+      213: 4202751824955596844
+    second: triple red diamond_8
+  - first:
+      213: 8675460906378640939
+    second: triple red diamond_9
+  - first:
+      213: 2033246381249209569
+    second: triple red diamond_10
+  - first:
+      213: 8030720703952564169
+    second: triple red diamond_11
+  - first:
+      213: -4097458878740109609
+    second: triple red diamond_12
+  - first:
+      213: -6738408377521948220
+    second: triple red diamond_13
+  - first:
+      213: 291405930116390669
+    second: triple red diamond_14
+  - first:
+      213: 2053060593884732727
+    second: triple red diamond_15
+  - first:
+      213: 7865639857977156995
+    second: triple red diamond_16
+  - first:
+      213: 7788400365742183144
+    second: triple red diamond_17
+  - first:
+      213: 8414745440359978364
+    second: triple red diamond_18
+  - first:
+      213: -3726467420116573282
+    second: triple red diamond_19
+  - first:
+      213: -4985917391768043515
+    second: triple red diamond_20
+  - first:
+      213: -2096251280406160188
+    second: triple red diamond_21
+  - first:
+      213: 4057328963832285700
+    second: triple red diamond_22
+  - first:
+      213: -7097603510062945009
+    second: triple red diamond_23
+  - first:
+      213: -1513805347219637398
+    second: triple red diamond_24
+  - first:
+      213: -4253240424544024348
+    second: triple red diamond_25
+  - first:
+      213: 6612809612539710128
+    second: triple red diamond_26
+  - first:
+      213: -5992405719409322486
+    second: triple red diamond_27
+  - first:
+      213: 2512548477259005028
+    second: triple red diamond_28
+  - first:
+      213: 2936754765778376671
+    second: triple red diamond_29
+  - first:
+      213: 5361464289126720089
+    second: triple red diamond_30
+  - first:
+      213: -1407679551520829375
+    second: triple red diamond_31
+  - first:
+      213: 5141866699798875386
+    second: triple red diamond_32
+  - first:
+      213: 7365494139051249965
+    second: triple red diamond_33
+  - first:
+      213: -7287508142938662609
+    second: triple red diamond_34
+  - first:
+      213: -1458907410235868267
+    second: triple red diamond_35
+  - first:
+      213: -5893519064680820949
+    second: triple red diamond_36
+  - first:
+      213: -539586877919282006
+    second: triple red diamond_37
+  - first:
+      213: 7352120564600464238
+    second: triple red diamond_38
+  - first:
+      213: -5284508525575726462
+    second: triple red diamond_39
+  - first:
+      213: 1414886507669217169
+    second: triple red diamond_40
+  - first:
+      213: -3732789402150777663
+    second: triple red diamond_41
+  - first:
+      213: -5924988185763308914
+    second: triple red diamond_42
+  - first:
+      213: -3092619577304393925
+    second: triple red diamond_43
+  - first:
+      213: -2154188801694053958
+    second: triple red diamond_44
+  - first:
+      213: 44134134481412930
+    second: triple red diamond_45
+  - first:
+      213: 2653395843907097471
+    second: triple red diamond_46
+  - first:
+      213: -8719592030859412084
+    second: triple red diamond_47
+  - first:
+      213: 3511004007526761597
+    second: triple red diamond_48
+  - first:
+      213: 8433567993839275656
+    second: triple red diamond_49
+  - first:
+      213: -1331336221625805046
+    second: triple red diamond_50
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: triple red diamond_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 396
+        width: 43
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2151a9e6078cab000800000000000000
+      internalID: 52574730885666066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_1
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 372
+        width: 39
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae347a62eeedde100800000000000000
+      internalID: 139012277950432234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_2
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 372
+        width: 37
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e0447c436f33d580800000000000000
+      internalID: -8803623150862188313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_3
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 386
+        width: 57
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 581ac9bec3f33d370800000000000000
+      internalID: 8346084065331159429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_4
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 410
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2ee602d01f892a90800000000000000
+      internalID: -7338176815417594323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 308
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 552c3d1bca0b2f500800000000000000
+      internalID: 428599170317926997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_6
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 1
+        width: 243
+        height: 393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c725972cddf72570800000000000000
+      internalID: 8441995148528003009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_7
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 372
+        width: 94
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 180ecf4a32a2f36f0800000000000000
+      internalID: -702796684266250111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_8
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 307
+        width: 55
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c206a95848c235a30800000000000000
+      internalID: 4202751824955596844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_9
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 308
+        width: 57
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2ebc73dabd656870800000000000000
+      internalID: 8675460906378640939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_10
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 308
+        width: 58
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e42537afca873c10800000000000000
+      internalID: 2033246381249209569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_11
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 355
+        width: 15
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cfa7718ee9d27f60800000000000000
+      internalID: 8030720703952564169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_12
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 1
+        width: 123
+        height: 368
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d6eceaebd6e227c0800000000000000
+      internalID: -4097458878740109609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_13
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 310
+        width: 60
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c9b942484d5c72a0800000000000000
+      internalID: -6738408377521948220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_14
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 334
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0f970646284b0400800000000000000
+      internalID: 291405930116390669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_15
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 343
+        width: 11
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73d1ad88bbfed7c10800000000000000
+      internalID: 2053060593884732727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_16
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 340
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 385e1e1e6cd582d60800000000000000
+      internalID: 7865639857977156995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_17
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 322
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e2d5903ed4f51c60800000000000000
+      internalID: 7788400365742183144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_18
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 308
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c759eff056e27c470800000000000000
+      internalID: 8414745440359978364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_19
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 308
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e93a2e400ade84cc0800000000000000
+      internalID: -3726467420116573282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_20
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 162
+        width: 96
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50049387c867ecab0800000000000000
+      internalID: -4985917391768043515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_21
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 198
+        width: 47
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ccde6f119e98e2e0800000000000000
+      internalID: -2096251280406160188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_22
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 197
+        width: 43
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40a802a22378e4830800000000000000
+      internalID: 4057328963832285700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_23
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 196
+        width: 40
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0de12a563f308d90800000000000000
+      internalID: -7097603510062945009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_24
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 196
+        width: 24
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6bf2e3ae02edfae0800000000000000
+      internalID: -1513805347219637398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_25
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 194
+        width: 20
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e8c8b65e5479f4c0800000000000000
+      internalID: -4253240424544024348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_26
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 193
+        width: 12
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bac7b27e4b65cb50800000000000000
+      internalID: 6612809612539710128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_27
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 192
+        width: 15
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0696905fb2b6dca0800000000000000
+      internalID: -5992405719409322486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_28
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 192
+        width: 25
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46cb8fb278d5ed220800000000000000
+      internalID: 2512548477259005028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_29
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 191
+        width: 35
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd7d7ae56e271c820800000000000000
+      internalID: 2936754765778376671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_30
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 190
+        width: 47
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 952275d5d5fb76a40800000000000000
+      internalID: 5361464289126720089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_31
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 188
+        width: 48
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1401506f7eae67ce0800000000000000
+      internalID: -1407679551520829375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_32
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 188
+        width: 59
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afc0ceb45849b5740800000000000000
+      internalID: 5141866699798875386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_33
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 186
+        width: 71
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d211f5935ed773660800000000000000
+      internalID: 7365494139051249965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_34
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 182
+        width: 88
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f29df5274f19dda90800000000000000
+      internalID: -7287508142938662609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_35
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 76
+        width: 101
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59bb4b4a07be0cbe0800000000000000
+      internalID: -1458907410235868267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_36
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 69
+        width: 89
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2f05b8c2a3063ea0800000000000000
+      internalID: -5893519064680820949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_37
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 62
+        width: 83
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aacb828e7900388f0800000000000000
+      internalID: -539586877919282006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_38
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 36
+        width: 80
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e63ead643baf70660800000000000000
+      internalID: 7352120564600464238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_39
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 35
+        width: 66
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28a19889e77a9a6b0800000000000000
+      internalID: -5284508525575726462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_40
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 32
+        width: 64
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19fdd1748cfa2a310800000000000000
+      internalID: 1414886507669217169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_41
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 9
+        width: 42
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ccc57fd0d7723cc0800000000000000
+      internalID: -3732789402150777663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_42
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 17
+        width: 25
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8a113113a636cda0800000000000000
+      internalID: -5924988185763308914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_43
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 16
+        width: 17
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b375a5d31eec415d0800000000000000
+      internalID: -3092619577304393925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_44
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 1
+        width: 27
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab9c6efb2b8ca12e0800000000000000
+      internalID: -2154188801694053958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_45
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 25
+        width: 66
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 243eb30f2cbcc9000800000000000000
+      internalID: 44134134481412930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_46
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 11
+        width: 44
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7394943671c2d420800000000000000
+      internalID: 2653395843907097471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_47
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 51
+        width: 61
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8d3c4e0f39cdf680800000000000000
+      internalID: -8719592030859412084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_48
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 36
+        width: 90
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d740b91fa8799b030800000000000000
+      internalID: 3511004007526761597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_49
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 62
+        width: 91
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88ec4ed486d0a0570800000000000000
+      internalID: 8433567993839275656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triple red diamond_50
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 92
+        width: 110
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a07126992c4268de0800000000000000
+      internalID: -1331336221625805046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      triple red diamond_0: 52574730885666066
+      triple red diamond_1: 139012277950432234
+      triple red diamond_10: 2033246381249209569
+      triple red diamond_11: 8030720703952564169
+      triple red diamond_12: -4097458878740109609
+      triple red diamond_13: -6738408377521948220
+      triple red diamond_14: 291405930116390669
+      triple red diamond_15: 2053060593884732727
+      triple red diamond_16: 7865639857977156995
+      triple red diamond_17: 7788400365742183144
+      triple red diamond_18: 8414745440359978364
+      triple red diamond_19: -3726467420116573282
+      triple red diamond_2: -8803623150862188313
+      triple red diamond_20: -4985917391768043515
+      triple red diamond_21: -2096251280406160188
+      triple red diamond_22: 4057328963832285700
+      triple red diamond_23: -7097603510062945009
+      triple red diamond_24: -1513805347219637398
+      triple red diamond_25: -4253240424544024348
+      triple red diamond_26: 6612809612539710128
+      triple red diamond_27: -5992405719409322486
+      triple red diamond_28: 2512548477259005028
+      triple red diamond_29: 2936754765778376671
+      triple red diamond_3: 8346084065331159429
+      triple red diamond_30: 5361464289126720089
+      triple red diamond_31: -1407679551520829375
+      triple red diamond_32: 5141866699798875386
+      triple red diamond_33: 7365494139051249965
+      triple red diamond_34: -7287508142938662609
+      triple red diamond_35: -1458907410235868267
+      triple red diamond_36: -5893519064680820949
+      triple red diamond_37: -539586877919282006
+      triple red diamond_38: 7352120564600464238
+      triple red diamond_39: -5284508525575726462
+      triple red diamond_4: -7338176815417594323
+      triple red diamond_40: 1414886507669217169
+      triple red diamond_41: -3732789402150777663
+      triple red diamond_42: -5924988185763308914
+      triple red diamond_43: -3092619577304393925
+      triple red diamond_44: -2154188801694053958
+      triple red diamond_45: 44134134481412930
+      triple red diamond_46: 2653395843907097471
+      triple red diamond_47: -8719592030859412084
+      triple red diamond_48: 3511004007526761597
+      triple red diamond_49: 8433567993839275656
+      triple red diamond_5: 428599170317926997
+      triple red diamond_50: -1331336221625805046
+      triple red diamond_6: 8441995148528003009
+      triple red diamond_7: -702796684266250111
+      triple red diamond_8: 4202751824955596844
+      triple red diamond_9: 8675460906378640939
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,1248 @@
+fileFormatVersion: 2
+guid: d1bbf439ff8514f74869b76320b2cbdb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2386445269787656088
+    second: mega win_0
+  - first:
+      213: 6095466855131924456
+    second: mega win_1
+  - first:
+      213: 7945247880331321247
+    second: mega win_2
+  - first:
+      213: -5835186600199747150
+    second: mega win_3
+  - first:
+      213: -3126047420572595187
+    second: mega win_4
+  - first:
+      213: -3094611716926377061
+    second: mega win_5
+  - first:
+      213: -5091862407019995912
+    second: mega win_6
+  - first:
+      213: -6533156795054664888
+    second: mega win_7
+  - first:
+      213: 2897750388289516502
+    second: mega win_8
+  - first:
+      213: 1707836216740158672
+    second: mega win_9
+  - first:
+      213: 6538399401488831343
+    second: mega win_10
+  - first:
+      213: -3406890046028274110
+    second: mega win_11
+  - first:
+      213: 3903948874203646389
+    second: mega win_12
+  - first:
+      213: -3684614143617096386
+    second: mega win_13
+  - first:
+      213: -6011410167009405922
+    second: mega win_14
+  - first:
+      213: 7508896490343302748
+    second: mega win_15
+  - first:
+      213: 3546371879243200757
+    second: mega win_16
+  - first:
+      213: 6585548783602440975
+    second: mega win_17
+  - first:
+      213: -3497653783827596127
+    second: mega win_18
+  - first:
+      213: -847639714681041330
+    second: mega win_19
+  - first:
+      213: 8878957462876626463
+    second: mega win_20
+  - first:
+      213: 515982930146853517
+    second: mega win_21
+  - first:
+      213: -7849360263261242662
+    second: mega win_22
+  - first:
+      213: -4471388473655521701
+    second: mega win_23
+  - first:
+      213: 2926550437137671598
+    second: mega win_24
+  - first:
+      213: 8571546880163448997
+    second: mega win_25
+  - first:
+      213: -8402806281539725658
+    second: mega win_26
+  - first:
+      213: -370697719716161569
+    second: mega win_27
+  - first:
+      213: -2574767382680230293
+    second: mega win_28
+  - first:
+      213: -4315299624578522554
+    second: mega win_29
+  - first:
+      213: 7770623248014686559
+    second: mega win_30
+  - first:
+      213: 3314893431751265078
+    second: mega win_31
+  - first:
+      213: -7502741556993044642
+    second: mega win_32
+  - first:
+      213: -4665877662157174762
+    second: mega win_33
+  - first:
+      213: -3216795509746922775
+    second: mega win_34
+  - first:
+      213: -3481382111966550148
+    second: mega win_35
+  - first:
+      213: -4513581902543446320
+    second: mega win_36
+  - first:
+      213: 5073983417350625287
+    second: mega win_37
+  - first:
+      213: -941716554589666296
+    second: mega win_38
+  - first:
+      213: 1601235696708024862
+    second: mega win_39
+  - first:
+      213: -1114701056211265781
+    second: mega win_40
+  - first:
+      213: -6213515383741747049
+    second: mega win_41
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mega win_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 991
+        height: 902
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 860456acba4a1eed0800000000000000
+      internalID: -2386445269787656088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_1
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 1
+        width: 622
+        height: 900
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e74e404fc2779450800000000000000
+      internalID: 6095466855131924456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_2
+      rect:
+        serializedVersion: 2
+        x: 1614
+        y: 511
+        width: 310
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9fd297f9d0334e60800000000000000
+      internalID: 7945247880331321247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_3
+      rect:
+        serializedVersion: 2
+        x: 1924
+        y: 694
+        width: 190
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b989f804b0450fa0800000000000000
+      internalID: -5835186600199747150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_4
+      rect:
+        serializedVersion: 2
+        x: 2120
+        y: 666
+        width: 192
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0c8eb9fe6c0e94d0800000000000000
+      internalID: -3126047420572595187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_5
+      rect:
+        serializedVersion: 2
+        x: 2312
+        y: 683
+        width: 161
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9377d61a0bbd05d0800000000000000
+      internalID: -3094611716926377061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_6
+      rect:
+        serializedVersion: 2
+        x: 2478
+        y: 729
+        width: 16
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fc58606e121659b0800000000000000
+      internalID: -5091862407019995912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_7
+      rect:
+        serializedVersion: 2
+        x: 2494
+        y: 682
+        width: 173
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84356d052809555a0800000000000000
+      internalID: -6533156795054664888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_8
+      rect:
+        serializedVersion: 2
+        x: 2667
+        y: 679
+        width: 120
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d33fbd00a0e63820800000000000000
+      internalID: 2897750388289516502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_9
+      rect:
+        serializedVersion: 2
+        x: 2938
+        y: 714
+        width: 140
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dc18599df373b710800000000000000
+      internalID: 1707836216740158672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_10
+      rect:
+        serializedVersion: 2
+        x: 3138
+        y: 555
+        width: 161
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f635e5d1d9f0dba50800000000000000
+      internalID: 6538399401488831343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_11
+      rect:
+        serializedVersion: 2
+        x: 1924
+        y: 487
+        width: 196
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 246aba9bd8b48b0d0800000000000000
+      internalID: -3406890046028274110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_12
+      rect:
+        serializedVersion: 2
+        x: 2120
+        y: 487
+        width: 212
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b9c13c21dc9d2630800000000000000
+      internalID: 3903948874203646389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_13
+      rect:
+        serializedVersion: 2
+        x: 2332
+        y: 533
+        width: 8
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e35a25355fe9ddcc0800000000000000
+      internalID: -3684614143617096386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_14
+      rect:
+        serializedVersion: 2
+        x: 2340
+        y: 487
+        width: 72
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e149b3c8d4e239ca0800000000000000
+      internalID: -6011410167009405922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_15
+      rect:
+        serializedVersion: 2
+        x: 2412
+        y: 534
+        width: 192
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c56071af295f43860800000000000000
+      internalID: 7508896490343302748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_16
+      rect:
+        serializedVersion: 2
+        x: 2463
+        y: 515
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f8b9b74f6e373130800000000000000
+      internalID: 3546371879243200757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_17
+      rect:
+        serializedVersion: 2
+        x: 2604
+        y: 530
+        width: 189
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0b11a91ab1946b50800000000000000
+      internalID: 6585548783602440975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_18
+      rect:
+        serializedVersion: 2
+        x: 2793
+        y: 530
+        width: 145
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1acb7ab3a66d57fc0800000000000000
+      internalID: -3497653783827596127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_19
+      rect:
+        serializedVersion: 2
+        x: 2971
+        y: 528
+        width: 167
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4e4ce4ab249c34f0800000000000000
+      internalID: -847639714681041330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_20
+      rect:
+        serializedVersion: 2
+        x: 3162
+        y: 369
+        width: 139
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1e909e05c4683b70800000000000000
+      internalID: 8878957462876626463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_21
+      rect:
+        serializedVersion: 2
+        x: 1614
+        y: 1
+        width: 269
+        height: 510
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d82819dbdb3292700800000000000000
+      internalID: 515982930146853517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_22
+      rect:
+        serializedVersion: 2
+        x: 1883
+        y: 329
+        width: 533
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ada3f32ad68711390800000000000000
+      internalID: -7849360263261242662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_23
+      rect:
+        serializedVersion: 2
+        x: 2416
+        y: 284
+        width: 177
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5e8cf6afdf62f1c0800000000000000
+      internalID: -4471388473655521701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_24
+      rect:
+        serializedVersion: 2
+        x: 2593
+        y: 380
+        width: 189
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea5ead6fd123d9820800000000000000
+      internalID: 2926550437137671598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_25
+      rect:
+        serializedVersion: 2
+        x: 2782
+        y: 363
+        width: 189
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a800c7397044f670800000000000000
+      internalID: 8571546880163448997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_26
+      rect:
+        serializedVersion: 2
+        x: 2971
+        y: 356
+        width: 183
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a65768f43c336b80800000000000000
+      internalID: -8402806281539725658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_27
+      rect:
+        serializedVersion: 2
+        x: 3154
+        y: 405
+        width: 9
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd7554153640bdaf0800000000000000
+      internalID: -370697719716161569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_28
+      rect:
+        serializedVersion: 2
+        x: 1883
+        y: 1
+        width: 309
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b66251805b6944cd0800000000000000
+      internalID: -2574767382680230293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_29
+      rect:
+        serializedVersion: 2
+        x: 2192
+        y: 1
+        width: 177
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 642ee99dad9fc14c0800000000000000
+      internalID: -4315299624578522554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_30
+      rect:
+        serializedVersion: 2
+        x: 2388
+        y: 1
+        width: 176
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f59be4d6cacc6db60800000000000000
+      internalID: 7770623248014686559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_31
+      rect:
+        serializedVersion: 2
+        x: 2564
+        y: 1
+        width: 183
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63b4fcb530ed00e20800000000000000
+      internalID: 3314893431751265078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_32
+      rect:
+        serializedVersion: 2
+        x: 2593
+        y: 193
+        width: 178
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5f4edd1e48e0e790800000000000000
+      internalID: -7502741556993044642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_33
+      rect:
+        serializedVersion: 2
+        x: 2771
+        y: 191
+        width: 192
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61801b5bcf87f3fb0800000000000000
+      internalID: -4665877662157174762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_34
+      rect:
+        serializedVersion: 2
+        x: 2963
+        y: 186
+        width: 192
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ea8676f685ab53d0800000000000000
+      internalID: -3216795509746922775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_35
+      rect:
+        serializedVersion: 2
+        x: 3155
+        y: 183
+        width: 148
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c77a5d01a65afafc0800000000000000
+      internalID: -3481382111966550148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_36
+      rect:
+        serializedVersion: 2
+        x: 2368
+        y: 71
+        width: 20
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0de14427c298c51c0800000000000000
+      internalID: -4513581902543446320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_37
+      rect:
+        serializedVersion: 2
+        x: 2747
+        y: 1
+        width: 175
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7081863f8096a6640800000000000000
+      internalID: 5073983417350625287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_38
+      rect:
+        serializedVersion: 2
+        x: 2922
+        y: 2
+        width: 178
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 804049478c95ee2f0800000000000000
+      internalID: -941716554589666296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_39
+      rect:
+        serializedVersion: 2
+        x: 3100
+        y: 1
+        width: 180
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1af4f7e16bb83610800000000000000
+      internalID: 1601235696708024862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_40
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 1
+        width: 29
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0756c99b49c780f0800000000000000
+      internalID: -1114701056211265781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mega win_41
+      rect:
+        serializedVersion: 2
+        x: 3044
+        y: 1
+        width: 10
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 790f5a9dda825c9a0800000000000000
+      internalID: -6213515383741747049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      mega win_0: -2386445269787656088
+      mega win_1: 6095466855131924456
+      mega win_10: 6538399401488831343
+      mega win_11: -3406890046028274110
+      mega win_12: 3903948874203646389
+      mega win_13: -3684614143617096386
+      mega win_14: -6011410167009405922
+      mega win_15: 7508896490343302748
+      mega win_16: 3546371879243200757
+      mega win_17: 6585548783602440975
+      mega win_18: -3497653783827596127
+      mega win_19: -847639714681041330
+      mega win_2: 7945247880331321247
+      mega win_20: 8878957462876626463
+      mega win_21: 515982930146853517
+      mega win_22: -7849360263261242662
+      mega win_23: -4471388473655521701
+      mega win_24: 2926550437137671598
+      mega win_25: 8571546880163448997
+      mega win_26: -8402806281539725658
+      mega win_27: -370697719716161569
+      mega win_28: -2574767382680230293
+      mega win_29: -4315299624578522554
+      mega win_3: -5835186600199747150
+      mega win_30: 7770623248014686559
+      mega win_31: 3314893431751265078
+      mega win_32: -7502741556993044642
+      mega win_33: -4665877662157174762
+      mega win_34: -3216795509746922775
+      mega win_35: -3481382111966550148
+      mega win_36: -4513581902543446320
+      mega win_37: 5073983417350625287
+      mega win_38: -941716554589666296
+      mega win_39: 1601235696708024862
+      mega win_4: -3126047420572595187
+      mega win_40: -1114701056211265781
+      mega win_41: -6213515383741747049
+      mega win_5: -3094611716926377061
+      mega win_6: -5091862407019995912
+      mega win_7: -6533156795054664888
+      mega win_8: 2897750388289516502
+      mega win_9: 1707836216740158672
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

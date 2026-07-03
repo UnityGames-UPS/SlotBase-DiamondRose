@@ -1,0 +1,7 @@
+bar bar.png
+size:274,201
+filter:Linear,Linear
+pma:true
+Bar Bar
+bounds:2,2,270,197
+offsets:1,1,272,199

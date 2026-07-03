@@ -1,0 +1,11 @@
+autoplay button.png
+size:220,132
+filter:Linear,Linear
+pma:true
+arrows
+bounds:132,28,102,86
+offsets:2,1,105,89
+rotate:90
+button
+bounds:2,2,128,128
+offsets:1,1,130,130

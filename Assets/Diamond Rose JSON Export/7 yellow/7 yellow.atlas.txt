@@ -1,0 +1,7 @@
+7 yellow.png
+size:357,224
+filter:Linear,Linear
+pma:true
+7 yellow
+bounds:2,2,353,220
+offsets:2,1,357,222

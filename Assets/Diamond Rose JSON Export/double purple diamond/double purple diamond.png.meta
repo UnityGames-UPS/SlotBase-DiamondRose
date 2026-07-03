@@ -1,0 +1,1482 @@
+fileFormatVersion: 2
+guid: d77d474346f774ccda15b385c3ed0820
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4629607725118370654
+    second: double purple diamond_0
+  - first:
+      213: -2129112881340856224
+    second: double purple diamond_1
+  - first:
+      213: 8030591025575251528
+    second: double purple diamond_2
+  - first:
+      213: -6252394557113285421
+    second: double purple diamond_3
+  - first:
+      213: -2872336075454787575
+    second: double purple diamond_4
+  - first:
+      213: -8050715313185670625
+    second: double purple diamond_5
+  - first:
+      213: -7056852419620975812
+    second: double purple diamond_6
+  - first:
+      213: 1542719845387365434
+    second: double purple diamond_7
+  - first:
+      213: 7465079298565673492
+    second: double purple diamond_8
+  - first:
+      213: -1283340235525912890
+    second: double purple diamond_9
+  - first:
+      213: 9008513236014628541
+    second: double purple diamond_10
+  - first:
+      213: -2515102734329365200
+    second: double purple diamond_11
+  - first:
+      213: 3741836907696868108
+    second: double purple diamond_12
+  - first:
+      213: -2257135151400750720
+    second: double purple diamond_13
+  - first:
+      213: -6856216026340925752
+    second: double purple diamond_14
+  - first:
+      213: -8005498523268205398
+    second: double purple diamond_15
+  - first:
+      213: -8858947119376129348
+    second: double purple diamond_16
+  - first:
+      213: 8349517836052229138
+    second: double purple diamond_17
+  - first:
+      213: 7277081836599404206
+    second: double purple diamond_18
+  - first:
+      213: -8285997128177203945
+    second: double purple diamond_19
+  - first:
+      213: -8075423445727369419
+    second: double purple diamond_20
+  - first:
+      213: -5538806145768004569
+    second: double purple diamond_21
+  - first:
+      213: -6868467994762296276
+    second: double purple diamond_22
+  - first:
+      213: -1196620461371360101
+    second: double purple diamond_23
+  - first:
+      213: -5106216916321952718
+    second: double purple diamond_24
+  - first:
+      213: 1726542315606864362
+    second: double purple diamond_25
+  - first:
+      213: 5037813325269161838
+    second: double purple diamond_26
+  - first:
+      213: -6895586212836039916
+    second: double purple diamond_27
+  - first:
+      213: 4902626257080371222
+    second: double purple diamond_28
+  - first:
+      213: 3340370978448002066
+    second: double purple diamond_29
+  - first:
+      213: -7863881299402558596
+    second: double purple diamond_30
+  - first:
+      213: 3845392475898701084
+    second: double purple diamond_31
+  - first:
+      213: 7173706593179572374
+    second: double purple diamond_32
+  - first:
+      213: -6464557415140352649
+    second: double purple diamond_33
+  - first:
+      213: 1240771664962669780
+    second: double purple diamond_34
+  - first:
+      213: 8925349124218903033
+    second: double purple diamond_35
+  - first:
+      213: 1796017141445487835
+    second: double purple diamond_36
+  - first:
+      213: 4537651118364520510
+    second: double purple diamond_37
+  - first:
+      213: -6254185420591743731
+    second: double purple diamond_38
+  - first:
+      213: 3485134994316660523
+    second: double purple diamond_39
+  - first:
+      213: -8050104056350870819
+    second: double purple diamond_40
+  - first:
+      213: 6644037842395015276
+    second: double purple diamond_41
+  - first:
+      213: 6725061396173890564
+    second: double purple diamond_42
+  - first:
+      213: 2283490897882076211
+    second: double purple diamond_43
+  - first:
+      213: 4155278060045451860
+    second: double purple diamond_44
+  - first:
+      213: 5910709989996410494
+    second: double purple diamond_45
+  - first:
+      213: 1922564847688394484
+    second: double purple diamond_46
+  - first:
+      213: -4918985715238254635
+    second: double purple diamond_47
+  - first:
+      213: -4306495818773767952
+    second: double purple diamond_48
+  - first:
+      213: 306440639300339169
+    second: double purple diamond_49
+  - first:
+      213: 1780859446279795115
+    second: double purple diamond_50
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: double purple diamond_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 831
+        width: 110
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ac4aee7d4450cfb0800000000000000
+      internalID: -4629607725118370654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_1
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 827
+        width: 104
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06848fc6d1fd372e0800000000000000
+      internalID: -2129112881340856224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 824
+        width: 100
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84e4ad76df3627f60800000000000000
+      internalID: 8030591025575251528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_3
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 836
+        width: 91
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d44da3e6480b39a0800000000000000
+      internalID: -6252394557113285421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_4
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 840
+        width: 96
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9005af2ce896328d0800000000000000
+      internalID: -2872336075454787575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_5
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 833
+        width: 90
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1a35c1c31d164090800000000000000
+      internalID: -8050715313185670625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_6
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 838
+        width: 91
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3bc228fc16011e90800000000000000
+      internalID: -7056852419620975812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_7
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 844
+        width: 57
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3c62449687d86510800000000000000
+      internalID: 1542719845387365434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_8
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 839
+        width: 83
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4121123021a499760800000000000000
+      internalID: 7465079298565673492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_9
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 834
+        width: 107
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c6038fead8a03ee0800000000000000
+      internalID: -1283340235525912890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_10
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 826
+        width: 117
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbe7e0b1f0ba40d70800000000000000
+      internalID: 9008513236014628541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_11
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 833
+        width: 89
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03d3fa2836f881dd0800000000000000
+      internalID: -2515102734329365200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_12
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 821
+        width: 138
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0bc7baa7dcade330800000000000000
+      internalID: 3741836907696868108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_13
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 832
+        width: 115
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 081f5b2e98b0da0e0800000000000000
+      internalID: -2257135151400750720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_14
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 813
+        width: 77
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cedb9e89d3d9d0a0800000000000000
+      internalID: -6856216026340925752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 821
+        width: 115
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa43fae0281c6e090800000000000000
+      internalID: -8005498523268205398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_16
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 810
+        width: 104
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb2ad991882be0580800000000000000
+      internalID: -8858947119376129348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_17
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 768
+        width: 104
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21c6ea7fb327fd370800000000000000
+      internalID: 8349517836052229138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_18
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 797
+        width: 100
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea664ffef536df460800000000000000
+      internalID: 7277081836599404206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_19
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 788
+        width: 81
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71547155389320d80800000000000000
+      internalID: -8285997128177203945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_20
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 722
+        width: 111
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5372f8a59255eef80800000000000000
+      internalID: -8075423445727369419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_21
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 769
+        width: 131
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7246fb108253223b0800000000000000
+      internalID: -5538806145768004569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_22
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 739
+        width: 102
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c24cd0ddfbc4ea0a0800000000000000
+      internalID: -6868467994762296276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_23
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 752
+        width: 103
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9cfef4c700c46fe0800000000000000
+      internalID: -1196620461371360101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_24
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 797
+        width: 107
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23c1a8cb4c21329b0800000000000000
+      internalID: -5106216916321952718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_25
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 785
+        width: 102
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae17d63a619e5f710800000000000000
+      internalID: 1726542315606864362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_26
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 728
+        width: 61
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e67d5612788e9e540800000000000000
+      internalID: 5037813325269161838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_27
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 805
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 413a3d1bfd4fd40a0800000000000000
+      internalID: -6895586212836039916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_28
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 761
+        width: 88
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61847c70b90a90440800000000000000
+      internalID: 4902626257080371222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_29
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 751
+        width: 79
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21cca64f4b16b5e20800000000000000
+      internalID: 3340370978448002066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_30
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 689
+        width: 67
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c73f5417f91edd290800000000000000
+      internalID: -7863881299402558596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_31
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 714
+        width: 78
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c15e6e345149d5530800000000000000
+      internalID: 3845392475898701084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_32
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 703
+        width: 71
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 698985973202e8360800000000000000
+      internalID: 7173706593179572374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_33
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 723
+        width: 103
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77d117818474946a0800000000000000
+      internalID: -6464557415140352649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_34
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 715
+        width: 40
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dc4871614b183110800000000000000
+      internalID: 1240771664962669780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_35
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 778
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f9596d6db53ddb70800000000000000
+      internalID: 8925349124218903033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_36
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 740
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdcee5e031cbce810800000000000000
+      internalID: 1796017141445487835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_37
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 706
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3075c096a9f8fe30800000000000000
+      internalID: 4537651118364520510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_38
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 689
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0db33efe7ba439a0800000000000000
+      internalID: -6254185420591743731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_39
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 673
+        width: 45
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2f0782ffcfad5030800000000000000
+      internalID: 3485134994316660523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 440
+        width: 348
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd276441309484090800000000000000
+      internalID: -8050104056350870819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_41
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 667
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c68253e473d543c50800000000000000
+      internalID: 6644037842395015276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_42
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 669
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40423ab75b7345d50800000000000000
+      internalID: 6725061396173890564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_43
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 627
+        width: 46
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33459188fd690bf10800000000000000
+      internalID: 2283490897882076211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_44
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 652
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 452cbf741638aa930800000000000000
+      internalID: 4155278060045451860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_45
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 539
+        width: 52
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e76b61c6b6f070250800000000000000
+      internalID: 5910709989996410494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_46
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 565
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f6ae14fa825eaa10800000000000000
+      internalID: 1922564847688394484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_47
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 315
+        width: 395
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d7c00ccd804cbbb0800000000000000
+      internalID: -4918985715238254635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_48
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 440
+        width: 55
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f8d84f9ed04c34c0800000000000000
+      internalID: -4306495818773767952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_49
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 396
+        height: 308
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e58d3a4322b04400800000000000000
+      internalID: 306440639300339169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double purple diamond_50
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 309
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba1f7622b32e6b810800000000000000
+      internalID: 1780859446279795115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      double purple diamond_0: -4629607725118370654
+      double purple diamond_1: -2129112881340856224
+      double purple diamond_10: 9008513236014628541
+      double purple diamond_11: -2515102734329365200
+      double purple diamond_12: 3741836907696868108
+      double purple diamond_13: -2257135151400750720
+      double purple diamond_14: -6856216026340925752
+      double purple diamond_15: -8005498523268205398
+      double purple diamond_16: -8858947119376129348
+      double purple diamond_17: 8349517836052229138
+      double purple diamond_18: 7277081836599404206
+      double purple diamond_19: -8285997128177203945
+      double purple diamond_2: 8030591025575251528
+      double purple diamond_20: -8075423445727369419
+      double purple diamond_21: -5538806145768004569
+      double purple diamond_22: -6868467994762296276
+      double purple diamond_23: -1196620461371360101
+      double purple diamond_24: -5106216916321952718
+      double purple diamond_25: 1726542315606864362
+      double purple diamond_26: 5037813325269161838
+      double purple diamond_27: -6895586212836039916
+      double purple diamond_28: 4902626257080371222
+      double purple diamond_29: 3340370978448002066
+      double purple diamond_3: -6252394557113285421
+      double purple diamond_30: -7863881299402558596
+      double purple diamond_31: 3845392475898701084
+      double purple diamond_32: 7173706593179572374
+      double purple diamond_33: -6464557415140352649
+      double purple diamond_34: 1240771664962669780
+      double purple diamond_35: 8925349124218903033
+      double purple diamond_36: 1796017141445487835
+      double purple diamond_37: 4537651118364520510
+      double purple diamond_38: -6254185420591743731
+      double purple diamond_39: 3485134994316660523
+      double purple diamond_4: -2872336075454787575
+      double purple diamond_40: -8050104056350870819
+      double purple diamond_41: 6644037842395015276
+      double purple diamond_42: 6725061396173890564
+      double purple diamond_43: 2283490897882076211
+      double purple diamond_44: 4155278060045451860
+      double purple diamond_45: 5910709989996410494
+      double purple diamond_46: 1922564847688394484
+      double purple diamond_47: -4918985715238254635
+      double purple diamond_48: -4306495818773767952
+      double purple diamond_49: 306440639300339169
+      double purple diamond_5: -8050715313185670625
+      double purple diamond_50: 1780859446279795115
+      double purple diamond_6: -7056852419620975812
+      double purple diamond_7: 1542719845387365434
+      double purple diamond_8: 7465079298565673492
+      double purple diamond_9: -1283340235525912890
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,1300 @@
+fileFormatVersion: 2
+guid: 622914e93f3014491ac827a20381c39f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -320097622031584670
+    second: wild blue diamond_0
+  - first:
+      213: 7390962218117897198
+    second: wild blue diamond_1
+  - first:
+      213: -1415200064458073954
+    second: wild blue diamond_2
+  - first:
+      213: -8842246295539236823
+    second: wild blue diamond_3
+  - first:
+      213: 6457649314968675272
+    second: wild blue diamond_4
+  - first:
+      213: 2415958831888396491
+    second: wild blue diamond_5
+  - first:
+      213: -1782163068364840140
+    second: wild blue diamond_6
+  - first:
+      213: -8795186154809098687
+    second: wild blue diamond_7
+  - first:
+      213: -8084349340825793228
+    second: wild blue diamond_8
+  - first:
+      213: 1608700180343975623
+    second: wild blue diamond_9
+  - first:
+      213: -5591883789176129424
+    second: wild blue diamond_10
+  - first:
+      213: -5898490966439763427
+    second: wild blue diamond_11
+  - first:
+      213: 7647246304368338163
+    second: wild blue diamond_12
+  - first:
+      213: -2633444121025219004
+    second: wild blue diamond_13
+  - first:
+      213: -930591007937791665
+    second: wild blue diamond_14
+  - first:
+      213: -657544613648300238
+    second: wild blue diamond_15
+  - first:
+      213: -4684123677574420297
+    second: wild blue diamond_16
+  - first:
+      213: -6499578284976239120
+    second: wild blue diamond_17
+  - first:
+      213: 1293272288630139105
+    second: wild blue diamond_18
+  - first:
+      213: 6775243036328031890
+    second: wild blue diamond_19
+  - first:
+      213: 5695843732473880807
+    second: wild blue diamond_20
+  - first:
+      213: -9054316068109942434
+    second: wild blue diamond_21
+  - first:
+      213: 5586052523924574342
+    second: wild blue diamond_22
+  - first:
+      213: -1813453113824418710
+    second: wild blue diamond_23
+  - first:
+      213: 882572670664823213
+    second: wild blue diamond_24
+  - first:
+      213: 2356134162902741214
+    second: wild blue diamond_25
+  - first:
+      213: -2346495984034575444
+    second: wild blue diamond_26
+  - first:
+      213: -2324503597783755593
+    second: wild blue diamond_27
+  - first:
+      213: -6458904137547045771
+    second: wild blue diamond_28
+  - first:
+      213: 6335920072557537835
+    second: wild blue diamond_29
+  - first:
+      213: 868974995029159069
+    second: wild blue diamond_30
+  - first:
+      213: 2828902799486421725
+    second: wild blue diamond_31
+  - first:
+      213: -6478882595642990902
+    second: wild blue diamond_32
+  - first:
+      213: 6393492575451333323
+    second: wild blue diamond_33
+  - first:
+      213: -6777181973218995555
+    second: wild blue diamond_34
+  - first:
+      213: -5554514310230291900
+    second: wild blue diamond_35
+  - first:
+      213: 4495434346726569849
+    second: wild blue diamond_36
+  - first:
+      213: 2954012104160607507
+    second: wild blue diamond_37
+  - first:
+      213: 6924081391365601521
+    second: wild blue diamond_38
+  - first:
+      213: 5355016747491874543
+    second: wild blue diamond_39
+  - first:
+      213: -3802396288926934323
+    second: wild blue diamond_40
+  - first:
+      213: 2410317606350398024
+    second: wild blue diamond_41
+  - first:
+      213: -2423862945121009098
+    second: wild blue diamond_42
+  - first:
+      213: 5640194420404711044
+    second: wild blue diamond_43
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wild blue diamond_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 391
+        height: 306
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2623c51a8e8ce8bf0800000000000000
+      internalID: -320097622031584670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_1
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 161
+        width: 96
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eeb10477af8f19660800000000000000
+      internalID: 7390962218117897198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_2
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 197
+        width: 47
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e98ddd71a033c5ce0800000000000000
+      internalID: -1415200064458073954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_3
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 196
+        width: 43
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 920ced9a7d70a4580800000000000000
+      internalID: -8842246295539236823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_4
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 195
+        width: 40
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c3a0ce76dd2e9950800000000000000
+      internalID: 6457649314968675272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_5
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 195
+        width: 24
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc0fcaed1c5378120800000000000000
+      internalID: 2415958831888396491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_6
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 193
+        width: 20
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4332b42b12c7447e0800000000000000
+      internalID: -1782163068364840140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_7
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 192
+        width: 12
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14e7b258ac831f580800000000000000
+      internalID: -8795186154809098687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_8
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 191
+        width: 15
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43d4ae37b1f9ecf80800000000000000
+      internalID: -8084349340825793228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_9
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 191
+        width: 25
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ce628f6a40435610800000000000000
+      internalID: 1608700180343975623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_10
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 190
+        width: 35
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07834e02253a562b0800000000000000
+      internalID: -5591883789176129424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_11
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 189
+        width: 47
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d12e182b7b9542ea0800000000000000
+      internalID: -5898490966439763427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_12
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 187
+        width: 48
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f42bc93ff9702a60800000000000000
+      internalID: 7647246304368338163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_13
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 187
+        width: 59
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44673764680247bd0800000000000000
+      internalID: -2633444121025219004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_14
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 185
+        width: 71
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f49f1b4a860e513f0800000000000000
+      internalID: -930591007937791665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_15
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 181
+        width: 88
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 237858f58aeefd6f0800000000000000
+      internalID: -657544613648300238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_16
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 3
+        width: 242
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b82e223556aefeb0800000000000000
+      internalID: -4684123677574420297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_17
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 1
+        width: 112
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fd062e6cfbdcc5a0800000000000000
+      internalID: -6499578284976239120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_18
+      rect:
+        serializedVersion: 2
+        x: 1012
+        y: 202
+        width: 55
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e8e7a16b40a2f110800000000000000
+      internalID: 1293272288630139105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_19
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 202
+        width: 59
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 296754f05af760e50800000000000000
+      internalID: 6775243036328031890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_20
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 225
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e0ad3262b3bb0f40800000000000000
+      internalID: 5695843732473880807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_21
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 61
+        width: 91
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e510234028b985280800000000000000
+      internalID: -9054316068109942434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_22
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 91
+        width: 110
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 680d231ac25a58d40800000000000000
+      internalID: 5586052523924574342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_23
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 124
+        width: 7
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a646ba5400255d6e0800000000000000
+      internalID: -1813453113824418710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_24
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 144
+        width: 101
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da1d17bfa278f3c00800000000000000
+      internalID: 882572670664823213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_25
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 141
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed0fafea98ba2b020800000000000000
+      internalID: 2356134162902741214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_26
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 75
+        width: 101
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cab0db4b5529f6fd0800000000000000
+      internalID: -2346495984034575444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_27
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 68
+        width: 89
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b45bf62b44bdbfd0800000000000000
+      internalID: -2324503597783755593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_28
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 61
+        width: 83
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 574253b58ec5d56a0800000000000000
+      internalID: -6458904137547045771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_29
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 35
+        width: 80
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2a2f02acb5bde750800000000000000
+      internalID: 6335920072557537835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_30
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 34
+        width: 66
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9ce86967283f0c00800000000000000
+      internalID: 868974995029159069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_31
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 31
+        width: 64
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dda0f73ab18424720800000000000000
+      internalID: 2828902799486421725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_32
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 8
+        width: 42
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ace1d391b926616a0800000000000000
+      internalID: -6478882595642990902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_33
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 16
+        width: 25
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc2cfd98f9f3ab850800000000000000
+      internalID: 6393492575451333323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_34
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 15
+        width: 17
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d92d91407ec92f1a0800000000000000
+      internalID: -6777181973218995555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_35
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 1
+        width: 27
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44a46e6f9a66ae2b0800000000000000
+      internalID: -5554514310230291900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_36
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 24
+        width: 66
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9773ab378bdf26e30800000000000000
+      internalID: 4495434346726569849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_37
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 10
+        width: 44
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31d72b29b52cef820800000000000000
+      internalID: 2954012104160607507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_38
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 50
+        width: 61
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f83d301757471060800000000000000
+      internalID: 6924081391365601521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_39
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 35
+        width: 90
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe655881c57d05a40800000000000000
+      internalID: 5355016747491874543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_40
+      rect:
+        serializedVersion: 2
+        x: 1015
+        y: 2
+        width: 76
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dca1f3f98bc2b3bc0800000000000000
+      internalID: -3802396288926934323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_41
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 1
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 842a262b71b237120800000000000000
+      internalID: 2410317606350398024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_42
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 2
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63284db5e75bc5ed0800000000000000
+      internalID: -2423862945121009098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wild blue diamond_43
+      rect:
+        serializedVersion: 2
+        x: 1095
+        y: 3
+        width: 41
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48eec5c31fef54e40800000000000000
+      internalID: 5640194420404711044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      wild blue diamond_0: -320097622031584670
+      wild blue diamond_1: 7390962218117897198
+      wild blue diamond_10: -5591883789176129424
+      wild blue diamond_11: -5898490966439763427
+      wild blue diamond_12: 7647246304368338163
+      wild blue diamond_13: -2633444121025219004
+      wild blue diamond_14: -930591007937791665
+      wild blue diamond_15: -657544613648300238
+      wild blue diamond_16: -4684123677574420297
+      wild blue diamond_17: -6499578284976239120
+      wild blue diamond_18: 1293272288630139105
+      wild blue diamond_19: 6775243036328031890
+      wild blue diamond_2: -1415200064458073954
+      wild blue diamond_20: 5695843732473880807
+      wild blue diamond_21: -9054316068109942434
+      wild blue diamond_22: 5586052523924574342
+      wild blue diamond_23: -1813453113824418710
+      wild blue diamond_24: 882572670664823213
+      wild blue diamond_25: 2356134162902741214
+      wild blue diamond_26: -2346495984034575444
+      wild blue diamond_27: -2324503597783755593
+      wild blue diamond_28: -6458904137547045771
+      wild blue diamond_29: 6335920072557537835
+      wild blue diamond_3: -8842246295539236823
+      wild blue diamond_30: 868974995029159069
+      wild blue diamond_31: 2828902799486421725
+      wild blue diamond_32: -6478882595642990902
+      wild blue diamond_33: 6393492575451333323
+      wild blue diamond_34: -6777181973218995555
+      wild blue diamond_35: -5554514310230291900
+      wild blue diamond_36: 4495434346726569849
+      wild blue diamond_37: 2954012104160607507
+      wild blue diamond_38: 6924081391365601521
+      wild blue diamond_39: 5355016747491874543
+      wild blue diamond_4: 6457649314968675272
+      wild blue diamond_40: -3802396288926934323
+      wild blue diamond_41: 2410317606350398024
+      wild blue diamond_42: -2423862945121009098
+      wild blue diamond_43: 5640194420404711044
+      wild blue diamond_5: 2415958831888396491
+      wild blue diamond_6: -1782163068364840140
+      wild blue diamond_7: -8795186154809098687
+      wild blue diamond_8: -8084349340825793228
+      wild blue diamond_9: 1608700180343975623
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

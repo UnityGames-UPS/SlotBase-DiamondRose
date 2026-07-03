@@ -1,0 +1,7 @@
+7 black.png
+size:358,224
+filter:Linear,Linear
+pma:true
+7 black
+bounds:2,2,354,220
+offsets:2,1,357,222
