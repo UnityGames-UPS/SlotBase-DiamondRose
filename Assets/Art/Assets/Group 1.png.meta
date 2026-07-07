@@ -1,34 +1,19 @@
 fileFormatVersion: 2
-guid: a9da98eeb32794851a9a0363a8d6f387
+guid: a58917783248f41209bfe63e3171c94c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1781950580338534837
-    second: Paytable_0
+      213: 2641698482785147981
+    second: Group 1_0
   - first:
-      213: 5330154438565323116
-    second: Paytable_1
+      213: -9081263467114537878
+    second: Group 1_1
   - first:
-      213: -2748247147133081908
-    second: Paytable_2
+      213: 304971421478580809
+    second: Group 1_2
   - first:
-      213: -6855783096760210360
-    second: Paytable_3
-  - first:
-      213: -2966821460005051117
-    second: Paytable_4
-  - first:
-      213: -7441364527343256349
-    second: Paytable_5
-  - first:
-      213: -5220644063474512351
-    second: Paytable_6
-  - first:
-      213: 8684989397460807154
-    second: Paytable_7
-  - first:
-      213: 2399879307184086471
-    second: Paytable_8
+      213: -3345504643224878737
+    second: Group 1_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -163,199 +148,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Paytable_0
+      name: Group 1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 270
-        width: 174
-        height: 214
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5b921649c92cab810800000000000000
-      internalID: 1781950580338534837
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Paytable_1
-      rect:
-        serializedVersion: 2
-        x: 225
-        y: 270
-        width: 174
-        height: 214
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c6168a4b83388f940800000000000000
-      internalID: 5330154438565323116
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Paytable_2
-      rect:
-        serializedVersion: 2
-        x: 450
-        y: 270
-        width: 174
-        height: 214
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cc6e620d7c34cd9d0800000000000000
-      internalID: -2748247147133081908
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Paytable_3
-      rect:
-        serializedVersion: 2
-        x: 676
-        y: 270
-        width: 174
-        height: 214
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 84cea74d89d5bd0a0800000000000000
-      internalID: -6855783096760210360
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Paytable_4
-      rect:
-        serializedVersion: 2
-        x: 901
-        y: 270
-        width: 174
-        height: 214
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 315a46cd99bb3d6d0800000000000000
-      internalID: -2966821460005051117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Paytable_5
-      rect:
-        serializedVersion: 2
-        x: 112
         y: 0
-        width: 174
-        height: 214
+        width: 74
+        height: 59
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ec338f6366fab890800000000000000
-      internalID: -7441364527343256349
+      spriteID: d4cd81616c239a420800000000000000
+      internalID: 2641698482785147981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paytable_6
+      name: Group 1_1
       rect:
         serializedVersion: 2
-        x: 338
+        x: 79
         y: 0
-        width: 174
-        height: 214
+        width: 75
+        height: 59
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 12e89d962eb8c87b0800000000000000
-      internalID: -5220644063474512351
+      spriteID: a6cd7e2cdfed8f180800000000000000
+      internalID: -9081263467114537878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paytable_7
+      name: Group 1_2
       rect:
         serializedVersion: 2
-        x: 562
+        x: 158
         y: 0
-        width: 175
-        height: 214
+        width: 75
+        height: 59
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2fd6fa987d7478870800000000000000
-      internalID: 8684989397460807154
+      spriteID: 94270eb54e97b3400800000000000000
+      internalID: 304971421478580809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Paytable_8
+      name: Group 1_3
       rect:
         serializedVersion: 2
-        x: 788
+        x: 238
         y: 0
-        width: 174
-        height: 214
+        width: 74
+        height: 59
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7cd9488c3851e4120800000000000000
-      internalID: 2399879307184086471
+      spriteID: f61492290416291d0800000000000000
+      internalID: -3345504643224878737
       vertices: []
       indices: 
       edges: []
@@ -364,7 +239,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8352f8351f0544d12941b3b749630d72
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -374,15 +249,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Paytable_0: 1781950580338534837
-      Paytable_1: 5330154438565323116
-      Paytable_2: -2748247147133081908
-      Paytable_3: -6855783096760210360
-      Paytable_4: -2966821460005051117
-      Paytable_5: -7441364527343256349
-      Paytable_6: -5220644063474512351
-      Paytable_7: 8684989397460807154
-      Paytable_8: 2399879307184086471
+      Group 1_0: 2641698482785147981
+      Group 1_1: -9081263467114537878
+      Group 1_2: 304971421478580809
+      Group 1_3: -3345504643224878737
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
