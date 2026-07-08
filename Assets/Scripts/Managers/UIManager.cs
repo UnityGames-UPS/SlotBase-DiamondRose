@@ -10,35 +10,17 @@ public class UIManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameManager gameManager;
     [SerializeField] private PopupManager popupManager;
-    [SerializeField] private JSFunctCalls jsFunctCalls;
 
-    [Header("Loading & Intro")]
-    [SerializeField] private GameObject loadingScreen;
-    [SerializeField] private GameObject gameScreen;
-    [SerializeField] private float initializationTimeout = 20f;
 
-    [Header("Backgrounds")]
-    [SerializeField] private GameObject normalSpinBackground;
 
     [Header("Bet Controls")]
     [SerializeField] private TMP_Text betAmountText;
     [SerializeField] private Button betPlusButton;
     [SerializeField] private Button betMinusButton;
 
-    [Header("Max Bet Indicator")]
-    [SerializeField] private GameObject maxBetObject;
-    [SerializeField] private float maxBetDisplayDuration = 1f;
-
     [Header("Balance & Win")]
     [SerializeField] private TMP_Text balanceText;
     [SerializeField] private TMP_Text winAmountText;
-
-    [Header("Display Panel - Game Rules & Win")]
-    [SerializeField] private GameObject displayPanel;
-    [SerializeField] private GameObject gameRuleObject;
-    [SerializeField] private GameObject winDisplayObject;
-    [SerializeField] private TMP_Text winDisplayText;
-    [SerializeField] private float winDisplayDuration = 1f;
 
     [Header("Win Popup Panel")]
     [SerializeField] private GameObject winPopupPanel;
@@ -97,16 +79,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private float winCountDuration = 0.25f;
     [SerializeField] private float balanceCountDuration = 1.0f;
 
-    [Header("Expand-Shrink Controls")]
-    [SerializeField] private Button expandButton;
-    [SerializeField] private Button shrinkButton;
-    private bool isExpanded = false;
+
 
     private int selectedRounds = 10;
     private Tween balanceTween;
     private Tween winTween;
-
-    private Coroutine maxBetCoroutine;
 
     // Optimistic balance: the locally-deducted balance shown while the spin is in flight
     private double optimisticBalance = 0;
@@ -134,17 +111,7 @@ public class UIManager : MonoBehaviour
         SetupSettingsPanel();
         SetupGameRulesPanel();
 
-        InitializeDisplayPanel();
-InitializeExpandShrink();
-
-        InitializeBackgrounds();
         StartCoroutine(LoadingSequence());
-        RegisterFullscreenListener();
-    }
-
-    private void InitializeBackgrounds()
-    {
-        if (normalSpinBackground) normalSpinBackground.SetActive(true);
     }
 
     private void InitializeUI()
@@ -152,18 +119,9 @@ InitializeExpandShrink();
         if (spinButton) spinButton.gameObject.SetActive(true);
         if (stopButton) stopButton.gameObject.SetActive(false);
 
-        if (maxBetObject) maxBetObject.SetActive(false);
-
-
         if (gameRulesPanel) gameRulesPanel.SetActive(false);
         if (winPopupPanel) winPopupPanel.SetActive(false);
         if (winRingObject) winRingObject.SetActive(false);
-    }
-
-    private void InitializeDisplayPanel()
-    {
-        if (gameRuleObject) gameRuleObject.SetActive(true);
-        if (winDisplayObject) winDisplayObject.SetActive(false);
     }
 
     #endregion
@@ -172,18 +130,12 @@ InitializeExpandShrink();
 
     private IEnumerator LoadingSequence()
     {
-        if (loadingScreen) loadingScreen.SetActive(false);
-        if (gameScreen) gameScreen.SetActive(false);
-
-        // --- Wait for Initialization ---
-        float timer = 0f;
-        while (!gameManager.isInitialized && !gameManager.initializationFailed && timer < initializationTimeout)
+        while (!gameManager.isInitialized && !gameManager.initializationFailed)
         {
-            timer += Time.deltaTime;
             yield return null;
         }
 
-        if (gameManager.initializationFailed || !gameManager.isInitialized)
+        if (gameManager.initializationFailed)
         {
             if (gameManager.socketManager != null)
             {
@@ -192,14 +144,13 @@ InitializeExpandShrink();
 
             if (popupManager != null)
             {
-                string errorMsg = gameManager.initializationFailed ? "Game failed to initialize." : "Initialization timed out. Please check your connection.";
+                string errorMsg = "Game failed to initialize.";
                 popupManager.ShowErrorPopup("Connection Error", errorMsg, true);
             }
             yield break;
         }
         // ------------------------------
 
-        if (gameScreen) gameScreen.SetActive(true);
         AudioManager.Instance?.PlayBgMusic();
         InitializeUI();
     }
@@ -216,9 +167,6 @@ InitializeExpandShrink();
         if (stopButton) stopButton.onClick.AddListener(OnStopButtonPressed);
 
         if (autoPlayStartButton)  autoPlayStartButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); ToggleAutoPlay(); });
-
-        if(expandButton) expandButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); OnExpand(); });
-        if(shrinkButton) shrinkButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); OnShrink(); });
     }
 
     private void SetupAutoPlayPanel()
@@ -286,14 +234,12 @@ InitializeExpandShrink();
             StopCoroutine(winDisplayCoroutine);
             winDisplayCoroutine = null;
         }
-        if (winDisplayObject) winDisplayObject.SetActive(false);
         if (winPopupPanel)
         {
             winPopupPanel.SetActive(false);
             if (winPopupImageAnimation) winPopupImageAnimation.StopAnimation();
         }
         if (winRingObject) winRingObject.SetActive(false);
-        if (gameRuleObject) gameRuleObject.SetActive(true);
         isSpecialWinActive = false;
 
         // --- Optimistic balance deduction ---
@@ -487,18 +433,7 @@ InitializeExpandShrink();
 
         if (multiplier < 5 || skipScreen)
         {
-            if (gameRuleObject) gameRuleObject.SetActive(false);
-            if (winDisplayObject) winDisplayObject.SetActive(true);
-
-            // Use the authoritative target win for the small display label
-            if (winDisplayText) winDisplayText.text = $"WIN {endVal:F2}";
-
             AudioManager.Instance?.PlayWinNormal();
-
-            yield return new WaitForSeconds(winDisplayDuration);
-
-            if (winDisplayObject) winDisplayObject.SetActive(false);
-            if (gameRuleObject) gameRuleObject.SetActive(true);
             if (winRingObject) winRingObject.SetActive(false);
             winDisplayCoroutine = null;
             yield break;
@@ -511,14 +446,6 @@ InitializeExpandShrink();
         // Big Win Popup Logic — based on the spin's winAmount field
         AudioManager.Instance?.PlayWinOpeningJingle(multiplier);
         AudioManager.Instance?.PlayWinPopupBg(multiplier);
-
-        if (gameRuleObject) gameRuleObject.SetActive(false);
-        
-        if (winDisplayObject) 
-        {
-            winDisplayObject.SetActive(true);
-            if (winDisplayText) winDisplayText.text = $"WIN {startVal:F2}";
-        }
 
         List<Sprite> selectedSprites = null;
         float popupTime = 0f;
@@ -586,7 +513,6 @@ InitializeExpandShrink();
                 // 3. Update main UI displays based on authoritative round total
                 string formattedTotal = ((double)currentAnimVal).ToString("F2");
                 if (winAmountText) winAmountText.text = formattedTotal;
-                if (winDisplayText) winDisplayText.text = $"WIN {formattedTotal}";
                 
                 currentWinDisplayValue = (double)currentAnimVal;
             }, (float)endVal, animDuration).SetEase(Ease.OutQuad);
@@ -600,15 +526,6 @@ InitializeExpandShrink();
         if (winPopupPanel) winPopupPanel.SetActive(false);
         if (winPopupImageAnimation) winPopupImageAnimation.StopAnimation();
         if (winRingObject) winRingObject.SetActive(false);
-        
-        // --- Keep normal win display visible for a moment after special win popup closes ---
-        if (winDisplayObject && winDisplayObject.activeSelf)
-        {
-            yield return new WaitForSeconds(winDisplayDuration);
-            winDisplayObject.SetActive(false);
-        }
-
-        if (gameRuleObject) gameRuleObject.SetActive(true);
 
         // --- Reset Controls ---
         isSpecialWinActive = false;
@@ -669,7 +586,6 @@ InitializeExpandShrink();
         if (betAmountText)
             betAmountText.text = totalBetAmount.ToString("F2");
         UpdateBetButtonStates();
-        CheckMaxBetIndicator();
         UpdateGameRulesDynamicTexts();
     }
 
@@ -677,35 +593,6 @@ InitializeExpandShrink();
     {
         if (betMinusButton) betMinusButton.interactable = true;
         if (betPlusButton) betPlusButton.interactable = true;
-    }
-
-    private void CheckMaxBetIndicator()
-    {
-        bool isMaxBet = gameManager.currentBetIndex >= gameManager.gameConfig.availableBets.Count - 1;
-
-        if (isMaxBet && maxBetObject && !maxBetObject.activeSelf)
-        {
-            if (maxBetCoroutine != null) StopCoroutine(maxBetCoroutine);
-            maxBetCoroutine = StartCoroutine(ShowMaxBetIndicator());
-        }
-        else if (!isMaxBet && maxBetObject && maxBetObject.activeSelf)
-        {
-            maxBetObject.SetActive(false);
-            if (maxBetCoroutine != null)
-            {
-                StopCoroutine(maxBetCoroutine);
-                maxBetCoroutine = null;
-            }
-        }
-    }
-
-    private IEnumerator ShowMaxBetIndicator()
-    {
-        AudioManager.Instance?.PlayMaxBet();
-        if (maxBetObject) maxBetObject.SetActive(true);
-        yield return new WaitForSeconds(maxBetDisplayDuration);
-        if (maxBetObject) maxBetObject.SetActive(false);
-        maxBetCoroutine = null;
     }
 
     #endregion
@@ -914,54 +801,7 @@ InitializeExpandShrink();
     #endregion
 
 
-    #region Expand / Shrink
 
-    private void InitializeExpandShrink()
-    {
-
-        SetExpandShrinkButtons(isExpanded: false);
-    }
-
-    private void OnExpand()
-    {
-        isExpanded = true;
-        jsFunctCalls?.RequestExpandGame();
-        SetExpandShrinkButtons(isExpanded: true);
-    }
-
-    private void OnShrink()
-    {
-        isExpanded = false;
-        jsFunctCalls?.RequestShrinkGame();
-        SetExpandShrinkButtons(isExpanded: false);
-    }
-
-
-    private void SetExpandShrinkButtons(bool isExpanded)
-    {
-        if (expandButton) expandButton.gameObject.SetActive(!isExpanded);
-        if (shrinkButton) shrinkButton.gameObject.SetActive(isExpanded);
-    }
-
-    private void RegisterFullscreenListener()
-    {
-        jsFunctCalls?.RegisterFullscreenListener(gameObject.name);
-    }
- internal void OnFullscreenChanged(string isFullscreen)
-    {
-        bool newExpandedState = isFullscreen == "1";
-        Debug.Log($"[UI] OnFullscreenChanged callback: isFullscreen={isFullscreen}, newState={newExpandedState}");
-
-        // Only update if state actually changed
-        if (isExpanded != newExpandedState)
-        {
-            isExpanded = newExpandedState;
-            SetExpandShrinkButtons(isExpanded);
-            Debug.Log($"[UI] Button states synced to fullscreen: {(isExpanded ? "EXPANDED" : "SHRINK")}");
-        }
-    }
-    
-    #endregion
 
     #region Popup Animations (Generic)
 

@@ -11,9 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SlotView slotView;
 
     [Header("Spin Settings")]
-    [SerializeField] private float normalSpinDuration = 3.5f;
-    [SerializeField] private float turboSpinDuration = 2.0f;
-    [SerializeField] private float quickSpinCycleDuration = 0.8f;
+    [SerializeField] private float normalSpinDuration = 2.0f;
 
     internal GameConfig gameConfig;
     internal PlayerData playerData;
@@ -306,13 +304,7 @@ public class GameManager : MonoBehaviour
 
     private float GetSpinDuration()
     {
-        return currentSpinSpeed switch
-        {
-            SpinSpeed.Normal => normalSpinDuration,
-            SpinSpeed.Turbo => turboSpinDuration,
-            SpinSpeed.QuickSpin => quickSpinCycleDuration,
-            _ => normalSpinDuration
-        };
+        return normalSpinDuration;
     }
 
     internal void OnSpinResultReceived(SpinResult result)

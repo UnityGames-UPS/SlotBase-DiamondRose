@@ -145,11 +145,13 @@ public class ServerFreeSpinState
 public class ServerWinLine
 {
     public int lineIndex;                    // Server uses "lineIndex"
-    public List<List<int>> positions;        // Server format: [[row,col], [row,col]]
+    public List<string> positions;           // Diamond Rose format: ["1,0", "0,1", "1,2"] (col,row strings)
     public string symbolId;                  // Server sends STRING!
+    public string symbolName;                // Diamond Rose sends "Any 7" etc.
     public int matchCount;
     public double basePayout;
     public double payout;
+    public double winAmount;                 // Diamond Rose sends winAmount per line
     public int wildMultiplier;
     public List<WildDetail> wildDetails;
 }
@@ -658,8 +660,8 @@ public static class InitDataConverter
 
     /// <summary>
     /// Converts server winningLines to client winLines.
-    /// Uses the server-provided positions directly: each position is [row, col].
-    /// Encodes as flat index = col * rowCount + row (rowCount = 4).
+    /// Diamond Rose format: positions are strings like "1,0" (col,row).
+    /// Encodes as flat index = row * cols + col.
     /// </summary>
     private static List<WinLine> ConvertWinningLines(List<ServerWinLine> serverWinLines, GameConfig gameConfig)
     {
@@ -671,28 +673,44 @@ public static class InitDataConverter
 
         foreach (var serverLine in serverWinLines)
         {
-            // Parse symbolId from string to int
-            if (!int.TryParse(serverLine.symbolId, out int symbolId))
+            // Try parsing symbolId as int first, fall back to resolving symbolName
+            int symbolId = 0;
+            if (!string.IsNullOrEmpty(serverLine.symbolId) && int.TryParse(serverLine.symbolId, out int parsedId))
             {
-                UnityEngine.Debug.LogError($"Failed to parse symbolId: {serverLine.symbolId}");
-                continue;
+                symbolId = parsedId;
+            }
+            else if (!string.IsNullOrEmpty(serverLine.symbolName) && gameConfig?.symbols != null)
+            {
+                // Resolve symbolName (e.g. "Any 7") to an id by matching name
+                var match = gameConfig.symbols.Find(s => string.Equals(s.name, serverLine.symbolName, StringComparison.OrdinalIgnoreCase));
+                if (match != null)
+                {
+                    symbolId = match.id;
+                }
+                else
+                {
+                    UnityEngine.Debug.LogWarning($"[ConvertWinningLines] Unknown symbolName: {serverLine.symbolName}");
+                }
             }
 
             var flatPositions = new List<int>();
 
-
-
             if (serverLine.positions != null && serverLine.positions.Count > 0)
             {
-                foreach (var pos in serverLine.positions)
+                // Diamond Rose format: positions are "col,row" strings
+                foreach (var posStr in serverLine.positions)
                 {
-                    if (pos.Count >= 2)
+                    string[] parts = posStr.Split(',');
+                    if (parts.Length >= 2 &&
+                        int.TryParse(parts[0], out int col) &&
+                        int.TryParse(parts[1], out int row))
                     {
-                        int row = pos[0];
-                        int col = pos[1];
                         int flatIndex = row * cols + col;
                         flatPositions.Add(flatIndex);
-
+                    }
+                    else
+                    {
+                        UnityEngine.Debug.LogWarning($"[ConvertWinningLines] Failed to parse position string: {posStr}");
                     }
                 }
             }
@@ -713,12 +731,15 @@ public static class InitDataConverter
                 }
             }
 
+            // Use winAmount if available, fallback to payout
+            double lineWin = serverLine.winAmount > 0 ? serverLine.winAmount : serverLine.payout;
+
             winLines.Add(new WinLine
             {
                 lineId = serverLine.lineIndex,
                 symbolId = symbolId,
                 positions = flatPositions,
-                winAmount = serverLine.payout
+                winAmount = lineWin
             });
         }
 
