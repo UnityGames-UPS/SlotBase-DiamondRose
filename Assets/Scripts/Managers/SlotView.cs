@@ -59,6 +59,14 @@ public class SlotView : MonoBehaviour
     [SerializeField] private float winSymbolLoopDuration = 1.5f;
     [SerializeField] private int winSymbolLoopCount = 3;
 
+    [Header("Blank Symbol Settings")]
+    [SerializeField] private int blankSymbolId = 8;
+    [SerializeField] private float blankSpacingValue = -100f;
+    [SerializeField] private float blankMiddleYOffset = -160f;
+    [SerializeField] private float blankMiddleSpacingValue = 60f;
+    [SerializeField] private float blankTopBottomSpacingValue = 20f;
+    [SerializeField] private float defaultSpacing = 0f;
+
 
 
     private float middlePosition = 0f;
@@ -69,6 +77,8 @@ public class SlotView : MonoBehaviour
     private List<Tween> winTweens = new List<Tween>();
     private List<int> reelCycleCount = new List<int>();
     private Coroutine winAnimationCoroutine;
+    private VerticalLayoutGroup[] reelLayoutGroups;
+    private BlankScenario[] currentBlankScenarios;
 
 
     internal List<List<int>> currentDisplayMatrix;
@@ -126,6 +136,17 @@ public class SlotView : MonoBehaviour
             currentDisplayMatrix.Add(column);
             reelCycleCount.Add(0);
         }
+
+        // Cache VerticalLayoutGroup references from reel containers
+        reelLayoutGroups = new VerticalLayoutGroup[reelTransforms.Length];
+        currentBlankScenarios = new BlankScenario[reelTransforms.Length];
+        for (int i = 0; i < reelTransforms.Length; i++)
+        {
+            if (reelTransforms[i] != null)
+            {
+                reelLayoutGroups[i] = reelTransforms[i].GetComponent<VerticalLayoutGroup>();
+            }
+        }
     }
 
     internal void SetInitialMatrix(List<List<int>> matrix)
@@ -144,6 +165,18 @@ public class SlotView : MonoBehaviour
         for (int col = 0; col < cols; col++)
         {
             SetReelSymbols(col, matrix[col], true);
+            BlankScenario scenario = DetectBlankScenario(matrix[col]);
+            ApplyBlankScenario(col, scenario, matrix[col]);
+            // Override initial Y position based on blank scenario
+            if (col < reelTransforms.Length && reelTransforms[col] != null)
+            {
+                float targetY = GetTargetYForScenario(scenario);
+                reelTransforms[col].localPosition = new Vector3(
+                    reelTransforms[col].localPosition.x,
+                    targetY,
+                    0
+                );
+            }
         }
     }
 
@@ -235,6 +268,7 @@ public class SlotView : MonoBehaviour
 
         isSpinning = true;
         KillAllTweens();
+        ResetBlankScenarios();
 
         for (int i = 0; i < reelCycleCount.Count; i++)
         {
@@ -341,6 +375,17 @@ public class SlotView : MonoBehaviour
             for (int col = 0; col < cols; col++)
             {
                 SetReelSymbols(col, resultMatrix[col], false);
+                BlankScenario scenario = DetectBlankScenario(resultMatrix[col]);
+                ApplyBlankScenario(col, scenario, resultMatrix[col]);
+                if (col < reelTransforms.Length && reelTransforms[col] != null)
+                {
+                    float targetY = GetTargetYForScenario(scenario);
+                    reelTransforms[col].localPosition = new Vector3(
+                        reelTransforms[col].localPosition.x,
+                        targetY,
+                        0
+                    );
+                }
             }
             
             onComplete?.Invoke();
@@ -414,16 +459,22 @@ public class SlotView : MonoBehaviour
 
         Transform slotTransform = reelTransforms[columnIndex];
 
+        // Detect and apply blank scenario before stopping
+        BlankScenario scenario = DetectBlankScenario(targetSymbols);
+
         SetReelSymbols(columnIndex, targetSymbols, false);
 
+        // Apply blank scenario (spacing, alpha, sprite overrides) after symbols are set
+        ApplyBlankScenario(columnIndex, scenario, targetSymbols);
+
+        float scenarioTargetY = GetTargetYForScenario(scenario);
         float currentY = slotTransform.localPosition.y;
-        float targetY = middlePosition;
-        float offset = (currentY - targetY) % cycleDistance;
+        float offset = (currentY - scenarioTargetY) % cycleDistance;
         if (offset < 0) offset += cycleDistance;
 
         slotTransform.localPosition = new Vector3(
             slotTransform.localPosition.x,
-            targetY + offset,
+            scenarioTargetY + offset,
             0
         );
 
@@ -447,12 +498,12 @@ public class SlotView : MonoBehaviour
             Sequence quickStopSequence = DOTween.Sequence();
 
             quickStopSequence.Append(
-                slotTransform.DOLocalMoveY(middlePosition - quickStopOvershoot, quickStopDuration * 0.3f)
+                slotTransform.DOLocalMoveY(scenarioTargetY - quickStopOvershoot, quickStopDuration * 0.3f)
                     .SetEase(Ease.OutQuad)
             );
 
             quickStopSequence.Append(
-                slotTransform.DOLocalMoveY(middlePosition, quickStopDuration * 0.7f)
+                slotTransform.DOLocalMoveY(scenarioTargetY, quickStopDuration * 0.7f)
                     .SetEase(Ease.OutQuad)
             );
 
@@ -465,12 +516,12 @@ public class SlotView : MonoBehaviour
             Sequence stopSequence = DOTween.Sequence();
 
             stopSequence.Append(
-                slotTransform.DOLocalMoveY(middlePosition - stopOvershootDistance, stopOvershootDuration)
+                slotTransform.DOLocalMoveY(scenarioTargetY - stopOvershootDistance, stopOvershootDuration)
                     .SetEase(Ease.OutQuad)
             );
 
             stopSequence.Append(
-                slotTransform.DOLocalMoveY(middlePosition, stopBounceBackDuration)
+                slotTransform.DOLocalMoveY(scenarioTargetY, stopBounceBackDuration)
                     .SetEase(Ease.OutQuad)
             );
 
@@ -495,9 +546,12 @@ public class SlotView : MonoBehaviour
                 if (col < reelTransforms.Length)
                 {
                     SetReelSymbols(col, resultMatrix[col], false);
+                    BlankScenario scenario = DetectBlankScenario(resultMatrix[col]);
+                    ApplyBlankScenario(col, scenario, resultMatrix[col]);
+                    float targetY = GetTargetYForScenario(scenario);
                     reelTransforms[col].localPosition = new Vector3(
                         reelTransforms[col].localPosition.x,
-                        middlePosition,
+                        targetY,
                         0
                     );
                     PlayStopAnimationsForColumn(col);
@@ -609,6 +663,8 @@ public class SlotView : MonoBehaviour
             Color c = reel.images[imageIndex].color;
             reel.images[imageIndex].color = new Color(c.r, c.g, c.b, 1f);
         }
+        // Re-apply blank alpha if this column has an active blank scenario
+        ReapplyBlankAlphaForColumn(col);
     }
 
     private void AnimateWinSymbol(int column, int row)
@@ -682,6 +738,9 @@ public class SlotView : MonoBehaviour
                 }
             }
         }
+
+        // Re-apply blank scenarios after restoring alphas
+        ReapplyCurrentBlankScenarios();
     }
 
     #endregion
@@ -719,6 +778,265 @@ public class SlotView : MonoBehaviour
         spinTweens.Clear();
 
         KillWinTweens();
+    }
+
+    #endregion
+
+    #region Blank Symbol Handling
+
+    private enum BlankScenario
+    {
+        NoBlanks,          // Scenario 1: No blanks
+        AllBlank,          // Scenario 2: All 3 positions blank
+        TwoBlankTop,       // Scenario 3: Top 2 blank (row 0, 1)
+        TwoBlankBottom,    // Scenario 4: Bottom 2 blank (row 1, 2)
+        TwoBlankTopBottom, // Scenario 5: Top and bottom blank (row 0, 2)
+        OneBlankTop,       // Scenario 6: Top blank (row 0)
+        OneBlankBottom,    // Scenario 7: Bottom blank (row 2)
+        OneBlankMiddle     // Scenario 8: Middle blank (row 1)
+    }
+
+    /// <summary>
+    /// Analyzes a column's symbol IDs to determine which blank scenario applies.
+    /// </summary>
+    private BlankScenario DetectBlankScenario(List<int> columnSymbols)
+    {
+        if (columnSymbols == null || columnSymbols.Count != 3)
+            return BlankScenario.NoBlanks;
+
+        bool top = columnSymbols[0] == blankSymbolId;
+        bool mid = columnSymbols[1] == blankSymbolId;
+        bool bot = columnSymbols[2] == blankSymbolId;
+
+        int blankCount = (top ? 1 : 0) + (mid ? 1 : 0) + (bot ? 1 : 0);
+
+        if (blankCount == 0) return BlankScenario.NoBlanks;
+        if (blankCount == 3) return BlankScenario.AllBlank;
+
+        if (blankCount == 2)
+        {
+            if (top && mid) return BlankScenario.TwoBlankTop;
+            if (mid && bot) return BlankScenario.TwoBlankBottom;
+            if (top && bot) return BlankScenario.TwoBlankTopBottom;
+        }
+
+        // blankCount == 1
+        if (top) return BlankScenario.OneBlankTop;
+        if (bot) return BlankScenario.OneBlankBottom;
+        return BlankScenario.OneBlankMiddle;
+    }
+
+    /// <summary>
+    /// Universal method that applies spacing, alpha, and sprite overrides based on the blank scenario.
+    /// Called after SetReelSymbols to override blank positions.
+    /// </summary>
+    private void ApplyBlankScenario(int columnIndex, BlankScenario scenario, List<int> targetSymbols)
+    {
+        if (columnIndex >= reelTransforms.Length || columnIndex >= reelImagesList.Count) return;
+
+        var reel = reelImagesList[columnIndex];
+        VerticalLayoutGroup layoutGroup = (reelLayoutGroups != null && columnIndex < reelLayoutGroups.Length)
+            ? reelLayoutGroups[columnIndex] : null;
+
+        // Track current scenario for re-application after win animations
+        if (currentBlankScenarios != null && columnIndex < currentBlankScenarios.Length)
+        {
+            currentBlankScenarios[columnIndex] = scenario;
+        }
+
+        // Always hide buffer images (indices 0, 1, 5, 6)
+        SetImageAlpha(columnIndex, 0, 0f);
+        SetImageAlpha(columnIndex, 1, 0f);
+        SetImageAlpha(columnIndex, 5, 0f);
+        SetImageAlpha(columnIndex, 6, 0f);
+
+        // Reset visible images to full alpha first
+        SetImageAlpha(columnIndex, 2, 1f);
+        SetImageAlpha(columnIndex, 3, 1f);
+        SetImageAlpha(columnIndex, 4, 1f);
+
+        switch (scenario)
+        {
+            case BlankScenario.NoBlanks: // Scenario 1
+                if (layoutGroup != null) layoutGroup.spacing = blankSpacingValue;
+                break;
+
+            case BlankScenario.AllBlank: // Scenario 2
+                if (layoutGroup != null) layoutGroup.spacing = defaultSpacing;
+                SetImageAlpha(columnIndex, 2, 0f);
+                SetImageAlpha(columnIndex, 3, 0f);
+                SetImageAlpha(columnIndex, 4, 0f);
+                break;
+
+            case BlankScenario.TwoBlankTop: // Scenario 3
+                if (layoutGroup != null) layoutGroup.spacing = blankSpacingValue;
+                SetImageAlpha(columnIndex, 2, 0f);
+                SetImageAlpha(columnIndex, 3, 0f);
+                break;
+
+            case BlankScenario.TwoBlankBottom: // Scenario 4
+                if (layoutGroup != null) layoutGroup.spacing = blankSpacingValue;
+                SetImageAlpha(columnIndex, 3, 0f);
+                SetImageAlpha(columnIndex, 4, 0f);
+                break;
+
+            case BlankScenario.TwoBlankTopBottom: // Scenario 5
+                if (layoutGroup != null) layoutGroup.spacing = blankTopBottomSpacingValue;
+                // Show random non-blank sprites at blank positions (index 2 = row 0, index 4 = row 2)
+                reel.images[2].sprite = GetRandomNonBlankSprite();
+                reel.images[4].sprite = GetRandomNonBlankSprite();
+                break;
+
+            case BlankScenario.OneBlankTop: // Scenario 6
+                if (layoutGroup != null) layoutGroup.spacing = blankSpacingValue;
+                SetImageAlpha(columnIndex, 2, 0f);
+                break;
+
+            case BlankScenario.OneBlankBottom: // Scenario 7
+                if (layoutGroup != null) layoutGroup.spacing = blankSpacingValue;
+                SetImageAlpha(columnIndex, 4, 0f);
+                break;
+
+            case BlankScenario.OneBlankMiddle: // Scenario 8
+                if (layoutGroup != null) layoutGroup.spacing = blankMiddleSpacingValue;
+                // Index 3 shows last row result (row 2's symbol)
+                if (targetSymbols != null && targetSymbols.Count > 2)
+                {
+                    reel.images[3].sprite = GetSymbolSprite(targetSymbols[2]);
+                }
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Returns the reel Y position target based on the blank scenario.
+    /// Scenario 8 (OneBlankMiddle) shifts the reel down so only indices 2 and 3 are visible.
+    /// </summary>
+    private float GetTargetYForScenario(BlankScenario scenario)
+    {
+        switch (scenario)
+        {
+            case BlankScenario.OneBlankMiddle:
+                return middlePosition + blankMiddleYOffset;
+            default:
+                return middlePosition;
+        }
+    }
+
+    /// <summary>
+    /// Universal helper to set the alpha of a specific image in a reel.
+    /// </summary>
+    private void SetImageAlpha(int columnIndex, int imageIndex, float alpha)
+    {
+        if (columnIndex >= reelImagesList.Count) return;
+        var reel = reelImagesList[columnIndex];
+        if (reel.images == null || imageIndex >= reel.images.Count) return;
+
+        Image img = reel.images[imageIndex];
+        if (img != null)
+        {
+            Color c = img.color;
+            img.color = new Color(c.r, c.g, c.b, alpha);
+        }
+    }
+
+    /// <summary>
+    /// Returns a random non-blank sprite for filling blank positions in Scenario 5.
+    /// </summary>
+    private Sprite GetRandomNonBlankSprite()
+    {
+        List<int> nonBlankIds = new List<int>();
+        for (int i = 0; i < symbolSprites.Length; i++)
+        {
+            if (i != blankSymbolId && symbolSprites[i] != null)
+            {
+                nonBlankIds.Add(i);
+            }
+        }
+
+        if (nonBlankIds.Count == 0) return symbolSprites[0];
+        return symbolSprites[nonBlankIds[Random.Range(0, nonBlankIds.Count)]];
+    }
+
+    /// <summary>
+    /// Resets all reels to default state: full alpha, default spacing, middlePosition Y.
+    /// Called at the start of each spin.
+    /// </summary>
+    private void ResetBlankScenarios()
+    {
+        int cols = reelImagesList.Count;
+        for (int col = 0; col < cols; col++)
+        {
+            if (col >= reelTransforms.Length) continue;
+
+            // Reset Y position
+            Transform slotTransform = reelTransforms[col];
+            slotTransform.localPosition = new Vector3(
+                slotTransform.localPosition.x,
+                middlePosition,
+                0
+            );
+
+            // Reset spacing
+            if (reelLayoutGroups != null && col < reelLayoutGroups.Length && reelLayoutGroups[col] != null)
+            {
+                reelLayoutGroups[col].spacing = defaultSpacing;
+            }
+
+            // Reset all image alphas to 1
+            var reel = reelImagesList[col];
+            if (reel.images != null)
+            {
+                for (int i = 0; i < reel.images.Count; i++)
+                {
+                    if (reel.images[i] != null)
+                    {
+                        Color c = reel.images[i].color;
+                        reel.images[i].color = new Color(c.r, c.g, c.b, 1f);
+                    }
+                }
+            }
+
+            // Reset tracked scenario
+            if (currentBlankScenarios != null && col < currentBlankScenarios.Length)
+            {
+                currentBlankScenarios[col] = BlankScenario.NoBlanks;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Re-applies blank scenarios for all reels. Called after win animations restore alphas.
+    /// </summary>
+    private void ReapplyCurrentBlankScenarios()
+    {
+        if (currentBlankScenarios == null || currentDisplayMatrix == null) return;
+        for (int col = 0; col < currentBlankScenarios.Length && col < currentDisplayMatrix.Count; col++)
+        {
+            if (currentBlankScenarios[col] != BlankScenario.NoBlanks)
+            {
+                ApplyBlankScenario(col, currentBlankScenarios[col], currentDisplayMatrix[col]);
+            }
+            else
+            {
+                // Even for NoBlanks, re-apply buffer alpha 0
+                SetImageAlpha(col, 0, 0f);
+                SetImageAlpha(col, 1, 0f);
+                SetImageAlpha(col, 5, 0f);
+                SetImageAlpha(col, 6, 0f);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Re-applies blank alpha for a single column. Called after ResetSymbolScale restores alpha.
+    /// </summary>
+    private void ReapplyBlankAlphaForColumn(int columnIndex)
+    {
+        if (currentBlankScenarios == null || columnIndex >= currentBlankScenarios.Length) return;
+        if (currentDisplayMatrix == null || columnIndex >= currentDisplayMatrix.Count) return;
+
+        ApplyBlankScenario(columnIndex, currentBlankScenarios[columnIndex], currentDisplayMatrix[columnIndex]);
     }
 
     #endregion
