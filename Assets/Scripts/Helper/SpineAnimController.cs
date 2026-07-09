@@ -32,6 +32,42 @@ public class SpineAnimController : MonoBehaviour
                 }
                 isPlaying = true;
             }
+            skeletonGraphic.freeze = false;
+        }
+    }
+
+    internal void Pause()
+    {
+        if (skeletonGraphic == null)
+            skeletonGraphic = GetComponent<SkeletonGraphic>();
+
+        if (skeletonGraphic != null)
+        {
+            if (skeletonGraphic.SkeletonData == null)
+            {
+                skeletonGraphic.Initialize(false);
+            }
+            skeletonGraphic.freeze = true;
+        }
+    }
+
+    internal void Resume()
+    {
+        if (skeletonGraphic == null)
+            skeletonGraphic = GetComponent<SkeletonGraphic>();
+
+        if (skeletonGraphic != null)
+        {
+            if (skeletonGraphic.SkeletonData == null)
+            {
+                skeletonGraphic.Initialize(false);
+            }
+
+            if (!isPlaying && !string.IsNullOrEmpty(animName))
+            {
+                Play(true);
+            }
+            skeletonGraphic.freeze = false;
         }
     }
 

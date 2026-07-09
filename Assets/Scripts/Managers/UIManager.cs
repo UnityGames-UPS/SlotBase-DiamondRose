@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -178,6 +179,7 @@ public class UIManager : MonoBehaviour
 
     private void SetupAutoPlayPanel()
     {
+        FreezeAutoPlaySpine();
     }
 
     private void SetupSettingsPanel()
@@ -628,6 +630,8 @@ public class UIManager : MonoBehaviour
         }
         SetBetControlsEnabled(false);
         if (autoPlayStartButton) autoPlayStartButton.interactable = true;
+
+        PlayAutoPlaySpine();
     }
 
     internal void OnAutoPlayStopped()
@@ -652,6 +656,62 @@ public class UIManager : MonoBehaviour
             // If round is active, we just requested to stop autoplay.
             // Disable stop button so user knows it's stopping.
             if (stopButton) stopButton.interactable = false;
+        }
+
+        FreezeAutoPlaySpine();
+    }
+
+    private SpineAnimController GetAutoPlaySpineController()
+    {
+        if (autoPlayStartButton == null) return null;
+        return autoPlayStartButton.GetComponentInChildren<SpineAnimController>(true);
+    }
+
+    private SkeletonGraphic GetAutoPlaySkeletonGraphic()
+    {
+        if (autoPlayStartButton == null) return null;
+        return autoPlayStartButton.GetComponentInChildren<SkeletonGraphic>(true);
+    }
+
+    private void FreezeAutoPlaySpine()
+    {
+        var controller = GetAutoPlaySpineController();
+        if (controller != null)
+        {
+            controller.Pause();
+        }
+        else
+        {
+            var graphic = GetAutoPlaySkeletonGraphic();
+            if (graphic != null)
+            {
+                if (graphic.SkeletonData == null)
+                {
+                    graphic.Initialize(false);
+                }
+                graphic.freeze = true;
+            }
+        }
+    }
+
+    private void PlayAutoPlaySpine()
+    {
+        var controller = GetAutoPlaySpineController();
+        if (controller != null)
+        {
+            controller.Resume();
+        }
+        else
+        {
+            var graphic = GetAutoPlaySkeletonGraphic();
+            if (graphic != null)
+            {
+                if (graphic.SkeletonData == null)
+                {
+                    graphic.Initialize(false);
+                }
+                graphic.freeze = false;
+            }
         }
     }
 
