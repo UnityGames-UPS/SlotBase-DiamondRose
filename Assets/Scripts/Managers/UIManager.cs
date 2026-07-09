@@ -26,14 +26,27 @@ public class UIManager : MonoBehaviour
     [Header("Win Popup Panel")]
     [SerializeField] private GameObject winPopupPanel;
     [SerializeField] private GameObject winRingObject;
-    [SerializeField] private ImageAnimation winPopupImageAnimation;
-    [SerializeField] private RectTransform winPopupImageRect;
     [SerializeField] private TMP_Text winPopupText;
-    [SerializeField] private List<Sprite> niceWinSprites;
-    [SerializeField] private List<Sprite> bigWinSprites;
-    [SerializeField] private List<Sprite> megaWinSprites;
-    [SerializeField] private List<Sprite> superWinSprites;
-    [SerializeField] private List<Sprite> ultimateWinSprites;
+
+    [Header("Spine Win Animations")]
+    [SerializeField] private SpineAnimController winPopupSpineController;
+    [SerializeField] private SkeletonDataAsset bigWinSkeletonData;
+    [SerializeField] private SkeletonDataAsset megaWinSkeletonData;
+    [SerializeField] private string inAnimName = "in";
+    [SerializeField] private string loopAnimName = "loop";
+    [SerializeField] private string outAnimName = "out";
+    [SerializeField] private Button winPopupSkipButton;
+
+    [Header("Win Threshold Settings")]
+    [SerializeField] private float bigWinThreshold = 5f;
+    [SerializeField] private float megaWinThreshold = 25f;
+
+    [Header("Win Count Speed Settings")]
+    [Tooltip("How much win amount is counted per second. e.g. 5 means counting 5.00 credits per second.")]
+    [SerializeField] private float winCountSpeed = 5f;
+
+    public float BigWinThreshold => bigWinThreshold;
+    private bool skipRequested = false;
 
     [Header("Spin Button")]
     [SerializeField] private Button spinButton;
@@ -130,6 +143,67 @@ public class UIManager : MonoBehaviour
         if (gameRulesPanel) gameRulesPanel.SetActive(false);
         if (winPopupPanel) winPopupPanel.SetActive(false);
         if (winRingObject) winRingObject.SetActive(false);
+        if (winPopupSpineController) winPopupSpineController.gameObject.SetActive(false);
+    }
+
+   /* private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            double testWinAmount = 50.0;
+            double currentBet = gameManager.currentBetAmount;
+            if (gameManager.gameConfig != null)
+            {
+                currentBet *= gameManager.gameConfig.betMultiplier;
+            }
+            if (currentBet <= 0) currentBet = 5.0;
+
+            double multiplier = testWinAmount / currentBet;
+            if (multiplier < bigWinThreshold || multiplier >= megaWinThreshold)
+            {
+                testWinAmount = currentBet * (bigWinThreshold + 2.0);
+            }
+
+            SpinResult dummyResult = new SpinResult
+            {
+                winAmount = testWinAmount,
+                playerData = new PlayerData { balance = gameManager.playerData != null ? gameManager.playerData.balance + testWinAmount : 1000.0 }
+            };
+            Debug.Log($"[Test] Key 1 pressed. Triggering Big Win. Amount: {testWinAmount:F2}, Multiplier: {(testWinAmount/currentBet):F2}x");
+            TriggerTestWinPopup(dummyResult);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            double testWinAmount = 100.0;
+            double currentBet = gameManager.currentBetAmount;
+            if (gameManager.gameConfig != null)
+            {
+                currentBet *= gameManager.gameConfig.betMultiplier;
+            }
+            if (currentBet <= 0) currentBet = 2.0;
+
+            double multiplier = testWinAmount / currentBet;
+            if (multiplier < megaWinThreshold)
+            {
+                testWinAmount = currentBet * (megaWinThreshold + 5.0);
+            }
+
+            SpinResult dummyResult = new SpinResult
+            {
+                winAmount = testWinAmount,
+                playerData = new PlayerData { balance = gameManager.playerData != null ? gameManager.playerData.balance + testWinAmount : 1000.0 }
+            };
+            Debug.Log($"[Test] Key 2 pressed. Triggering Mega Win. Amount: {testWinAmount:F2}, Multiplier: {(testWinAmount/currentBet):F2}x");
+            TriggerTestWinPopup(dummyResult);
+        }
+    }*/
+
+    private void TriggerTestWinPopup(SpinResult result)
+    {
+        if (winDisplayCoroutine != null) StopCoroutine(winDisplayCoroutine);
+        winDisplayCoroutine = StartCoroutine(ShowWinDisplayCoroutine(result, () => {
+            Debug.Log("[Test] Win Popup complete.");
+        }));
     }
 
     #endregion
@@ -147,7 +221,7 @@ public class UIManager : MonoBehaviour
         {
             if (gameManager.socketManager != null)
             {
-                gameManager.socketManager.SetRaycastBlocker(false);
+                gameManager.socketManager.SetRaycastBlocker(true);
             }
 
             if (popupManager != null)
@@ -175,6 +249,17 @@ public class UIManager : MonoBehaviour
         if (stopButton) stopButton.onClick.AddListener(OnStopButtonPressed);
 
         if (autoPlayStartButton)  autoPlayStartButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); ToggleAutoPlay(); });
+
+        if (winPopupSkipButton)
+        {
+            winPopupSkipButton.onClick.AddListener(() =>
+            {
+                if (isSpecialWinActive && !skipRequested)
+                {
+                    skipRequested = true;
+                }
+            });
+        }
     }
 
     private void SetupAutoPlayPanel()
@@ -246,8 +331,8 @@ public class UIManager : MonoBehaviour
         if (winPopupPanel)
         {
             winPopupPanel.SetActive(false);
-            if (winPopupImageAnimation) winPopupImageAnimation.StopAnimation();
         }
+        if (winPopupSpineController) winPopupSpineController.gameObject.SetActive(false);
         if (winRingObject) winRingObject.SetActive(false);
         isSpecialWinActive = false;
 
@@ -287,7 +372,7 @@ public class UIManager : MonoBehaviour
 
         bool skipScreen = false;
 
-        if (multiplier >= 5 && !skipScreen)
+        if (multiplier >= bigWinThreshold && !skipScreen)
         {
             earlyBigWinPopupTriggered = true;
             if (winDisplayCoroutine != null) StopCoroutine(winDisplayCoroutine);
@@ -324,7 +409,7 @@ public class UIManager : MonoBehaviour
             }
             double multiplier = totalBetAmount > 0 ? (result.winAmount / totalBetAmount) : 0;
 
-            if (multiplier < 5 || !earlyBigWinPopupTriggered)
+            if (multiplier < bigWinThreshold || !earlyBigWinPopupTriggered)
             {
                 ShowWinDisplay(result);
             }
@@ -383,7 +468,7 @@ public class UIManager : MonoBehaviour
             
             bool skipScreen = false;
 
-            if (multiplier >= 5 && !skipScreen)
+            if (multiplier >= bigWinThreshold && !skipScreen)
             {
                 if (winRingObject) winRingObject.SetActive(true);
             }
@@ -435,12 +520,7 @@ public class UIManager : MonoBehaviour
         double multiplier = totalBetAmount > 0 ? (winAmount / totalBetAmount) : 0;
         bool skipScreen = false;
 
-        // --- Capping Logic ---
-        double startVal = 0;
-        double endVal = winAmount;
-        double popupWinAmount = winAmount;
-
-        if (multiplier < 5 || skipScreen)
+        if (multiplier < bigWinThreshold || skipScreen)
         {
             AudioManager.Instance?.PlayWinNormal();
             if (winRingObject) winRingObject.SetActive(false);
@@ -450,94 +530,162 @@ public class UIManager : MonoBehaviour
 
         // --- Special Win Triggered ---
         isSpecialWinActive = true;
+        skipRequested = false;
         DisableControlsDuringWinAnimation();
 
-        // Big Win Popup Logic — based on the spin's winAmount field
-        AudioManager.Instance?.PlayWinOpeningJingle(multiplier);
-        AudioManager.Instance?.PlayWinPopupBg(multiplier);
+        // Play correct audio based on Mega or Big Win threshold
+        double audioMultiplier = multiplier >= megaWinThreshold ? megaWinThreshold : bigWinThreshold;
+        AudioManager.Instance?.PlayWinOpeningJingle(audioMultiplier);
+        AudioManager.Instance?.PlayWinPopupBg(audioMultiplier);
 
-        List<Sprite> selectedSprites = null;
-        float popupTime = 0f;
-
-        if (multiplier >= 100) {
-            selectedSprites = ultimateWinSprites;
-            popupTime = 15f;
-        } else if (multiplier >= 50) {
-            selectedSprites = superWinSprites;
-            popupTime = 12f;
-        } else if (multiplier >= 25) {
-            selectedSprites = megaWinSprites;
-            popupTime = 8f;
-        } else if (multiplier >= 10) {
-            selectedSprites = bigWinSprites;
-            popupTime = 8f;
-        } else {
-            selectedSprites = niceWinSprites;
-            popupTime = 6f;
+        SkeletonDataAsset selectedData = null;
+        if (multiplier >= megaWinThreshold)
+        {
+            selectedData = megaWinSkeletonData;
+        }
+        else
+        {
+            selectedData = bigWinSkeletonData;
         }
 
-        if (winPopupImageAnimation)
+        if (winPopupSpineController == null)
         {
-            winPopupImageAnimation.textureArray = selectedSprites;
+            Debug.LogError("No SpineAnimController assigned for Win Popup.");
+            isSpecialWinActive = false;
+            EnableControlsAfterWinAnimation();
+            OnSpinCompleted(null);
+            onComplete?.Invoke();
+            OnSpecialWinComplete?.Invoke();
+            winDisplayCoroutine = null;
+            yield break;
+        }
+
+        // Swap skeleton data on the controller and retrieve active graphic
+        winPopupSpineController.gameObject.SetActive(true);
+        winPopupSpineController.SetSkeletonData(selectedData);
+
+        SkeletonGraphic activeGraphic = winPopupSpineController.SkeletonGraphic;
+        if (activeGraphic == null)
+        {
+            Debug.LogError("No SkeletonGraphic found on winPopupSpineController.");
+            isSpecialWinActive = false;
+            EnableControlsAfterWinAnimation();
+            OnSpinCompleted(null);
+            onComplete?.Invoke();
+            OnSpecialWinComplete?.Invoke();
+            winDisplayCoroutine = null;
+            yield break;
         }
 
         if (winPopupPanel) winPopupPanel.SetActive(true);
+        activeGraphic.gameObject.SetActive(true);
 
-        if (winPopupImageAnimation)
+        // Ensure CanvasGroup exists on winPopupText
+        CanvasGroup textCanvasGroup = winPopupText.GetComponent<CanvasGroup>();
+        if (textCanvasGroup == null)
         {
-            winPopupImageAnimation.StartAnimation();
+            textCanvasGroup = winPopupText.gameObject.AddComponent<CanvasGroup>();
         }
 
-        float animDuration = popupTime - 1f;
+        // --- 1st: PLAY IN ANIMATION AND SYNCHRONIZE TEXT APPEARANCE ---
+        // Setup initial text state
+        winPopupText.text = "0.00";
+        winPopupText.transform.localScale = Vector3.zero;
+        textCanvasGroup.alpha = 0f;
 
-        if (winPopupImageRect)
+        var inTrack = activeGraphic.AnimationState.SetAnimation(0, inAnimName, false);
+        float inDuration = inTrack != null ? inTrack.Animation.Duration : 1f;
+
+        // Scale and fade in the text in sync with "in" animation
+        winPopupText.transform.DOScale(Vector3.one, inDuration).SetEase(Ease.OutBack);
+        textCanvasGroup.DOFade(1f, inDuration).SetEase(Ease.OutQuad);
+
+        // Wait for "in" animation to complete (supporting skip during "in" too)
+        float elapsedIn = 0f;
+        while (elapsedIn < inDuration && !skipRequested)
         {
-            winPopupImageRect.localScale = Vector3.zero;
-            winPopupImageRect.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).OnComplete(() => {
-                winPopupImageRect.DOScale(new Vector3(1.2f, 1.2f, 1.2f), animDuration - 0.5f).SetEase(Ease.Linear);
-            });
+            elapsedIn += Time.deltaTime;
+            yield return null;
         }
 
-        if (winPopupText)
+        // --- 2nd: PLAY LOOP ANIMATION AND DO COUNTING ---
+        var loopTrack = activeGraphic.AnimationState.SetAnimation(0, loopAnimName, true);
+        float loopDuration = loopTrack != null ? loopTrack.Animation.Duration : 1f;
+
+        float countDuration = (float)winAmount / winCountSpeed;
+        
+        // Start balance animation in sync with the popup counter
+        AnimateBalanceUpdate(result.playerData.balance, countDuration);
+
+        float elapsedCount = 0f;
+        double currentAnimVal = 0;
+
+        while (elapsedCount < countDuration && !skipRequested)
         {
-            winPopupText.text = "0.00";
-            float currentAnimVal = (float)startVal;
+            elapsedCount += Time.deltaTime;
+            float progress = Mathf.Clamp01(elapsedCount / countDuration);
+            
+            // OutQuad easing for counting
+            float easedProgress = 1f - (1f - progress) * (1f - progress);
+            currentAnimVal = easedProgress * winAmount;
 
-            // Start balance animation in sync with the popup counter so both
-            // count up together and finish at the same time.
-            AnimateBalanceUpdate(result.playerData.balance, animDuration);
+            winPopupText.text = currentAnimVal.ToString("F2");
+            if (winAmountText) winAmountText.text = currentAnimVal.ToString("F2");
+            currentWinDisplayValue = currentAnimVal;
 
-            DOTween.To(() => currentAnimVal, x => {
-                currentAnimVal = x;
-                
-                // 1. Calculate progress from startVal to endVal
-                double range = endVal - startVal;
-                float progress = range > 0 ? (float)((currentAnimVal - startVal) / range) : 1f;
-                progress = Mathf.Clamp01(progress);
-
-                // 2. Update popup text based on spin win amount
-                double currentPopupHit = progress * popupWinAmount;
-                winPopupText.text = currentPopupHit.ToString("F2");
-
-                // 3. Update main UI displays based on authoritative round total
-                string formattedTotal = ((double)currentAnimVal).ToString("F2");
-                if (winAmountText) winAmountText.text = formattedTotal;
-                
-                currentWinDisplayValue = (double)currentAnimVal;
-            }, (float)endVal, animDuration).SetEase(Ease.OutQuad);
+            yield return null;
         }
 
-        yield return new WaitForSeconds(popupTime);
+        // If skipped or finished counting, ensure target values are fully reached
+        winPopupText.text = winAmount.ToString("F2");
+        if (winAmountText) winAmountText.text = winAmount.ToString("F2");
+        currentWinDisplayValue = winAmount;
 
-        // Popup auto-closed — stop the looping BG
+        if (skipRequested)
+        {
+            // Instantly complete balance update
+            balanceTween?.Complete();
+        }
+        else
+        {
+            // --- Wait for the remainder of the loop cycle to finish ---
+            if (loopTrack != null)
+            {
+                float localTime = loopTrack.TrackTime % loopDuration;
+                float remainingTime = loopDuration - localTime;
+                if (remainingTime > 0.05f)
+                {
+                    float elapsedLoopWait = 0f;
+                    while (elapsedLoopWait < remainingTime && !skipRequested)
+                    {
+                        elapsedLoopWait += Time.deltaTime;
+                        yield return null;
+                    }
+                }
+            }
+        }
+
+        // --- 3rd: PLAY OUT ANIMATION AND SYNCHRONIZE TEXT DISAPPEARANCE ---
         AudioManager.Instance?.StopWinPopupBg();
 
+        var outTrack = activeGraphic.AnimationState.SetAnimation(0, outAnimName, false);
+        float outDuration = outTrack != null ? outTrack.Animation.Duration : 1f;
+
+        // Scale and fade out the text in sync with "out" animation
+        winPopupText.transform.DOScale(Vector3.zero, outDuration).SetEase(Ease.InBack);
+        textCanvasGroup.DOFade(0f, outDuration).SetEase(Ease.InQuad);
+
+        // Wait for "out" animation to finish (skip button is no longer active or does nothing)
+        yield return new WaitForSeconds(outDuration);
+
+        // Cleanup
         if (winPopupPanel) winPopupPanel.SetActive(false);
-        if (winPopupImageAnimation) winPopupImageAnimation.StopAnimation();
+        if (winPopupSpineController) winPopupSpineController.gameObject.SetActive(false);
         if (winRingObject) winRingObject.SetActive(false);
 
         // --- Reset Controls ---
         isSpecialWinActive = false;
+        skipRequested = false;
         EnableControlsAfterWinAnimation();
         OnSpinCompleted(null);
 

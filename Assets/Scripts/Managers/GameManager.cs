@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour
             double totalBet = currentBetAmount * (gameConfig != null ? gameConfig.betMultiplier : 1);
             double multiplier = totalBet > 0 ? (lastResult.winAmount / totalBet) : 0;
 
-            if (multiplier >= 5)
+            if (multiplier >= uiManager.BigWinThreshold)
             {
                 uiManager.DisableControlsDuringWinAnimation();
                 currentState = GameState.Idle;
@@ -240,7 +240,7 @@ public class GameManager : MonoBehaviour
         double multiplier = totalBet > 0 ? (result.winAmount / totalBet) : 0;
         bool skipScreen = false;
 
-        if (multiplier >= 5 && !skipScreen)
+        if (multiplier >= uiManager.BigWinThreshold && !skipScreen)
         {
             waitingForSpecialWin = true;
         }
@@ -271,8 +271,8 @@ public class GameManager : MonoBehaviour
             double totalBet = currentBetAmount * (gameConfig != null ? gameConfig.betMultiplier : 1);
             double multiplier = totalBet > 0 ? (lastResult.winAmount / totalBet) : 0;
 
-            // Only update UI here if it wasn't already updated in OnReelsStoppedComplete (multiplier < 5)
-            if (multiplier >= 5)
+            // Only update UI here if it wasn't already updated in OnReelsStoppedComplete (multiplier < BigWinThreshold)
+            if (multiplier >= uiManager.BigWinThreshold)
             {
                 uiManager.OnSpinStopping(lastResult);
             }

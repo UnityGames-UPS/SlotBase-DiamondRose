@@ -5,9 +5,19 @@ using Spine.Unity;
 public class SpineAnimController : MonoBehaviour
 {
     private SkeletonGraphic skeletonGraphic;
-    [SerializeField]
-    private string animName;
-    bool isPlaying;
+    [SerializeField] private string animName;
+    private bool isPlaying;
+
+    public SkeletonGraphic SkeletonGraphic
+    {
+        get
+        {
+            if (skeletonGraphic == null)
+                skeletonGraphic = GetComponent<SkeletonGraphic>();
+            return skeletonGraphic;
+        }
+    }
+
 
 
     void Awake()
