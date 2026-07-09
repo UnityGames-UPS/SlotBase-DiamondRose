@@ -24,6 +24,14 @@ public class ServerGameData
 }
 
 [Serializable]
+public class AnyPayoutsData
+{
+    public double anyBars;
+    public double anyWilds;
+    public double anySevens;
+}
+
+[Serializable]
 public class ServerFeatures
 {
     public FreeSpinFeature freeSpins;
@@ -31,6 +39,7 @@ public class ServerFeatures
     public int betMultiplier;
     public int maxWinMultiplier;
     public int minWinMultiplier;
+    public AnyPayoutsData anyPayouts;
 }
 
 [Serializable]
@@ -243,6 +252,7 @@ public class GameConfig
     public int minWinMultiplier = 10;
     public int initialFreeSpins = 8;
     public ExtraSpinsData extraSpinsData;
+    public AnyPayoutsData anyPayouts;
 }
 
 [Serializable]
@@ -428,6 +438,7 @@ public static class InitDataConverter
             }
             config.maxWinMultiplier = serverData.features.maxWinMultiplier;
             config.minWinMultiplier = serverData.features.minWinMultiplier;
+            config.anyPayouts = serverData.features.anyPayouts;
         }
 
         return config;
@@ -697,13 +708,13 @@ public static class InitDataConverter
 
             if (serverLine.positions != null && serverLine.positions.Count > 0)
             {
-                // Diamond Rose format: positions are "col,row" strings
+                // Diamond Rose format: positions are "row,col" strings
                 foreach (var posStr in serverLine.positions)
                 {
                     string[] parts = posStr.Split(',');
                     if (parts.Length >= 2 &&
-                        int.TryParse(parts[0], out int col) &&
-                        int.TryParse(parts[1], out int row))
+                        int.TryParse(parts[0], out int row) &&
+                        int.TryParse(parts[1], out int col))
                     {
                         int flatIndex = row * cols + col;
                         flatPositions.Add(flatIndex);

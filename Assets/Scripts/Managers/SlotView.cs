@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Spine.Unity;
 
 public class SlotView : MonoBehaviour
 {
@@ -23,11 +24,17 @@ public class SlotView : MonoBehaviour
     // Internal array built from named sprites
     private Sprite[] symbolSprites;
 
+    [Header("Symbol Spine Assets - Assign corresponding SkeletonDataAsset by Symbol ID")]
+    [SerializeField] private SkeletonDataAsset[] symbolSpineAssets;
+
     [Header("Reel Containers")]
     [SerializeField] private Transform[] reelTransforms;
 
     [Header("Reel Images - 7 images per reel")]
     [SerializeField] private List<ReelImages> reelImagesList;
+
+    [Header("Reel Spine Controllers - 3 controllers per reel")]
+    [SerializeField] private List<ReelSpineControllers> reelSpineControllersList;
 
     [Header("Spin Settings")]
     [SerializeField] private float symbolHeight = 100f;
@@ -75,10 +82,20 @@ public class SlotView : MonoBehaviour
 
     private List<Tween> spinTweens = new List<Tween>();
     private List<Tween> winTweens = new List<Tween>();
+    private List<Tween> spacingTweens = new List<Tween>();
     private List<int> reelCycleCount = new List<int>();
     private Coroutine winAnimationCoroutine;
     private VerticalLayoutGroup[] reelLayoutGroups;
     private BlankScenario[] currentBlankScenarios;
+    private float[] startSpinYPositions;
+    private float[] reelCycleProgress;
+    private float[] reelAnticipationOffset;
+
+    private bool[] isPreparingToStop;
+    private List<int>[] reelTargetSymbols;
+    private BlankScenario[] reelTargetScenarios;
+    private float[] reelTargetYPositions;
+    private bool[] reelIsQuickStop;
 
 
     internal List<List<int>> currentDisplayMatrix;
@@ -140,11 +157,61 @@ public class SlotView : MonoBehaviour
         // Cache VerticalLayoutGroup references from reel containers
         reelLayoutGroups = new VerticalLayoutGroup[reelTransforms.Length];
         currentBlankScenarios = new BlankScenario[reelTransforms.Length];
+        startSpinYPositions = new float[reelTransforms.Length];
+        reelCycleProgress = new float[reelTransforms.Length];
+        reelAnticipationOffset = new float[reelTransforms.Length];
+        
+        isPreparingToStop = new bool[reelTransforms.Length];
+        reelTargetSymbols = new List<int>[reelTransforms.Length];
+        reelTargetScenarios = new BlankScenario[reelTransforms.Length];
+        reelTargetYPositions = new float[reelTransforms.Length];
+        reelIsQuickStop = new bool[reelTransforms.Length];
+        spacingTweens.Clear();
         for (int i = 0; i < reelTransforms.Length; i++)
         {
+            spacingTweens.Add(null);
             if (reelTransforms[i] != null)
             {
                 reelLayoutGroups[i] = reelTransforms[i].GetComponent<VerticalLayoutGroup>();
+            }
+        }
+        DisableAllSpineObjects();
+    }
+
+    private void DisableAllSpineObjects()
+    {
+        if (reelSpineControllersList != null)
+        {
+            foreach (var reelControllers in reelSpineControllersList)
+            {
+                if (reelControllers != null && reelControllers.controllers != null)
+                {
+                    foreach (var controller in reelControllers.controllers)
+                    {
+                        if (controller != null)
+                        {
+                            controller.gameObject.SetActive(false);
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach (var reel in reelImagesList)
+        {
+            if (reel.images != null)
+            {
+                foreach (var image in reel.images)
+                {
+                    if (image != null)
+                    {
+                        var controller = image.GetComponentInChildren<SpineAnimController>(true);
+                        if (controller != null)
+                        {
+                            controller.gameObject.SetActive(false);
+                        }
+                    }
+                }
             }
         }
     }
@@ -165,17 +232,36 @@ public class SlotView : MonoBehaviour
         for (int col = 0; col < cols; col++)
         {
             SetReelSymbols(col, matrix[col], true);
-            BlankScenario scenario = DetectBlankScenario(matrix[col]);
-            ApplyBlankScenario(col, scenario, matrix[col]);
-            // Override initial Y position based on blank scenario
+
+            // Override initial Y position to 0
             if (col < reelTransforms.Length && reelTransforms[col] != null)
             {
-                float targetY = GetTargetYForScenario(scenario);
                 reelTransforms[col].localPosition = new Vector3(
                     reelTransforms[col].localPosition.x,
-                    targetY,
-                    0
+                    0f,
+                    0f
                 );
+            }
+
+            // Set layout group spacing to 0
+            if (reelLayoutGroups != null && col < reelLayoutGroups.Length && reelLayoutGroups[col] != null)
+            {
+                reelLayoutGroups[col].spacing = 0f;
+            }
+
+            // Hide buffer images (indices 0, 1, 5, 6), and set visible images (2, 3, 4) to alpha 1
+            SetImageAlpha(col, 0, 0f);
+            SetImageAlpha(col, 1, 0f);
+            SetImageAlpha(col, 2, 1f);
+            SetImageAlpha(col, 3, 1f);
+            SetImageAlpha(col, 4, 1f);
+            SetImageAlpha(col, 5, 0f);
+            SetImageAlpha(col, 6, 0f);
+
+            // Initialize scenario tracking for this reel
+            if (currentBlankScenarios != null && col < currentBlankScenarios.Length)
+            {
+                currentBlankScenarios[col] = BlankScenario.NoBlanks;
             }
         }
     }
@@ -218,17 +304,21 @@ public class SlotView : MonoBehaviour
 
         int maxSymbolId = gameManager?.gameConfig != null ? gameManager.gameConfig.symbols.Count : 9;
 
-        // Fill 2 buffer images above the visible area
-        for (int i = 0; i < 2; i++)
-        {
-            reel.images[i].sprite = GetSymbolSprite(Random.Range(0, maxSymbolId));
-        }
+        // Determine if top visible slot (row 0) is blank
+        bool isTopBlank = visibleSymbolIds[0] == blankSymbolId;
+        int topSpriteId = isTopBlank ? GetRandomNonBlankSymbolId(maxSymbolId) : blankSymbolId;
 
-        // Fill 2 buffer images below the visible area
-        for (int i = 2 + visibleRows; i < reel.images.Count; i++)
-        {
-            reel.images[i].sprite = GetSymbolSprite(Random.Range(0, maxSymbolId));
-        }
+        // Fill 2 buffer images above the visible area (indices 0 and 1)
+        reel.images[0].sprite = GetSymbolSprite(topSpriteId);
+        reel.images[1].sprite = GetSymbolSprite(topSpriteId);
+
+        // Determine if bottom visible slot (row 2) is blank
+        bool isBottomBlank = visibleSymbolIds[2] == blankSymbolId;
+        int bottomSpriteId = isBottomBlank ? GetRandomNonBlankSymbolId(maxSymbolId) : blankSymbolId;
+
+        // Fill 2 buffer images below the visible area (indices 5 and 6)
+        reel.images[5].sprite = GetSymbolSprite(bottomSpriteId);
+        reel.images[6].sprite = GetSymbolSprite(bottomSpriteId);
 
         if (isInitial && reelTransforms[columnIndex] != null)
         {
@@ -268,16 +358,45 @@ public class SlotView : MonoBehaviour
 
         isSpinning = true;
         KillAllTweens();
-        ResetBlankScenarios();
 
-        for (int i = 0; i < reelCycleCount.Count; i++)
+        for (int i = 0; i < reelTransforms.Length; i++)
         {
-            reelCycleCount[i] = 0;
+            if (i < reelCycleCount.Count) reelCycleCount[i] = 0;
+            if (isPreparingToStop != null && i < isPreparingToStop.Length) isPreparingToStop[i] = false;
         }
 
         int cols = currentDisplayMatrix != null ? currentDisplayMatrix.Count : 3;
+        int maxSymbolId = gameManager?.gameConfig != null ? gameManager.gameConfig.symbols.Count : 9;
+
         for (int col = 0; col < cols; col++)
         {
+            // Record current stopped Y position as the starting Y position for this spin
+            if (col < reelTransforms.Length && reelTransforms[col] != null)
+            {
+                startSpinYPositions[col] = reelTransforms[col].localPosition.y;
+            }
+            else
+            {
+                startSpinYPositions[col] = 0f;
+            }
+
+            // Populate all buffer images (indices 0, 1, 5, 6) with random non-blank symbols at spin start
+            // so they are fully populated when visual movement/deceleration starts
+            var reel = reelImagesList[col];
+            if (reel != null && reel.images != null && reel.images.Count == 7)
+            {
+                reel.images[0].sprite = GetSymbolSprite(GetRandomNonBlankSymbolId(maxSymbolId));
+                reel.images[1].sprite = GetSymbolSprite(GetRandomNonBlankSymbolId(maxSymbolId));
+                reel.images[5].sprite = GetSymbolSprite(GetRandomNonBlankSymbolId(maxSymbolId));
+                reel.images[6].sprite = GetSymbolSprite(GetRandomNonBlankSymbolId(maxSymbolId));
+            }
+
+            // Set all 7 images of each reel to alpha 1 at start of spin so they are visible during movement
+            for (int i = 0; i < 7; i++)
+            {
+                SetImageAlpha(col, i, 1f);
+            }
+
             InitializeTweening(col);
         }
     }
@@ -287,20 +406,31 @@ public class SlotView : MonoBehaviour
         if (columnIndex >= reelTransforms.Length) return;
 
         Transform slotTransform = reelTransforms[columnIndex];
+        reelAnticipationOffset[columnIndex] = 0f;
 
         while (spinTweens.Count <= columnIndex) spinTweens.Add(null);
         if (spinTweens[columnIndex] != null) { spinTweens[columnIndex].Kill(); spinTweens[columnIndex] = null; }
 
-        // Quick 2-step bounce: pull up then snap back (same as BreakingBad)
+        // Quick 2-step bounce relative to the dynamically updating startSpinYPositions
         Sequence startSeq = DOTween.Sequence();
         startSeq.Append(
-            slotTransform.DOLocalMoveY(middlePosition + anticipationUpDistance, anticipationUpDuration)
+            DOTween.To(() => reelAnticipationOffset[columnIndex], x => reelAnticipationOffset[columnIndex] = x, anticipationUpDistance, anticipationUpDuration)
                 .SetEase(Ease.OutQuad)
         );
         startSeq.Append(
-            slotTransform.DOLocalMoveY(middlePosition, anticipationUpDuration * 0.5f)
+            DOTween.To(() => reelAnticipationOffset[columnIndex], x => reelAnticipationOffset[columnIndex] = x, 0f, anticipationUpDuration * 0.5f)
                 .SetEase(Ease.InQuad)
         );
+        startSeq.OnUpdate(() => {
+            if (slotTransform != null)
+            {
+                slotTransform.localPosition = new Vector3(
+                    slotTransform.localPosition.x,
+                    startSpinYPositions[columnIndex] + reelAnticipationOffset[columnIndex],
+                    0
+                );
+            }
+        });
         startSeq.OnComplete(() => { if (isSpinning) StartReelCycle(columnIndex); });
         spinTweens[columnIndex] = startSeq;
         startSeq.Play();
@@ -312,31 +442,69 @@ public class SlotView : MonoBehaviour
         if (!isSpinning) return;
 
         Transform slotTransform = reelTransforms[columnIndex];
-
-        slotTransform.localPosition = new Vector3(slotTransform.localPosition.x, middlePosition, 0);
+        
+        reelCycleProgress[columnIndex] = 0f;
 
         float currentSpeed = spinSpeed;
 
         Sequence cycleSequence = DOTween.Sequence();
 
+        // Tween reelCycleProgress from 0 to -cycleDistance, updating position using current startSpinYPositions
         cycleSequence.Append(
-            slotTransform.DOLocalMoveY(middlePosition - cycleDistance, currentSpeed)
+            DOTween.To(() => reelCycleProgress[columnIndex], x => reelCycleProgress[columnIndex] = x, -cycleDistance, currentSpeed)
                 .SetEase(Ease.Linear)
+                .OnUpdate(() => {
+                    if (slotTransform != null)
+                    {
+                        slotTransform.localPosition = new Vector3(
+                            slotTransform.localPosition.x,
+                            startSpinYPositions[columnIndex] + reelCycleProgress[columnIndex],
+                            0
+                        );
+                    }
+                })
         );
 
         cycleSequence.OnComplete(() => {
             if (isSpinning)
             {
-                CycleReelSymbols(columnIndex);
-
-                slotTransform.localPosition = new Vector3(slotTransform.localPosition.x, middlePosition, 0);
-
                 if (columnIndex < reelCycleCount.Count)
                 {
                     reelCycleCount[columnIndex]++;
                 }
 
-                StartReelCycle(columnIndex);
+                if (isPreparingToStop[columnIndex])
+                {
+                    isPreparingToStop[columnIndex] = false;
+                    TriggerActualReelStop(columnIndex);
+                }
+                else
+                {
+                    CycleReelSymbols(columnIndex);
+
+                    // Smoothly transition layout group spacing and Y offset to 0f after the first cycle completes
+                    // (occurs in mid-spin at top speed, making the transition completely invisible)
+                    if (reelCycleCount[columnIndex] == 1)
+                    {
+                        var layoutGroup = reelLayoutGroups[columnIndex];
+                        if (layoutGroup != null)
+                        {
+                            if (spacingTweens[columnIndex] != null)
+                            {
+                                spacingTweens[columnIndex].Kill();
+                            }
+                            
+                            int colIndex = columnIndex;
+                            Sequence seq = DOTween.Sequence();
+                            seq.Join(DOTween.To(() => layoutGroup.spacing, x => layoutGroup.spacing = x, 0f, 0.3f));
+                            seq.Join(DOTween.To(() => startSpinYPositions[colIndex], x => startSpinYPositions[colIndex] = x, 0f, 0.3f));
+                            seq.SetEase(Ease.OutQuad);
+                            spacingTweens[columnIndex] = seq;
+                        }
+                    }
+
+                    StartReelCycle(columnIndex);
+                }
             }
         });
 
@@ -359,7 +527,27 @@ public class SlotView : MonoBehaviour
         }
 
         int maxSymbolId = gameManager?.gameConfig != null ? gameManager.gameConfig.symbols.Count : 9;
-        reel.images[0].sprite = GetSymbolSprite(Random.Range(0, maxSymbolId));
+        
+        // Always pick a random non-blank symbol during active spin cycle
+        int randomSymbolId = GetRandomNonBlankSymbolId(maxSymbolId);
+
+        reel.images[0].sprite = GetSymbolSprite(randomSymbolId);
+    }
+
+    private int GetRandomNonBlankSymbolId(int maxSymbolId)
+    {
+        int id = Random.Range(0, maxSymbolId);
+        int attempts = 0;
+        while (id == blankSymbolId && attempts < 10)
+        {
+            id = Random.Range(0, maxSymbolId);
+            attempts++;
+        }
+        if (id == blankSymbolId)
+        {
+            id = 0; // Fallback to 0 (RedTriple) if all attempts are blank
+        }
+        return id;
     }
 
     #endregion
@@ -452,6 +640,32 @@ public class SlotView : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
 
+        // Detect the target blank scenario and its stop parameters
+        BlankScenario scenario = DetectBlankScenario(targetSymbols);
+        float targetSpacing = GetTargetSpacingForScenario(scenario);
+        float targetY = GetTargetYForScenario(scenario);
+
+        // Apply stopped spacing IMMEDIATELY while spinning (one cycle before bounce).
+        // Since it happens while spinning at top speed, the layout adjustment is completely invisible to the user.
+        var layoutGroup = reelLayoutGroups[columnIndex];
+        if (layoutGroup != null)
+        {
+            layoutGroup.spacing = targetSpacing;
+        }
+        startSpinYPositions[columnIndex] = targetY;
+
+        // Store stopping parameters for the actual stop trigger on cycle complete
+        reelTargetSymbols[columnIndex] = targetSymbols;
+        reelTargetScenarios[columnIndex] = scenario;
+        reelTargetYPositions[columnIndex] = targetY;
+        reelIsQuickStop[columnIndex] = isQuickStop;
+        isPreparingToStop[columnIndex] = true;
+    }
+
+    private void TriggerActualReelStop(int columnIndex)
+    {
+        if (columnIndex >= reelTransforms.Length) return;
+
         if (columnIndex < spinTweens.Count && spinTweens[columnIndex] != null)
         {
             spinTweens[columnIndex].Kill();
@@ -459,22 +673,21 @@ public class SlotView : MonoBehaviour
 
         Transform slotTransform = reelTransforms[columnIndex];
 
-        // Detect and apply blank scenario before stopping
-        BlankScenario scenario = DetectBlankScenario(targetSymbols);
+        var targetSymbols = reelTargetSymbols[columnIndex];
+        var scenario = reelTargetScenarios[columnIndex];
+        var isQuickStop = reelIsQuickStop[columnIndex];
+        float scenarioTargetY = reelTargetYPositions[columnIndex];
 
+        // Load final result symbols (which can include blank symbols)
         SetReelSymbols(columnIndex, targetSymbols, false);
 
-        // Apply blank scenario (spacing, alpha, sprite overrides) after symbols are set
+        // Apply blank scenario details (like sprite overrides for special scenarios)
         ApplyBlankScenario(columnIndex, scenario, targetSymbols);
 
-        float scenarioTargetY = GetTargetYForScenario(scenario);
-        float currentY = slotTransform.localPosition.y;
-        float offset = (currentY - scenarioTargetY) % cycleDistance;
-        if (offset < 0) offset += cycleDistance;
-
+        // Snap to target position (visually identical since cycle completes at -cycleDistance phase)
         slotTransform.localPosition = new Vector3(
             slotTransform.localPosition.x,
-            scenarioTargetY + offset,
+            scenarioTargetY,
             0
         );
 
@@ -596,56 +809,135 @@ public class SlotView : MonoBehaviour
     private IEnumerator PlayWinLinesSequentially(List<WinLine> winLines, System.Action onComplete)
     {
         bool skipScreen = false;
-        int loopCount = (gameManager != null && gameManager.isAutoPlaying) ? 1 : winSymbolLoopCount;
-        float lineDuration = skipScreen ? 0.5f : winSymbolLoopDuration * loopCount;
-
         List<int> prevPositions = null;
 
         Debug.Log($"[PlayWinLinesSequentially] Starting win animation for {winLines.Count} lines");
 
-        foreach (var winLine in winLines)
+        bool isAuto = (gameManager != null && gameManager.isAutoPlaying);
+
+        if (isAuto)
         {
-            if (winLine.positions == null || winLine.positions.Count == 0) continue;
-
-            if (prevPositions != null)
+            // Autoplay: 1 loop per win line, all win lines played exactly once, then call onComplete
+            foreach (var winLine in winLines)
             {
-                KillWinTweens(false);
-                int cols = gameManager?.gameConfig != null ? gameManager.gameConfig.reelCount : 3;
-                foreach (int flatIdx in prevPositions)
+                if (winLine.positions == null || winLine.positions.Count == 0) continue;
+
+                if (prevPositions != null)
                 {
-                    int r = flatIdx / cols;
-                    int c = flatIdx % cols;
-                    ResetSymbolScale(c, r);
-                }
-            }
-
-            AudioManager.Instance?.PlayWinLine();
-
-            foreach (int flatIndex in winLine.positions)
-            {
-                int cols = gameManager?.gameConfig != null ? gameManager.gameConfig.reelCount : 3;
-                int rows = gameManager?.gameConfig != null ? gameManager.gameConfig.rowCount : 3;
-                int row = flatIndex / cols;
-                int col = flatIndex % cols;
-
-                if (col < 0 || col >= cols || row < 0 || row >= rows)
-                {
-                    Debug.LogWarning($"[PlayWinLinesSequentially] Invalid position! col: {col}, row: {row}");
-                    continue;
+                    KillWinTweens(false);
+                    int cols = gameManager?.gameConfig != null ? gameManager.gameConfig.reelCount : 3;
+                    foreach (int flatIdx in prevPositions)
+                    {
+                        int r = flatIdx / cols;
+                        int c = flatIdx % cols;
+                        ResetSymbolScale(c, r);
+                    }
                 }
 
-                AnimateWinSymbol(col, row);
+                AudioManager.Instance?.PlayWinLine();
+
+                float singleDuration = GetWinLineSpineDuration(winLine);
+                float lineDuration = skipScreen ? 0.5f : singleDuration;
+
+                foreach (int flatIndex in winLine.positions)
+                {
+                    int cols = gameManager?.gameConfig != null ? gameManager.gameConfig.reelCount : 3;
+                    int rows = gameManager?.gameConfig != null ? gameManager.gameConfig.rowCount : 3;
+                    int row = flatIndex / cols;
+                    int col = flatIndex % cols;
+
+                    if (col < 0 || col >= cols || row < 0 || row >= rows) continue;
+                    AnimateWinSymbol(col, row);
+                }
+
+                prevPositions = new List<int>(winLine.positions);
+                yield return new WaitForSeconds(lineDuration);
             }
 
-            prevPositions = new List<int>(winLine.positions);
-
-            yield return new WaitForSeconds(lineDuration);
+            AudioManager.Instance?.StopWinLine();
+            KillWinTweens(false);
+            onComplete?.Invoke();
         }
+        else
+        {
+            // Normal play
+            if (winLines.Count == 1)
+            {
+                // Only 1 win line: trigger onComplete immediately and play infinitely
+                onComplete?.Invoke();
 
-        AudioManager.Instance?.StopWinLine();
-        KillWinTweens(false);
+                var winLine = winLines[0];
+                if (winLine.positions != null && winLine.positions.Count > 0)
+                {
+                    AudioManager.Instance?.PlayWinLine();
+                    foreach (int flatIndex in winLine.positions)
+                    {
+                        int cols = gameManager?.gameConfig != null ? gameManager.gameConfig.reelCount : 3;
+                        int rows = gameManager?.gameConfig != null ? gameManager.gameConfig.rowCount : 3;
+                        int row = flatIndex / cols;
+                        int col = flatIndex % cols;
 
-        onComplete?.Invoke();
+                        if (col < 0 || col >= cols || row < 0 || row >= rows) continue;
+                        AnimateWinSymbol(col, row);
+                    }
+                }
+
+                while (true)
+                {
+                    yield return null;
+                }
+            }
+            else
+            {
+                // Multiple win lines: play infinitely in a loop, each line playing 3 loops
+                bool onCompleteCalled = false;
+                while (true)
+                {
+                    foreach (var winLine in winLines)
+                    {
+                        if (winLine.positions == null || winLine.positions.Count == 0) continue;
+
+                        if (prevPositions != null)
+                        {
+                            KillWinTweens(false);
+                            int cols = gameManager?.gameConfig != null ? gameManager.gameConfig.reelCount : 3;
+                            foreach (int flatIdx in prevPositions)
+                            {
+                                int r = flatIdx / cols;
+                                int c = flatIdx % cols;
+                                ResetSymbolScale(c, r);
+                            }
+                        }
+
+                        AudioManager.Instance?.PlayWinLine();
+
+                        float singleDuration = GetWinLineSpineDuration(winLine);
+                        float lineDuration = skipScreen ? 0.5f : singleDuration * 3f;
+
+                        foreach (int flatIndex in winLine.positions)
+                        {
+                            int cols = gameManager?.gameConfig != null ? gameManager.gameConfig.reelCount : 3;
+                            int rows = gameManager?.gameConfig != null ? gameManager.gameConfig.rowCount : 3;
+                            int row = flatIndex / cols;
+                            int col = flatIndex % cols;
+
+                            if (col < 0 || col >= cols || row < 0 || row >= rows) continue;
+                            AnimateWinSymbol(col, row);
+                        }
+
+                        prevPositions = new List<int>(winLine.positions);
+                        yield return new WaitForSeconds(lineDuration);
+                    }
+
+                    // Call onComplete after the first full cycle of win lines is played
+                    if (!onCompleteCalled)
+                    {
+                        onCompleteCalled = true;
+                        onComplete?.Invoke();
+                    }
+                }
+            }
+        }
     }
 
     private void ResetSymbolScale(int col, int row)
@@ -653,15 +945,12 @@ public class SlotView : MonoBehaviour
         if (col >= reelImagesList.Count) return;
         var reel = reelImagesList[col];
         if (reel.images == null) return;
-        int imageIndex = 2 + row;
+        int visualRow = GetVisualRow(col, row);
+        int imageIndex = 2 + visualRow;
         if (imageIndex >= reel.images.Count) return;
         if (reel.images[imageIndex] != null)
         {
-            reel.images[imageIndex].DOKill();
-            reel.images[imageIndex].transform.localScale = Vector3.one;
-            // Restore alpha to full opacity
-            Color c = reel.images[imageIndex].color;
-            reel.images[imageIndex].color = new Color(c.r, c.g, c.b, 1f);
+            ResetSymbolAnimation(reel.images[imageIndex], col, row);
         }
         // Re-apply blank alpha if this column has an active blank scenario
         ReapplyBlankAlphaForColumn(col);
@@ -682,7 +971,8 @@ public class SlotView : MonoBehaviour
             return;
         }
 
-        int imageIndex = 2 + row;
+        int visualRow = GetVisualRow(column, row);
+        int imageIndex = 2 + visualRow;
         if (imageIndex >= reel.images.Count)
         {
             Debug.LogError($"[AnimateWinSymbol] Image index {imageIndex} out of range for reel {column}");
@@ -696,14 +986,19 @@ public class SlotView : MonoBehaviour
             return;
         }
 
-        Sequence popSeq = DOTween.Sequence();
-        popSeq.AppendCallback(() => {
-            symbolImage.DOKill();
-            symbolImage.transform.localScale = Vector3.one;
-        });
-        popSeq.Append(symbolImage.transform.DOScale(1.2f, 0.2f).SetEase(Ease.OutBack));
-        popSeq.Append(symbolImage.transform.DOScale(1f, 0.2f).SetEase(Ease.InBack));
-        winTweens.Add(popSeq);
+        // Set the skeleton data dynamically as per the icon's symbol ID
+        SpineAnimController spineController = GetSpineController(column, row);
+        if (spineController != null)
+        {
+            int symbolId = GetSymbolIdAt(column, row);
+            SkeletonDataAsset asset = GetSymbolSpineAsset(symbolId);
+            if (asset != null)
+            {
+                spineController.SetSkeletonData(asset);
+            }
+        }
+
+        PlaySpineAnimation(symbolImage, column, row, true);
     }
 
     private void KillWinTweens(bool stopCoroutine = true)
@@ -721,19 +1016,19 @@ public class SlotView : MonoBehaviour
         }
         AudioManager.Instance?.StopWinLine();
 
-        // Restore all symbol image alphas to full opacity
-        foreach (var reel in reelImagesList)
+        // Restore all symbol image alphas to full opacity and stop Spine animations
+        for (int col = 0; col < reelImagesList.Count; col++)
         {
+            var reel = reelImagesList[col];
             if (reel.images != null)
             {
-                foreach (var image in reel.images)
+                for (int imageIndex = 0; imageIndex < reel.images.Count; imageIndex++)
                 {
+                    var image = reel.images[imageIndex];
                     if (image != null)
                     {
-                        image.DOKill();
-                        image.transform.localScale = Vector3.one;
-                        Color c = image.color;
-                        image.color = new Color(c.r, c.g, c.b, 1f);
+                        int row = imageIndex - 2;
+                        ResetSymbolAnimation(image, col, row);
                     }
                 }
             }
@@ -741,6 +1036,160 @@ public class SlotView : MonoBehaviour
 
         // Re-apply blank scenarios after restoring alphas
         ReapplyCurrentBlankScenarios();
+    }
+
+    private int GetVisualRow(int col, int row)
+    {
+        if (currentBlankScenarios != null && col < currentBlankScenarios.Length)
+        {
+            if (currentBlankScenarios[col] == BlankScenario.OneBlankMiddle && row == 2)
+            {
+                return 1;
+            }
+        }
+        return row;
+    }
+
+    private SpineAnimController GetSpineController(int col, int row)
+    {
+        int visualRow = GetVisualRow(col, row);
+        if (reelSpineControllersList != null && col < reelSpineControllersList.Count)
+        {
+            var reelControllers = reelSpineControllersList[col];
+            if (reelControllers != null && reelControllers.controllers != null && visualRow >= 0 && visualRow < reelControllers.controllers.Count)
+            {
+                var controller = reelControllers.controllers[visualRow];
+                if (controller != null)
+                {
+                    return controller;
+                }
+            }
+        }
+
+        // Fallback: search in child of image
+        int imageIndex = 2 + visualRow;
+        if (col < reelImagesList.Count)
+        {
+            var reel = reelImagesList[col];
+            if (reel.images != null && imageIndex >= 0 && imageIndex < reel.images.Count)
+            {
+                var symbolImage = reel.images[imageIndex];
+                if (symbolImage != null)
+                {
+                    return symbolImage.GetComponentInChildren<SpineAnimController>(true);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private void PlaySpineAnimation(Image symbolImage, int col, int row, bool play)
+    {
+        if (symbolImage == null) return;
+
+        SpineAnimController spineController = GetSpineController(col, row);
+        if (spineController != null)
+        {
+            if (play)
+            {
+               
+                // For 7s (Symbol IDs 3, 4, 5), offset local position to (10, 0, 0)
+                int symbolId = GetSymbolIdAt(col, row);
+                if (symbolId == 3 || symbolId == 4 || symbolId == 5)
+                {
+                    spineController.transform.localPosition = new Vector3(10f, 0f, 0f);
+                }
+                else
+                {
+                    spineController.transform.localPosition = Vector3.zero;
+                }
+ spineController.gameObject.SetActive(true);
+
+                spineController.Play(true);
+                symbolImage.enabled = false;
+            }
+            else
+            {
+                spineController.Stop();
+                spineController.transform.localPosition = Vector3.zero;
+                spineController.gameObject.SetActive(false);
+                symbolImage.enabled = true;
+            }
+        }
+    }
+
+    private void ResetSymbolAnimation(Image symbolImage, int col, int row)
+    {
+        if (symbolImage == null) return;
+
+        symbolImage.DOKill();
+        symbolImage.transform.localScale = Vector3.one;
+        Color c = symbolImage.color;
+        symbolImage.color = new Color(c.r, c.g, c.b, 1f);
+        symbolImage.enabled = true;
+
+        SpineAnimController spineController = GetSpineController(col, row);
+        if (spineController != null)
+        {
+            spineController.Stop();
+            spineController.transform.localPosition = Vector3.zero;
+            spineController.gameObject.SetActive(false);
+        }
+    }
+
+    private float GetWinLineSpineDuration(WinLine winLine)
+    {
+        if (winLine.positions == null || winLine.positions.Count == 0) return winSymbolLoopDuration;
+
+        int cols = gameManager?.gameConfig != null ? gameManager.gameConfig.reelCount : 3;
+
+        foreach (int flatIndex in winLine.positions)
+        {
+            int row = flatIndex / cols;
+            int col = flatIndex % cols;
+
+            SpineAnimController spineController = GetSpineController(col, row);
+            if (spineController != null)
+            {
+                int symbolId = GetSymbolIdAt(col, row);
+                SkeletonDataAsset asset = GetSymbolSpineAsset(symbolId);
+                if (asset != null)
+                {
+                    spineController.SetSkeletonData(asset);
+                }
+
+                float singleAnimDuration = spineController.GetAnimationDuration();
+                if (singleAnimDuration > 0f)
+                {
+                    return singleAnimDuration;
+                }
+            }
+        }
+
+        return winSymbolLoopDuration;
+    }
+
+    private int GetSymbolIdAt(int col, int row)
+    {
+        if (currentDisplayMatrix != null && col < currentDisplayMatrix.Count)
+        {
+            var columnSymbols = currentDisplayMatrix[col];
+            if (columnSymbols != null && row >= 0 && row < columnSymbols.Count)
+            {
+                return columnSymbols[row];
+            }
+        }
+        return -1;
+    }
+
+    private SkeletonDataAsset GetSymbolSpineAsset(int symbolId)
+    {
+        if (symbolSpineAssets != null && symbolId >= 0 && symbolId < symbolSpineAssets.Length)
+        {
+            return symbolSpineAssets[symbolId];
+        }
+        return null;
     }
 
     #endregion
@@ -776,6 +1225,15 @@ public class SlotView : MonoBehaviour
             tween?.Kill();
         }
         spinTweens.Clear();
+
+        foreach (var tween in spacingTweens)
+        {
+            tween?.Kill();
+        }
+        for (int i = 0; i < spacingTweens.Count; i++)
+        {
+            spacingTweens[i] = null;
+        }
 
         KillWinTweens();
     }
@@ -909,6 +1367,118 @@ public class SlotView : MonoBehaviour
     }
 
     /// <summary>
+    /// Applies the blank scenario smoothly using DOTween to transition spacing and alphas over stopDuration.
+    /// Called during the reel's deceleration and bounce stop sequence.
+    /// </summary>
+    private void ApplyBlankScenarioSmooth(int columnIndex, BlankScenario scenario, List<int> targetSymbols, float duration)
+    {
+        if (columnIndex >= reelTransforms.Length || columnIndex >= reelImagesList.Count) return;
+
+        var reel = reelImagesList[columnIndex];
+        VerticalLayoutGroup layoutGroup = (reelLayoutGroups != null && columnIndex < reelLayoutGroups.Length)
+            ? reelLayoutGroups[columnIndex] : null;
+
+        // Track current scenario
+        if (currentBlankScenarios != null && columnIndex < currentBlankScenarios.Length)
+        {
+            currentBlankScenarios[columnIndex] = scenario;
+        }
+
+        // Apply sprite overrides immediately (Scenario 5 and Scenario 8) so they are visually aligned before stop starts
+        if (scenario == BlankScenario.TwoBlankTopBottom)
+        {
+            reel.images[2].sprite = GetRandomNonBlankSprite();
+            reel.images[4].sprite = GetRandomNonBlankSprite();
+        }
+        else if (scenario == BlankScenario.OneBlankMiddle)
+        {
+            if (targetSymbols != null && targetSymbols.Count > 2)
+            {
+                reel.images[3].sprite = GetSymbolSprite(targetSymbols[2]);
+            }
+        }
+
+        // Kill any existing spacing/alpha tweens for this column
+        if (spacingTweens[columnIndex] != null)
+        {
+            spacingTweens[columnIndex].Kill();
+        }
+
+        float targetSpacing = GetTargetSpacingForScenario(scenario);
+
+        Sequence stopSeq = DOTween.Sequence();
+
+        // 1. Tween VerticalLayoutGroup spacing to targetSpacing
+        if (layoutGroup != null)
+        {
+            stopSeq.Join(DOTween.To(() => layoutGroup.spacing, x => layoutGroup.spacing = x, targetSpacing, duration));
+        }
+
+        stopSeq.SetEase(Ease.OutQuad);
+        spacingTweens[columnIndex] = stopSeq;
+    }
+
+    private float GetTargetSpacingForScenario(BlankScenario scenario)
+    {
+        switch (scenario)
+        {
+            case BlankScenario.NoBlanks:
+            case BlankScenario.TwoBlankTop:
+            case BlankScenario.TwoBlankBottom:
+            case BlankScenario.OneBlankTop:
+            case BlankScenario.OneBlankBottom:
+                return blankSpacingValue;
+            case BlankScenario.AllBlank:
+                return defaultSpacing;
+            case BlankScenario.TwoBlankTopBottom:
+                return blankTopBottomSpacingValue;
+            case BlankScenario.OneBlankMiddle:
+                return blankMiddleSpacingValue;
+            default:
+                return defaultSpacing;
+        }
+    }
+
+    private float[] GetTargetAlphasForScenario(BlankScenario scenario)
+    {
+        float[] alphas = new float[7];
+        // Buffer images (0, 1, 5, 6) always target 0f alpha when stopped
+        alphas[0] = 0f;
+        alphas[1] = 0f;
+        alphas[5] = 0f;
+        alphas[6] = 0f;
+
+        // Visible images (2, 3, 4) target 1f default
+        alphas[2] = 1f;
+        alphas[3] = 1f;
+        alphas[4] = 1f;
+
+        switch (scenario)
+        {
+            case BlankScenario.AllBlank:
+                alphas[2] = 0f;
+                alphas[3] = 0f;
+                alphas[4] = 0f;
+                break;
+            case BlankScenario.TwoBlankTop:
+                alphas[2] = 0f;
+                alphas[3] = 0f;
+                break;
+            case BlankScenario.TwoBlankBottom:
+                alphas[3] = 0f;
+                alphas[4] = 0f;
+                break;
+            case BlankScenario.OneBlankTop:
+                alphas[2] = 0f;
+                break;
+            case BlankScenario.OneBlankBottom:
+                alphas[4] = 0f;
+                break;
+        }
+        return alphas;
+    }
+
+    /// <summary>
     /// Returns the reel Y position target based on the blank scenario.
     /// Scenario 8 (OneBlankMiddle) shifts the reel down so only indices 2 and 3 are visible.
     /// </summary>
@@ -936,7 +1506,7 @@ public class SlotView : MonoBehaviour
         if (img != null)
         {
             Color c = img.color;
-            img.color = new Color(c.r, c.g, c.b, alpha);
+            img.color = new Color(c.r, c.g, c.b, 1f); // Bypass alpha changes (transparent sprites handle blanks)
         }
     }
 
@@ -1055,4 +1625,10 @@ public class SlotView : MonoBehaviour
 public class ReelImages
 {
     public List<Image> images = new List<Image>(7);
+}
+
+[System.Serializable]
+public class ReelSpineControllers
+{
+    public List<SpineAnimController> controllers = new List<SpineAnimController>(3);
 }

@@ -60,7 +60,6 @@ public class UIManager : MonoBehaviour
     [Tooltip("Assign exactly 6 page RectTransforms that live inside the panel.")]
     [SerializeField] private RectTransform[] gameRulePages;
     [SerializeField] private float pageSlideWidth = 800f;
-    [SerializeField] private GameObject[] rulePageIndicators;
 
     [Header("Game Rules Dynamic Texts")]
 
@@ -72,9 +71,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text ruleSymbol5Text;
     [SerializeField] private TMP_Text ruleSymbol6Text;
     [SerializeField] private TMP_Text ruleSymbol7Text;
-    [SerializeField] private TMP_Text ruleSymbol8Text;
-    [SerializeField] private TMP_Text ruleSymbol9Text;
-    [SerializeField] private TMP_Text ruleSymbol10Text;
+
+    [Header("Any Payouts Dynamic Texts")]
+    [SerializeField] private TMP_Text ruleAnySevenText;
+    [SerializeField] private TMP_Text ruleAnyWildText;
+    [SerializeField] private TMP_Text ruleAnyBarText;
+
+    [Header("Main Screen Dynamic Payout Texts")]
+    [SerializeField] private TMP_Text mainTripleDiamondText;
+    [SerializeField] private TMP_Text mainDoubleDiamondText;
+    [SerializeField] private TMP_Text mainWildText;
+    [SerializeField] private TMP_Text mainAnyWildText;
     [Header("Animation Settings")]
     [SerializeField] private float winCountDuration = 0.25f;
     [SerializeField] private float balanceCountDuration = 1.0f;
@@ -702,14 +709,12 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        UpdateRulePageIndicators(currentRulesPage);
-
         gameRulesPanel.SetActive(true);
 
         if (gameRulesPanelRect)
         {
-            gameRulesPanelRect.anchoredPosition = new Vector2(Screen.width, gameRulesPanelRect.anchoredPosition.y);
-            gameRulesPanelRect.DOAnchorPosX(0f, 0.35f).SetEase(Ease.OutCubic);
+            gameRulesPanelRect.anchoredPosition = new Vector2(0f, gameRulesPanelRect.anchoredPosition.y);
+            AnimatePopupOpen(gameRulesPanelRect);
         }
 
         UpdateGameRulesDynamicTexts();
@@ -721,14 +726,10 @@ public class UIManager : MonoBehaviour
 
         if (gameRulesPanelRect)
         {
-            gameRulesPanelRect.DOAnchorPosX(Screen.width, 0.35f)
-                .SetEase(Ease.InCubic)
-                .OnComplete(() =>
-                {
-                    gameRulesPanel.SetActive(false);
-                    if (gameRulesPanelRect)
-                        gameRulesPanelRect.anchoredPosition = new Vector2(0f, gameRulesPanelRect.anchoredPosition.y);
-                });
+            AnimatePopupClose(gameRulesPanelRect, () =>
+            {
+                gameRulesPanel.SetActive(false);
+            });
         }
         else
         {
@@ -780,22 +781,7 @@ public class UIManager : MonoBehaviour
                 fromPage.anchoredPosition = new Vector2(direction * pageSlideWidth, 0f);
                 currentRulesPage = toIndex;
                 isPageAnimating = false;
-                UpdateRulePageIndicators(currentRulesPage);
             });
-    }
-
-    private void UpdateRulePageIndicators(int activeIndex)
-    {
-        if (rulePageIndicators == null || rulePageIndicators.Length == 0) return;
-        for (int i = 0; i < rulePageIndicators.Length; i++)
-        {
-            if (rulePageIndicators[i] == null) continue;
-            // Enable the first child for the active index, disable for others
-            if (rulePageIndicators[i].transform.childCount > 0)
-            {
-                rulePageIndicators[i].transform.GetChild(0).gameObject.SetActive(i == activeIndex);
-            }
-        }
     }
 
     #endregion
@@ -909,16 +895,10 @@ public class UIManager : MonoBehaviour
 
         double totalBetAmount = gameManager.currentBetAmount * gameManager.gameConfig.betMultiplier;
 
-
-
-
-
-        // 4. Symbol Multipliers
-        // "5 - (currentbetamout*thatmultiper ) \n 4 - (currentbetamout*thatmultiper ) \n 3 - (currentbetamout*multiper )"
+        // 4. Symbol Multipliers (Rules Panel - Static Payouts)
         TMP_Text[] symbolTexts = {
             ruleSymbol0Text, ruleSymbol1Text, ruleSymbol2Text, ruleSymbol3Text,
-            ruleSymbol4Text, ruleSymbol5Text, ruleSymbol6Text, ruleSymbol7Text,
-            ruleSymbol8Text, ruleSymbol9Text, ruleSymbol10Text
+            ruleSymbol4Text, ruleSymbol5Text, ruleSymbol6Text, ruleSymbol7Text
         };
 
         if (gameManager.gameConfig.symbols != null)
@@ -931,26 +911,9 @@ public class UIManager : MonoBehaviour
                 var symbol = gameManager.gameConfig.symbols.Find(s => s.id == i);
                 if (symbol != null)
                 {
-                    if (symbol.multipliers != null && symbol.multipliers.Count >= 3)
+                    if (symbol.payout > 0)
                     {
-                        // multipliers list: index 0 is 5 matches, index 1 is 4 matches, index 2 is 3 matches
-                        double originalBetAmount = gameManager.currentBetAmount;
-                        double win5 = originalBetAmount * symbol.multipliers[0];
-                        double win4 = originalBetAmount * symbol.multipliers[1];
-                        double win3 = originalBetAmount * symbol.multipliers[2];
-
-                        // Format nicely, e.g., F2 if decimal, or just let ToString format it based on game's styling
-                        string text5 = $"5 - {win5.ToString("0.##")}";
-                        string text4 = $"4 - {win4.ToString("0.##")}";
-                        string text3 = $"3 - {win3.ToString("0.##")}";
-
-                        symbolTexts[i].text = $"{text5}\n{text4}\n{text3}";
-                    }
-                    else if (symbol.payout > 0)
-                    {
-                        double originalBetAmount = gameManager.currentBetAmount;
-                        double win3 = originalBetAmount * symbol.payout;
-                        symbolTexts[i].text = $"3 - {win3.ToString("0.##")}";
+                        symbolTexts[i].text = symbol.payout.ToString("#,##0.###");
                     }
                     else
                     {
@@ -961,6 +924,51 @@ public class UIManager : MonoBehaviour
                 {
                     symbolTexts[i].text = "";
                 }
+            }
+
+            // Main Screen Dynamic Payouts (bet * payout)
+            double originalBetAmount = gameManager.currentBetAmount;
+
+            var s0 = gameManager.gameConfig.symbols.Find(s => s.id == 0);
+            if (s0 != null && mainTripleDiamondText != null)
+            {
+                mainTripleDiamondText.text = (originalBetAmount * s0.payout).ToString("#,##0.###");
+            }
+
+            var s1 = gameManager.gameConfig.symbols.Find(s => s.id == 1);
+            if (s1 != null && mainDoubleDiamondText != null)
+            {
+                mainDoubleDiamondText.text = (originalBetAmount * s1.payout).ToString("#,##0.###");
+            }
+
+            var s2 = gameManager.gameConfig.symbols.Find(s => s.id == 2);
+            if (s2 != null && mainWildText != null)
+            {
+                mainWildText.text = (originalBetAmount * s2.payout).ToString("#,##0.###");
+            }
+        }
+
+        // Rules Panel - Any Payouts Static Payouts
+        if (gameManager.gameConfig.anyPayouts != null)
+        {
+            if (ruleAnySevenText != null)
+            {
+                ruleAnySevenText.text = gameManager.gameConfig.anyPayouts.anySevens.ToString("#,##0.###");
+            }
+            if (ruleAnyWildText != null)
+            {
+                ruleAnyWildText.text = gameManager.gameConfig.anyPayouts.anyWilds.ToString("#,##0.###");
+            }
+            if (ruleAnyBarText != null)
+            {
+                ruleAnyBarText.text = gameManager.gameConfig.anyPayouts.anyBars.ToString("#,##0.###");
+            }
+
+            // Main Screen Dynamic Payouts (bet * anyWilds)
+            double originalBetAmount = gameManager.currentBetAmount;
+            if (mainAnyWildText != null)
+            {
+                mainAnyWildText.text = (originalBetAmount * gameManager.gameConfig.anyPayouts.anyWilds).ToString("#,##0.###");
             }
         }
     }
@@ -989,12 +997,4 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
-}
-
-[System.Serializable]
-public class RoundButton
-{
-    public Button button;
-    public int rounds;
-    public GameObject selectedIndicator;
 }
