@@ -380,16 +380,8 @@ public class SlotView : MonoBehaviour
                 startSpinYPositions[col] = 0f;
             }
 
-            // Populate all buffer images (indices 0, 1, 5, 6) with random non-blank symbols at spin start
-            // so they are fully populated when visual movement/deceleration starts
-            var reel = reelImagesList[col];
-            if (reel != null && reel.images != null && reel.images.Count == 7)
-            {
-                reel.images[0].sprite = GetSymbolSprite(GetRandomNonBlankSymbolId(maxSymbolId));
-                reel.images[1].sprite = GetSymbolSprite(GetRandomNonBlankSymbolId(maxSymbolId));
-                reel.images[5].sprite = GetSymbolSprite(GetRandomNonBlankSymbolId(maxSymbolId));
-                reel.images[6].sprite = GetSymbolSprite(GetRandomNonBlankSymbolId(maxSymbolId));
-            }
+            // Buffer images (0, 1, 5, 6) already hold valid sprites from the end of the previous spin.
+            // Keeping them as-is prevents visual popping/glitches when the spin starts.
 
             // Set all 7 images of each reel to alpha 1 at start of spin so they are visible during movement
             for (int i = 0; i < 7; i++)
@@ -835,6 +827,7 @@ public class SlotView : MonoBehaviour
                 }
 
                 AudioManager.Instance?.PlayWinLine();
+                SlotBase.UI.WinLineDisplayManager.Instance?.ShowOnlyLine(winLine.lineId);
 
                 float singleDuration = GetWinLineSpineDuration(winLine);
                 float lineDuration = skipScreen ? 0.5f : singleDuration;
@@ -870,6 +863,7 @@ public class SlotView : MonoBehaviour
                 if (winLine.positions != null && winLine.positions.Count > 0)
                 {
                     AudioManager.Instance?.PlayWinLine();
+                    SlotBase.UI.WinLineDisplayManager.Instance?.ShowOnlyLine(winLine.lineId);
                     foreach (int flatIndex in winLine.positions)
                     {
                         int cols = gameManager?.gameConfig != null ? gameManager.gameConfig.reelCount : 3;
@@ -910,6 +904,7 @@ public class SlotView : MonoBehaviour
                         }
 
                         AudioManager.Instance?.PlayWinLine();
+                        SlotBase.UI.WinLineDisplayManager.Instance?.ShowOnlyLine(winLine.lineId);
 
                         float singleDuration = GetWinLineSpineDuration(winLine);
                         float lineDuration = skipScreen ? 0.5f : singleDuration * 3f;
@@ -1015,6 +1010,9 @@ public class SlotView : MonoBehaviour
             winAnimationCoroutine = null;
         }
         AudioManager.Instance?.StopWinLine();
+
+        // Reset the win line display state in the UI
+        SlotBase.UI.WinLineDisplayManager.Instance?.ResetAllLines();
 
         // Restore all symbol image alphas to full opacity and stop Spine animations
         for (int col = 0; col < reelImagesList.Count; col++)
@@ -1340,9 +1338,16 @@ public class SlotView : MonoBehaviour
 
             case BlankScenario.TwoBlankTopBottom: // Scenario 5
                 if (layoutGroup != null) layoutGroup.spacing = blankTopBottomSpacingValue;
-                // Show random non-blank sprites at blank positions (index 2 = row 0, index 4 = row 2)
-                reel.images[2].sprite = GetRandomNonBlankSprite();
-                reel.images[4].sprite = GetRandomNonBlankSprite();
+                // Show random non-blank sprites at blank positions (index 2 = row 0, index 4 = row 2) if not already set
+                Sprite blankSprite = GetSymbolSprite(blankSymbolId);
+                if (reel.images[2].sprite == null || reel.images[2].sprite == blankSprite)
+                {
+                    reel.images[2].sprite = GetRandomNonBlankSprite();
+                }
+                if (reel.images[4].sprite == null || reel.images[4].sprite == blankSprite)
+                {
+                    reel.images[4].sprite = GetRandomNonBlankSprite();
+                }
                 break;
 
             case BlankScenario.OneBlankTop: // Scenario 6
@@ -1387,8 +1392,15 @@ public class SlotView : MonoBehaviour
         // Apply sprite overrides immediately (Scenario 5 and Scenario 8) so they are visually aligned before stop starts
         if (scenario == BlankScenario.TwoBlankTopBottom)
         {
-            reel.images[2].sprite = GetRandomNonBlankSprite();
-            reel.images[4].sprite = GetRandomNonBlankSprite();
+            Sprite blankSprite = GetSymbolSprite(blankSymbolId);
+            if (reel.images[2].sprite == null || reel.images[2].sprite == blankSprite)
+            {
+                reel.images[2].sprite = GetRandomNonBlankSprite();
+            }
+            if (reel.images[4].sprite == null || reel.images[4].sprite == blankSprite)
+            {
+                reel.images[4].sprite = GetRandomNonBlankSprite();
+            }
         }
         else if (scenario == BlankScenario.OneBlankMiddle)
         {

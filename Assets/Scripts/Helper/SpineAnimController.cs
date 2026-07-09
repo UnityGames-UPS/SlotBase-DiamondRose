@@ -25,7 +25,11 @@ public class SpineAnimController : MonoBehaviour
         {
             if (!isPlaying)
             {
-                skeletonGraphic.AnimationState.SetAnimation(0, animName, loop);
+                var track = skeletonGraphic.AnimationState.SetAnimation(0, animName, loop);
+                if (track != null)
+                {
+                    track.TimeScale = 0.5f;
+                }
                 isPlaying = true;
             }
         }
@@ -62,7 +66,7 @@ public class SpineAnimController : MonoBehaviour
                 var anim = skeletonGraphic.SkeletonData.FindAnimation(animName);
                 if (anim != null)
                 {
-                    return anim.Duration;
+                    return anim.Duration / 0.5f;
                 }
             }
         }
