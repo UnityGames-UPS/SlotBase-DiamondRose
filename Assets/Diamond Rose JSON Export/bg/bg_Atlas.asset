@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: spine-unity::Spine.Unity.SpineAtlasAsset
   textureLoadingMode: 0
   onDemandTextureLoader: {fileID: 0}
-  atlasFile: {fileID: 4900000, guid: 06d915e823fd64bad8328894ebad502f, type: 3}
+  atlasFile: {fileID: 4900000, guid: 69f691f901cd5492ba86d970d70a09a6, type: 3}
   materials:
-  - {fileID: 2100000, guid: 5297058cc33d748fca30854d6874fa05, type: 2}
+  - {fileID: 2100000, guid: 0099517f599d34bdcb76956093497d49, type: 2}
