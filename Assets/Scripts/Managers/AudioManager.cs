@@ -17,6 +17,13 @@ public class AudioManager : MonoBehaviour
         _musicEnabled = PlayerPrefs.GetInt(PrefKeyMusic, 1) == 1;
         _sfxEnabled   = PlayerPrefs.GetInt(PrefKeysfx,   1) == 1;
 
+        if (spareAudioSource == null)
+        {
+            spareAudioSource = gameObject.AddComponent<AudioSource>();
+            spareAudioSource.playOnAwake = false;
+            spareAudioSource.loop = false;
+        }
+
         ApplyMusicVolume();
         ApplySfxVolume();
     }
@@ -26,6 +33,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Source")]
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource spareAudioSource;
 
     [Header("Sound Clips")]
     [SerializeField] private AudioClip clipSpinStopBtn;          // 1. spin/stop btn
@@ -71,15 +79,27 @@ public class AudioManager : MonoBehaviour
         {
             audioSource.volume = _sfxEnabled ? 1f : 0f;
         }
+        if (spareAudioSource != null)
+        {
+            spareAudioSource.volume = _sfxEnabled ? 1f : 0f;
+        }
     }
 
     private void PlayOneShot(AudioClip clip)
     {
         if (clip == null) return;
         if (!_sfxEnabled) return;
-        if (audioSource == null) return;
 
-        audioSource.PlayOneShot(clip);
+        AudioSource targetSource = audioSource;
+        if (audioSource != null && audioSource.isPlaying && spareAudioSource != null)
+        {
+            targetSource = spareAudioSource;
+        }
+
+        if (targetSource != null)
+        {
+            targetSource.PlayOneShot(clip);
+        }
     }
 
     private void PlayLoop(AudioClip clip)
@@ -180,11 +200,13 @@ public class AudioManager : MonoBehaviour
         if (!hasFocus)
         {
             if (audioSource != null) audioSource.Pause();
+            if (spareAudioSource != null) spareAudioSource.Pause();
             AudioListener.volume = 0f;
         }
         else
         {
             if (audioSource != null) audioSource.UnPause();
+            if (spareAudioSource != null) spareAudioSource.UnPause();
             AudioListener.volume = 1f;
         }
     }

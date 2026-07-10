@@ -35,6 +35,12 @@ public class PopupManager : MonoBehaviour
     [SerializeField] private Image loadingRotatingImage;
     [SerializeField] private TextMeshProUGUI loadingAnimatedText;
 
+    [Header("5. Game Quit Popup")]
+    [SerializeField] private GameObject gameQuitPopup;
+    [SerializeField] private RectTransform gameQuitPopupRect;
+    [SerializeField] private Button gameQuitYesButton;
+    [SerializeField] private Button gameQuitNoButton;
+
     [Header("Animation Settings")]
     [SerializeField] private float popupScaleInDuration = 0.3f;
     [SerializeField] private float popupScaleOutDuration = 0.2f;
@@ -82,6 +88,16 @@ public class PopupManager : MonoBehaviour
         {
             errorOkButton.onClick.AddListener(OnErrorOkClicked);
         }
+
+        if (gameQuitYesButton != null)
+        {
+            gameQuitYesButton.onClick.AddListener(OnGameQuitYesClicked);
+        }
+
+        if (gameQuitNoButton != null)
+        {
+            gameQuitNoButton.onClick.AddListener(OnGameQuitNoClicked);
+        }
     }
 
     private void HideAllPopups()
@@ -90,6 +106,7 @@ public class PopupManager : MonoBehaviour
         if (errorPopup != null) errorPopup.SetActive(false);
         if (reconnectionPopup != null) reconnectionPopup.SetActive(false);
         if (loadingPopup != null) loadingPopup.SetActive(false);
+        if (gameQuitPopup != null) gameQuitPopup.SetActive(false);
     }
 
     #endregion
@@ -433,6 +450,51 @@ public class PopupManager : MonoBehaviour
 
     #endregion
 
+    #region 5. Game Quit Popup
+
+    /// <summary>
+    /// Show game quit confirmation popup
+    /// </summary>
+    internal void ShowGameQuitPopup()
+    {
+        if (gameQuitPopup == null) return;
+
+        CloseCurrentPopup();
+
+        if (popupParent != null) popupParent.SetActive(true);
+
+        currentActivePopup = gameQuitPopup;
+        gameQuitPopup.SetActive(true);
+
+        AudioManager.Instance?.PlayPopupOpen();
+        AnimatePopupOpen(gameQuitPopupRect);
+    }
+
+    private void OnGameQuitYesClicked()
+    {
+        AudioManager.Instance?.PlayButtonGeneric();
+        AnimatePopupClose(gameQuitPopupRect, () =>
+        {
+            gameQuitPopup.SetActive(false);
+            if (currentActivePopup == gameQuitPopup) currentActivePopup = null;
+            UpdatePopupParentState();
+            ExitGame();
+        });
+    }
+
+    private void OnGameQuitNoClicked()
+    {
+        AudioManager.Instance?.PlayButtonGeneric();
+        AnimatePopupClose(gameQuitPopupRect, () =>
+        {
+            gameQuitPopup.SetActive(false);
+            if (currentActivePopup == gameQuitPopup) currentActivePopup = null;
+            UpdatePopupParentState();
+        });
+    }
+
+    #endregion
+
     #region Animation Helpers
 
     /// <summary>
@@ -560,7 +622,8 @@ public class PopupManager : MonoBehaviour
             bool anyActive = (disconnectionPopup != null && disconnectionPopup.activeSelf) ||
                              (errorPopup != null && errorPopup.activeSelf) ||
                              (reconnectionPopup != null && reconnectionPopup.activeSelf) ||
-                             (loadingPopup != null && loadingPopup.activeSelf);
+                             (loadingPopup != null && loadingPopup.activeSelf) ||
+                             (gameQuitPopup != null && gameQuitPopup.activeSelf);
 
             popupParent.SetActive(anyActive);
         }
@@ -656,6 +719,7 @@ public class PopupManager : MonoBehaviour
         DOTween.Kill(errorPopupRect);
         DOTween.Kill(reconnectionPopupRect);
         DOTween.Kill(loadingPopupRect);
+        DOTween.Kill(gameQuitPopupRect);
     }
 
     #endregion

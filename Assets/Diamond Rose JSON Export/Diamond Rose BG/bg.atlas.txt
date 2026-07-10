@@ -1,0 +1,14 @@
+bg.png
+size:1503,1924
+filter:Linear,Linear
+pma:true
+bg
+bounds:2,2,1920,1080
+offsets:1,1,1922,1082
+rotate:90
+fire glow
+bounds:1084,672,1250,417
+rotate:90
+glow_fx
+bounds:1084,530,83,140
+offsets:2,9,100,150

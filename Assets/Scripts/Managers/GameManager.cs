@@ -422,8 +422,7 @@ public class GameManager : MonoBehaviour
 
     internal void ExitGame()
     {
-        socketManager.CloseSocket();
-
+        socketManager.CloseGame();
     }
 
     #endregion

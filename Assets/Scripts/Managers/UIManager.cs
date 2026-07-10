@@ -1086,7 +1086,14 @@ public class UIManager : MonoBehaviour
 
     private void OnExitButtonPressed()
     {
-        if (gameManager != null) gameManager.ExitGame();
+        if (popupManager != null)
+        {
+            popupManager.ShowGameQuitPopup();
+        }
+        else if (gameManager != null)
+        {
+            gameManager.ExitGame();
+        }
     }
 
     #endregion

@@ -11,7 +11,6 @@ public class SocketIOManager : MonoBehaviour
     [SerializeField] private string testToken = "test-token";
     protected string testSocketURL = "https://devrealtime.dingdinghouse.com/";
     protected string nameSpace = "playground";
-    protected string gameID = "SL-WW";
 
 
     [Header("References")]
@@ -53,7 +52,53 @@ public class SocketIOManager : MonoBehaviour
     {
         RequestAuthToken();
     }
+    internal void CloseGame()
+    {
+        Debug.Log("Unity: Closing Game");
+        StartCoroutine(CloseGameRoutine());
+    }
 
+    private IEnumerator CloseGameRoutine()
+    {
+        isExiting = true;
+
+        if (RaycastBlocker) RaycastBlocker.SetActive(true);
+
+        // Show the loading popup immediately so it's visible during the delay
+        if (popupManager != null && !popupManager.IsLoadingPopupActive())
+        {
+            popupManager.ShowLoadingPopup(0f);
+        }
+
+        // 1. Stop pinging and initiate socket closure immediately
+        StopPingRoutine();
+
+        if (socketManager != null)
+        {
+            try
+            {
+                socketManager.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[SocketIO] Error closing socketManager: {ex.Message}");
+            }
+            socketManager = null;
+        }
+
+        isConnected = false;
+
+        // 2. Wait 2 seconds for the websocket close handshake to complete and the connection state to settle
+        yield return new WaitForSeconds(2f);
+
+        // 3. Send OnExit to platform to unmount the iframe
+#if UNITY_WEBGL && !UNITY_EDITOR
+        if (JSManager != null)
+        {
+            JSManager.SendCustomMessage("OnExit");
+        }
+#endif
+    }
     private void RequestAuthToken()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -158,7 +203,7 @@ public class SocketIOManager : MonoBehaviour
         if (isExiting)
         {
             // Intentional exit — show loading popup (animation) instead of disconnect popup
-            if (popupManager != null)
+            if (popupManager != null && !popupManager.IsLoadingPopupActive())
             {
                 popupManager.ShowLoadingPopup(0f); // 0 = indefinite, JS will reload the page
             }
@@ -417,7 +462,14 @@ public class SocketIOManager : MonoBehaviour
 
         if (socketManager != null)
         {
-            socketManager.Close();
+            try
+            {
+                socketManager.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[SocketIO] Error closing socketManager: {ex.Message}");
+            }
             socketManager = null;
         }
 
