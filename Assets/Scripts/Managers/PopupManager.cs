@@ -165,7 +165,7 @@ public class PopupManager : MonoBehaviour
     /// </summary>
     internal void ShowInsufficientFundsError()
     {
-        ShowErrorPopup("Information", "Insufficient balance. Please add funds to continue.", false);
+        ShowErrorPopup("Information", "Insufficient balance. Please add funds to continue.", false, 3.5f);
     }
 
     /// <summary>
@@ -201,12 +201,13 @@ public class PopupManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Generic error popup
+    /// Generic error popup with optional auto-close
     /// </summary>
     /// <param name="title">Error title (Information, Warning, Server Error)</param>
     /// <param name="message">Error message</param>
     /// <param name="isCritical">If true, OK button will exit the game</param>
-    internal void ShowErrorPopup(string title, string message, bool isCritical)
+    /// <param name="autoCloseDuration">Duration in seconds to auto-close (-1 = no auto-close)</param>
+    internal void ShowErrorPopup(string title, string message, bool isCritical, float autoCloseDuration = -1f)
     {
         if (errorPopup == null) return;
 
@@ -223,6 +224,12 @@ public class PopupManager : MonoBehaviour
         {
             errorMessageText.text = message;
         }
+
+        if (errorOkButton != null)
+        {
+            errorOkButton.gameObject.SetActive(true);
+        }
+
         if (errorOkButtonText != null)
         {
             errorOkButtonText.text = isCritical ? "Exit Game" : "OKAY";
@@ -235,11 +242,34 @@ public class PopupManager : MonoBehaviour
 
         AudioManager.Instance?.PlayPopupOpen();
         AnimatePopupOpen(errorPopupRect);
+
+        if (autoCloseDuration > 0)
+        {
+            if (autoCloseCoroutine != null)
+            {
+                StopCoroutine(autoCloseCoroutine);
+            }
+            autoCloseCoroutine = StartCoroutine(AutoCloseErrorPopup(autoCloseDuration));
+        }
     }
 
-    private void OnErrorOkClicked()
+    private IEnumerator AutoCloseErrorPopup(float duration)
     {
-        AudioManager.Instance?.PlayButtonGeneric();
+        yield return new WaitForSeconds(duration);
+        autoCloseCoroutine = null;
+        CloseErrorPopupWithAnimation();
+    }
+
+    private void CloseErrorPopupWithAnimation()
+    {
+        if (autoCloseCoroutine != null)
+        {
+            StopCoroutine(autoCloseCoroutine);
+            autoCloseCoroutine = null;
+        }
+
+        if (errorPopup == null || !errorPopup.activeSelf) return;
+
         AnimatePopupClose(errorPopupRect, () =>
         {
             errorPopup.SetActive(false);
@@ -251,6 +281,12 @@ public class PopupManager : MonoBehaviour
                 ExitGame();
             }
         });
+    }
+
+    private void OnErrorOkClicked()
+    {
+        AudioManager.Instance?.PlayButtonGeneric();
+        CloseErrorPopupWithAnimation();
     }
 
     #endregion

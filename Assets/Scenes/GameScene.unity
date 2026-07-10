@@ -9667,7 +9667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &973270368
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12311,7 +12311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f521a04de7f494272a617b2719edd271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SocketIOManager
-  testToken: 29f5730bd80a470c82682d791f974257
+  testToken: 72998ef284f947e4ab217e7f16261bf5
   gameManager: {fileID: 1253991724}
   uiManager: {fileID: 180425369}
   popupManager: {fileID: 1441117377}
