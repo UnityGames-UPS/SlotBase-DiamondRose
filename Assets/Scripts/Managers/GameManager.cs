@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     private Coroutine spinCoroutine;
     private bool stopRequested;
     private bool waitingForSpecialWin;
+    internal bool WaitingForSpecialWin => waitingForSpecialWin;
 
     #region Initialization
 
@@ -203,32 +204,35 @@ public class GameManager : MonoBehaviour
 
     private void OnReelsStoppedComplete()
     {
+        SpinResult resultToUse = lastResult;
+        if (resultToUse == null) return;
 
-        if (lastResult.winAmount > 0 && lastResult.winLines != null && lastResult.winLines.Count > 0)
+        if (resultToUse.winAmount > 0 && resultToUse.winLines != null && resultToUse.winLines.Count > 0)
         {
             double totalBet = currentBetAmount * (gameConfig != null ? gameConfig.betMultiplier : 1);
-            double multiplier = totalBet > 0 ? (lastResult.winAmount / totalBet) : 0;
+            double multiplier = totalBet > 0 ? (resultToUse.winAmount / totalBet) : 0;
 
             if (multiplier >= uiManager.BigWinThreshold)
             {
                 uiManager.DisableControlsDuringWinAnimation();
                 currentState = GameState.Idle;
+                waitingForSpecialWin = true;
             }
             else
             {
                 // For normal wins, trigger UI update immediately and enable controls
-                uiManager.OnSpinStopping(lastResult);
+                uiManager.OnSpinStopping(resultToUse);
                 uiManager.EnableControlsAfterWinAnimation();
-                uiManager.OnSpinCompleted(lastResult);
+                uiManager.OnSpinCompleted(resultToUse);
                 currentState = GameState.Idle;
             }
 
-            slotView.ShowWinLineAnimation(lastResult.winLines, OnWinAnimationComplete);
-            StartCoroutine(TriggerWinPopupWithDelay(1.5f, lastResult));
+            slotView.ShowWinLineAnimation(resultToUse.winLines, OnWinAnimationComplete);
+            StartCoroutine(TriggerWinPopupWithDelay(1.5f, resultToUse));
         }
         else
         {
-            uiManager.OnSpinStopping(lastResult);
+            uiManager.OnSpinStopping(resultToUse);
             currentState = GameState.Idle;
             OnWinAnimationComplete();
         }
@@ -251,7 +255,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
-        if (lastResult == result)
+        if (lastResult == result || (lastResult == null && currentState == GameState.Idle))
         {
             uiManager.TriggerBigWinPopupEarly(result, () =>
             {
@@ -437,27 +441,7 @@ public class GameManager : MonoBehaviour
         return currentState == GameState.Spinning || currentState == GameState.Stopping;
     }
 
-    /// <summary>
-    /// Returns true if at least one scatter symbol appears anywhere in the result matrix.
-    /// Uses the server-configured scatterSymbolId (default 12) as the reference ID.
-    /// </summary>
-    private bool ResultMatrixHasScatter(List<List<int>> matrix)
-    {
-        if (matrix == null) return false;
 
-        int scatterId = gameConfig != null ? gameConfig.scatterSymbolId : 12;
-
-        foreach (var col in matrix)
-        {
-            if (col == null) continue;
-            foreach (int sym in col)
-            {
-                if (sym == scatterId) return true;
-            }
-        }
-
-        return false;
-    }
 
     #endregion
 }

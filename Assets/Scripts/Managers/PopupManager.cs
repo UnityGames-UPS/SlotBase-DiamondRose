@@ -123,11 +123,13 @@ public class PopupManager : MonoBehaviour
         currentActivePopup = disconnectionPopup;
         disconnectionPopup.SetActive(true);
 
+        AudioManager.Instance?.PlayPopupOpen();
         AnimatePopupOpen(disconnectionPopupRect);
     }
 
     private void OnDisconnectionOkClicked()
     {
+        AudioManager.Instance?.PlayButtonGeneric();
         AnimatePopupClose(disconnectionPopupRect, () =>
         {
             disconnectionPopup.SetActive(false);
@@ -214,11 +216,13 @@ public class PopupManager : MonoBehaviour
         currentActivePopup = errorPopup;
         errorPopup.SetActive(true);
 
+        AudioManager.Instance?.PlayPopupOpen();
         AnimatePopupOpen(errorPopupRect);
     }
 
     private void OnErrorOkClicked()
     {
+        AudioManager.Instance?.PlayButtonGeneric();
         AnimatePopupClose(errorPopupRect, () =>
         {
             errorPopup.SetActive(false);
@@ -258,6 +262,7 @@ public class PopupManager : MonoBehaviour
             currentActivePopup = reconnectionPopup;
             reconnectionPopup.SetActive(true);
 
+            AudioManager.Instance?.PlayPopupOpen();
             AnimatePopupOpen(reconnectionPopupRect);
             StartRotation(reconnectionRotatingImage);
         }
@@ -333,6 +338,7 @@ public class PopupManager : MonoBehaviour
         loadingPopup.SetActive(true);
         loadingStartTime = Time.time;
 
+        AudioManager.Instance?.PlayPopupOpen();
         AnimatePopupOpen(loadingPopupRect);
         StartRotation(loadingRotatingImage);
         StartLoadingTextAnimation();
@@ -432,7 +438,7 @@ public class PopupManager : MonoBehaviour
     /// <summary>
     /// Animate popup opening with scale effect
     /// </summary>
-    private void AnimatePopupOpen(RectTransform popupRect)
+    internal void AnimatePopupOpen(RectTransform popupRect)
     {
         if (popupRect == null) return;
 
@@ -443,7 +449,7 @@ public class PopupManager : MonoBehaviour
     /// <summary>
     /// Animate popup closing with scale effect
     /// </summary>
-    private void AnimatePopupClose(RectTransform popupRect, System.Action onComplete)
+    internal void AnimatePopupClose(RectTransform popupRect, System.Action onComplete)
     {
         if (popupRect == null)
         {

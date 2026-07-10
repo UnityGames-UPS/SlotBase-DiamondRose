@@ -698,6 +698,12 @@ public static class InitDataConverter
                 {
                     symbolId = match.id;
                 }
+                else if (serverLine.symbolName.StartsWith("Any", StringComparison.OrdinalIgnoreCase))
+                {
+                    // "Any 7" or "Any Bar" are mixed combinations, which don't map to a single symbol ID.
+                    // This is expected, so we default to 0 and do not log a warning.
+                    symbolId = 0;
+                }
                 else
                 {
                     UnityEngine.Debug.LogWarning($"[ConvertWinningLines] Unknown symbolName: {serverLine.symbolName}");

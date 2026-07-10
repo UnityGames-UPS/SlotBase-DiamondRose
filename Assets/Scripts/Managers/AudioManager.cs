@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class AudioManager : MonoBehaviour
 {
-
     internal static AudioManager Instance { get; private set; }
 
     private void Awake()
@@ -26,66 +24,25 @@ public class AudioManager : MonoBehaviour
     private const string PrefKeyMusic = "audio_music_enabled";
     private const string PrefKeysfx   = "audio_sfx_enabled";
 
-    [Header("Audio Sources")]
-    [SerializeField] private AudioSource bgMusicSource;
-    [SerializeField] private AudioSource uiSource;
-    [SerializeField] private AudioSource specialSource;
-    [SerializeField] private AudioSource reserveSource;
-    [SerializeField] private AudioSource winBgSource;
+    [Header("Audio Source")]
+    [SerializeField] private AudioSource audioSource;
 
-    [Header("Game Start / BG")]
-    [SerializeField] private AudioClip clipGameStart;
-    [SerializeField] private AudioClip clipBgMusic;
-
-    [Header("UI / Button Sounds")]
-    [SerializeField] private AudioClip clipButtonGeneric;
-    [SerializeField] private AudioClip clipPopupClose;
-    [SerializeField] private AudioClip clipPageSwipe;
-
-    [Header("Bet Sounds")]
-    [SerializeField] private AudioClip clipBetPlus;
-    [SerializeField] private AudioClip clipBetMinus;
-    [SerializeField] private AudioClip clipMaxBet;
-
-
-
-    [Header("Spin Sounds")]
-    [SerializeField] private AudioClip clipSpinStart;
-    [SerializeField] private AudioClip clipSpinStop;
-    [SerializeField] private AudioClip clipReelStop;
-
-    [Header("Reel Hit Sounds")]
-    [SerializeField] private AudioClip clipScatterHit;
-    [SerializeField] private AudioClip clipWildHit;
-    [SerializeField] private AudioClip clip3ScatterHit;
-    [SerializeField] private AudioClip clipAnticipationFastSpin;
-
-
-
-    [Header("Win Sounds")]
-    [SerializeField] private AudioClip clipWinNormal;
-
-    [Header("Win Popup Opening Jingles (play once)")]
-    [SerializeField] private AudioClip clipWinNice;
-    [SerializeField] private AudioClip clipWinBig;
-    [SerializeField] private AudioClip clipWinMega;
-    [SerializeField] private AudioClip clipWinSuper;
-    [SerializeField] private AudioClip clipWinUltimate;
-
-    [Header("Win Popup Background Loops (loop until popup closes)")]
-    [SerializeField] private AudioClip clipWinNiceBg;
-    [SerializeField] private AudioClip clipWinBigBg;
-    [SerializeField] private AudioClip clipWinMegaBg;
-    [SerializeField] private AudioClip clipWinSuperBg;
-    [SerializeField] private AudioClip clipWinUltimateBg;
-    [SerializeField] private AudioClip clipWinLine;
+    [Header("Sound Clips")]
+    [SerializeField] private AudioClip clipSpinStopBtn;          // 1. spin/stop btn
+    [SerializeField] private AudioClip clipSpinningLoop;         // 2. slot spinning sound
+    [SerializeField] private AudioClip clipReelStop;             // 3. slot stop sound (once per slot)
+    [SerializeField] private AudioClip clipWinLine;              // 4. win line sound
+    [SerializeField] private AudioClip clipBigWinLoop;           // 5. big win mega win sound (play in loop)
+    [SerializeField] private AudioClip clipButtonGeneric;        // 6. ui btn sound (all buttons except specific ones)
+    [SerializeField] private AudioClip clipInfoPageBtn;          // 7. info page btn sound
+    [SerializeField] private AudioClip clipInfoPageBackToGame;   // 8. info page back to game btn sound
+    [SerializeField] private AudioClip clipPopupOpen;            // 9. reconnection/disconnection/loading/error popup open sound
 
     private bool _musicEnabled = true;
     private bool _sfxEnabled   = true;
 
     internal bool MusicEnabled => _musicEnabled;
     internal bool SfxEnabled   => _sfxEnabled;
-
 
     internal void SetMusicEnabled(bool on)
     {
@@ -94,7 +51,6 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.Save();
         ApplyMusicVolume();
     }
-
 
     internal void SetSfxEnabled(bool on)
     {
@@ -106,218 +62,107 @@ public class AudioManager : MonoBehaviour
 
     private void ApplyMusicVolume()
     {
-        if (bgMusicSource == null) return;
-        bgMusicSource.volume = _musicEnabled ? 0.5f : 0f;
+        // Dummy/no-op as there is no BG music source anymore.
     }
 
     private void ApplySfxVolume()
     {
-        float v = _sfxEnabled ? 1f : 0f;
-        if (uiSource      != null) uiSource.volume      = v;
-        if (specialSource != null) specialSource.volume  = v;
-        if (reserveSource != null) reserveSource.volume  = v;
-        if (winBgSource   != null) winBgSource.volume    = v;
+        if (audioSource != null)
+        {
+            audioSource.volume = _sfxEnabled ? 1f : 0f;
+        }
     }
 
-   
-    private void PlayOneShot(AudioSource preferred, AudioClip clip)
+    private void PlayOneShot(AudioClip clip)
     {
         if (clip == null) return;
-        if (preferred == null) return;
-
-       
-        preferred.PlayOneShot(clip);
-    }
-
-  
-    private void PlayLoop(AudioSource source, AudioClip clip)
-    {
-        if (source == null || clip == null) return;
-        source.clip  = clip;
-        source.loop  = true;
-        source.Play();
-    }
-
-    private void StopSource(AudioSource source)
-    {
-        if (source == null) return;
-        source.Stop();
-        source.loop = false;
-    }
-
-    internal void PlayGameStart()
-    {
         if (!_sfxEnabled) return;
-        PlayOneShot(specialSource, clipGameStart);
+        if (audioSource == null) return;
+
+        audioSource.PlayOneShot(clip);
     }
 
- 
-    internal void PlayBgMusic()
+    private void PlayLoop(AudioClip clip)
     {
-        if (bgMusicSource == null || clipBgMusic == null) return;
-        if (bgMusicSource.isPlaying && bgMusicSource.clip == clipBgMusic) return;
-        bgMusicSource.clip   = clipBgMusic;
-        bgMusicSource.loop   = true;
-        bgMusicSource.volume = _musicEnabled ? 0.5f : 0f;
-        bgMusicSource.Play();
+        if (audioSource == null || clip == null) return;
+        audioSource.clip  = clip;
+        audioSource.loop  = true;
+        audioSource.volume = _sfxEnabled ? 1f : 0f;
+        audioSource.Play();
     }
 
-    internal void StopBgMusic()
+    private void StopSource()
     {
-        StopSource(bgMusicSource);
+        if (audioSource == null) return;
+        audioSource.Stop();
+        audioSource.clip  = null;
+        audioSource.loop  = false;
     }
 
-    internal void PlayButton()
+    // --- Active APIs for Game Sound Requirements ---
+
+    internal void PlaySpinStopBtn()
     {
-        if (!_sfxEnabled) return;
-        PlayOneShot(uiSource, clipButtonGeneric);
+        PlayOneShot(clipSpinStopBtn);
     }
 
-    internal void PlayPopupClose()
+    internal void PlaySpinningLoop()
     {
-        if (!_sfxEnabled) return;
-        PlayOneShot(uiSource, clipPopupClose);
+        PlayLoop(clipSpinningLoop);
     }
 
-    internal void PlayPageSwipe()
+    internal void PlayReelStop(bool isLastReel = false)
     {
-        if (!_sfxEnabled) return;
-        PlayOneShot(uiSource, clipPageSwipe);
-    }
-
-
-    internal void PlayBetPlus()
-    {
-        if (!_sfxEnabled) return;
-        PlayOneShot(uiSource, clipBetPlus);
-    }
-
-    internal void PlayBetMinus()
-    {
-        if (!_sfxEnabled) return;
-        PlayOneShot(uiSource, clipBetMinus);
-    }
-
-    internal void PlayMaxBet()
-    {
-        if (!_sfxEnabled) return;
-        PlayOneShot(uiSource, clipMaxBet);
-    }
-
-
-
-
-
-    internal void PlaySpinStart()
-    {
-        if (!_sfxEnabled) return;
-        PlayOneShot(uiSource, clipSpinStart);
-    }
-
-    internal void PlaySpinStop()
-    {
-        if (!_sfxEnabled) return;
-        PlayOneShot(uiSource, clipSpinStop);
-    }
-
-    internal void PlayReelStop()
-    {
-        if (!_sfxEnabled) return;
-        if (specialSource != null && !specialSource.isPlaying)
-            PlayOneShot(specialSource, clipReelStop);
-        else
-            PlayOneShot(reserveSource, clipReelStop);
-    }
-
-    internal void PlayScatterHit()
-    {
-        if (!_sfxEnabled) return;
-        PlayOneShot(specialSource, clipScatterHit);
-    }
-
-    internal void PlayWildHit()
-    {
-        if (!_sfxEnabled) return;
-        PlayOneShot(specialSource, clipWildHit);
-    }
-
-    internal void Play3ScatterHit()
-    {
-        if (!_sfxEnabled) return;
-        PlayOneShot(specialSource, clip3ScatterHit);
-    }
-
-    internal void PlayAnticipationFastSpin()
-    {
-        if (!_sfxEnabled) return;
-        PlayOneShot(specialSource, clipAnticipationFastSpin);
-    }
-
-
-
-    internal void PlayWinNormal()
-    {
-        if (!_sfxEnabled) return;
-        PlayOneShot(specialSource, clipWinNormal);
-    }
-
-  
-    internal void PlayWinOpeningJingle(double multiplier)
-    {
-        if (!_sfxEnabled) return;
-
-        AudioClip clip;
-        if      (multiplier >= 100) clip = clipWinUltimate;
-        else if (multiplier >=  50) clip = clipWinSuper;
-        else if (multiplier >=  25) clip = clipWinMega;
-        else if (multiplier >=  10) clip = clipWinBig;
-        else                        clip = clipWinNice;
-
-        PlayOneShot(specialSource, clip);
-    }
-
-    internal void PlayWinPopupBg(double multiplier)
-    {
-        if (!_sfxEnabled) return;
-        if (winBgSource == null) return;
-
-        AudioClip bgClip;
-        if      (multiplier >= 100) bgClip = clipWinUltimateBg;
-        else if (multiplier >=  50) bgClip = clipWinSuperBg;
-        else if (multiplier >=  25) bgClip = clipWinMegaBg;
-        else if (multiplier >=  10) bgClip = clipWinBigBg;
-        else                        bgClip = clipWinNiceBg;
-
-        if (bgClip == null) return;
-        winBgSource.clip   = bgClip;
-        winBgSource.loop   = true;
-        winBgSource.volume = _sfxEnabled ? 1f : 0f;
-        winBgSource.Play();
-    }
-
-    internal void StopWinPopupBg()
-    {
-        StopSource(winBgSource);
-    }
-
-    internal void PlayWinByMultiplier(double multiplier)
-    {
-        PlayWinOpeningJingle(multiplier);
+        if (isLastReel)
+        {
+            StopSource();
+        }
+        PlayOneShot(clipReelStop);
     }
 
     internal void PlayWinLine()
     {
-        if (!_sfxEnabled) return;
-        PlayLoop(uiSource, clipWinLine);
+        PlayOneShot(clipWinLine); // Played once per win line animation loop
     }
 
     internal void StopWinLine()
     {
-        if (uiSource != null && uiSource.loop && uiSource.clip == clipWinLine)
+        // No-op because win line sound is a OneShot now
+    }
+
+    internal void PlayBigWinLoop()
+    {
+        PlayLoop(clipBigWinLoop);
+    }
+
+    internal void StopBigWinLoop()
+    {
+        if (audioSource != null && audioSource.loop && audioSource.clip == clipBigWinLoop)
         {
-            StopSource(uiSource);
+            StopSource();
         }
     }
+
+    internal void PlayButtonGeneric()
+    {
+        PlayOneShot(clipButtonGeneric);
+    }
+
+    internal void PlayInfoPageBtn()
+    {
+        PlayOneShot(clipInfoPageBtn);
+    }
+
+    internal void PlayInfoPageBackToGameBtn()
+    {
+        PlayOneShot(clipInfoPageBackToGame);
+    }
+
+    internal void PlayPopupOpen()
+    {
+        PlayOneShot(clipPopupOpen);
+    }
+
 
 
     private void OnApplicationFocus(bool hasFocus)
@@ -334,15 +179,14 @@ public class AudioManager : MonoBehaviour
     {
         if (!hasFocus)
         {
-            if (bgMusicSource != null) bgMusicSource.Pause();
-            if (winBgSource   != null) winBgSource.Pause();
+            if (audioSource != null) audioSource.Pause();
             AudioListener.volume = 0f;
         }
         else
         {
-            if (bgMusicSource != null) bgMusicSource.UnPause();
-            if (winBgSource   != null) winBgSource.UnPause();
+            if (audioSource != null) audioSource.UnPause();
             AudioListener.volume = 1f;
         }
     }
 }
+

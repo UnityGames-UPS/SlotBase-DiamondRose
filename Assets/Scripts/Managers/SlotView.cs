@@ -39,15 +39,11 @@ public class SlotView : MonoBehaviour
     [Header("Spin Settings")]
     [SerializeField] private float symbolHeight = 100f;
     [SerializeField] private float spinSpeed = 0.05f;
-    [SerializeField] private float reelStartStagger = 0.08f;
     [SerializeField] private float reelStopStagger = 0.12f;
 
     [Header("Start Animation Settings")]
     [SerializeField] private float anticipationUpDistance = 30f;
     [SerializeField] private float anticipationUpDuration = 0.15f;
-    [SerializeField] private float dropDownDistance = 15f;
-    [SerializeField] private float dropDownDuration = 0.12f;
-    [SerializeField] private float settleBounceDuration = 0.18f;
 
     [Header("Stop Animation Settings")]
     [SerializeField] private float stopOvershootDistance = 50f;
@@ -61,10 +57,7 @@ public class SlotView : MonoBehaviour
     [SerializeField] private int minSpinCyclesBeforeStop = 3;
 
     [Header("Win Animation Settings")]
-    [SerializeField] private float winPopDuration = 0.4f;
-    [SerializeField] private int winPopRepeat = 3;
     [SerializeField] private float winSymbolLoopDuration = 1.5f;
-    [SerializeField] private int winSymbolLoopCount = 3;
 
     [Header("Blank Symbol Settings")]
     [SerializeField] private int blankSymbolId = 8;
@@ -684,18 +677,10 @@ public class SlotView : MonoBehaviour
         );
 
         // ── Play reel-stop sound immediately when symbols lock in ──────────
-        AudioManager.Instance?.PlayReelStop();
+        bool isLastReel = (columnIndex == reelTransforms.Length - 1);
+        AudioManager.Instance?.PlayReelStop(isLastReel);
 
-        // Detect wild symbols in this column for hit sounds
-        if (currentDisplayMatrix != null && columnIndex < currentDisplayMatrix.Count)
-        {
-            bool hasWild = false;
-            foreach (int sym in currentDisplayMatrix[columnIndex])
-            {
-                if (IsWildSymbol(sym)) hasWild = true;
-            }
-            if (hasWild) AudioManager.Instance?.PlayWildHit();
-        }
+
         // ──────────────────────────────────────────────────────────────────
 
         if (isQuickStop)
@@ -712,8 +697,6 @@ public class SlotView : MonoBehaviour
                     .SetEase(Ease.OutQuad)
             );
 
-            quickStopSequence.OnComplete(() => PlayStopAnimationsForColumn(columnIndex));
-
             spinTweens[columnIndex] = quickStopSequence;
         }
         else
@@ -729,8 +712,6 @@ public class SlotView : MonoBehaviour
                 slotTransform.DOLocalMoveY(scenarioTargetY, stopBounceBackDuration)
                     .SetEase(Ease.OutQuad)
             );
-
-            stopSequence.OnComplete(() => PlayStopAnimationsForColumn(columnIndex));
 
             spinTweens[columnIndex] = stopSequence;
         }
@@ -759,7 +740,6 @@ public class SlotView : MonoBehaviour
                         targetY,
                         0
                     );
-                    PlayStopAnimationsForColumn(col);
                 }
             }
             
@@ -775,13 +755,7 @@ public class SlotView : MonoBehaviour
 
 
 
-    #region Stop Symbol Animations
 
-    private void PlayStopAnimationsForColumn(int col)
-    {
-    }
-
-    #endregion
 
     #region Win Line Animation
 
@@ -802,8 +776,6 @@ public class SlotView : MonoBehaviour
     {
         bool skipScreen = false;
         List<int> prevPositions = null;
-
-        Debug.Log($"[PlayWinLinesSequentially] Starting win animation for {winLines.Count} lines");
 
         bool isAuto = (gameManager != null && gameManager.isAutoPlaying);
 
@@ -1206,15 +1178,7 @@ public class SlotView : MonoBehaviour
         return isSpinning;
     }
 
-    private bool IsWildSymbol(int symId)
-    {
-        if (gameManager != null && gameManager.gameConfig != null && gameManager.gameConfig.symbols != null)
-        {
-            var symbol = gameManager.gameConfig.symbols.Find(s => s.id == symId);
-            if (symbol != null) return symbol.isWild;
-        }
-        return symId == 2;
-    }
+
 
     private void KillAllTweens()
     {

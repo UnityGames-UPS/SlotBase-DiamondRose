@@ -25,7 +25,6 @@ public class UIManager : MonoBehaviour
 
     [Header("Win Popup Panel")]
     [SerializeField] private GameObject winPopupPanel;
-    [SerializeField] private GameObject winRingObject;
     [SerializeField] private TMP_Text winPopupText;
 
     [Header("Spine Win Animations")]
@@ -55,13 +54,14 @@ public class UIManager : MonoBehaviour
     [Header("Auto Play")]
     [SerializeField] private Button autoPlayStartButton;
 
+    [Header("Quit Button")]
+    [SerializeField] private Button gameQuitButton;
+
 
 
     [Header("Audio Toggles")]
-    [Tooltip("Toggle for background music on/off.")]
-    [SerializeField] private Toggle musicToggle;
-    [Tooltip("Toggle for all SFX sounds on/off.")]
-    [SerializeField] private Toggle sfxToggle;
+    [Tooltip("Toggle for all game sounds on/off.")]
+    [SerializeField] private Toggle soundToggle;
 
     [Header("Game Rules Panel")]
     [SerializeField] private GameObject gameRulesPanel;
@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
 
 
 
-    private int selectedRounds = 10;
+
     private Tween balanceTween;
     private Tween winTween;
 
@@ -142,69 +142,10 @@ public class UIManager : MonoBehaviour
 
         if (gameRulesPanel) gameRulesPanel.SetActive(false);
         if (winPopupPanel) winPopupPanel.SetActive(false);
-        if (winRingObject) winRingObject.SetActive(false);
         if (winPopupSpineController) winPopupSpineController.gameObject.SetActive(false);
     }
 
-   /* private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            double testWinAmount = 50.0;
-            double currentBet = gameManager.currentBetAmount;
-            if (gameManager.gameConfig != null)
-            {
-                currentBet *= gameManager.gameConfig.betMultiplier;
-            }
-            if (currentBet <= 0) currentBet = 5.0;
 
-            double multiplier = testWinAmount / currentBet;
-            if (multiplier < bigWinThreshold || multiplier >= megaWinThreshold)
-            {
-                testWinAmount = currentBet * (bigWinThreshold + 2.0);
-            }
-
-            SpinResult dummyResult = new SpinResult
-            {
-                winAmount = testWinAmount,
-                playerData = new PlayerData { balance = gameManager.playerData != null ? gameManager.playerData.balance + testWinAmount : 1000.0 }
-            };
-            Debug.Log($"[Test] Key 1 pressed. Triggering Big Win. Amount: {testWinAmount:F2}, Multiplier: {(testWinAmount/currentBet):F2}x");
-            TriggerTestWinPopup(dummyResult);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            double testWinAmount = 100.0;
-            double currentBet = gameManager.currentBetAmount;
-            if (gameManager.gameConfig != null)
-            {
-                currentBet *= gameManager.gameConfig.betMultiplier;
-            }
-            if (currentBet <= 0) currentBet = 2.0;
-
-            double multiplier = testWinAmount / currentBet;
-            if (multiplier < megaWinThreshold)
-            {
-                testWinAmount = currentBet * (megaWinThreshold + 5.0);
-            }
-
-            SpinResult dummyResult = new SpinResult
-            {
-                winAmount = testWinAmount,
-                playerData = new PlayerData { balance = gameManager.playerData != null ? gameManager.playerData.balance + testWinAmount : 1000.0 }
-            };
-            Debug.Log($"[Test] Key 2 pressed. Triggering Mega Win. Amount: {testWinAmount:F2}, Multiplier: {(testWinAmount/currentBet):F2}x");
-            TriggerTestWinPopup(dummyResult);
-        }
-    }*/
-
-    private void TriggerTestWinPopup(SpinResult result)
-    {
-        if (winDisplayCoroutine != null) StopCoroutine(winDisplayCoroutine);
-        winDisplayCoroutine = StartCoroutine(ShowWinDisplayCoroutine(result, () => {
-            Debug.Log("[Test] Win Popup complete.");
-        }));
-    }
 
     #endregion
 
@@ -233,7 +174,6 @@ public class UIManager : MonoBehaviour
         }
         // ------------------------------
 
-        AudioManager.Instance?.PlayBgMusic();
         InitializeUI();
     }
 
@@ -243,12 +183,13 @@ public class UIManager : MonoBehaviour
 
     private void SetupButtons()
     {
-        if (betPlusButton)  betPlusButton.onClick.AddListener(() => { AudioManager.Instance?.PlayBetPlus();  gameManager.IncreaseBet(); });
-        if (betMinusButton) betMinusButton.onClick.AddListener(() => { AudioManager.Instance?.PlayBetMinus(); gameManager.DecreaseBet(); });
+        if (betPlusButton)  betPlusButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButtonGeneric();  gameManager.IncreaseBet(); });
+        if (betMinusButton) betMinusButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButtonGeneric(); gameManager.DecreaseBet(); });
         if (spinButton) spinButton.onClick.AddListener(OnSpinButtonPressed);
         if (stopButton) stopButton.onClick.AddListener(OnStopButtonPressed);
 
-        if (autoPlayStartButton)  autoPlayStartButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButton(); ToggleAutoPlay(); });
+        if (autoPlayStartButton)  autoPlayStartButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButtonGeneric(); ToggleAutoPlay(); });
+        if (gameQuitButton)    gameQuitButton.onClick.AddListener(() => { AudioManager.Instance?.PlayButtonGeneric(); OnExitButtonPressed(); });
 
         if (winPopupSkipButton)
         {
@@ -269,27 +210,20 @@ public class UIManager : MonoBehaviour
 
     private void SetupSettingsPanel()
     {
-        // Audio toggles — restore state from AudioManager then wire callbacks
-        if (musicToggle)
+        // Audio toggle — restore state from AudioManager then wire callback
+        if (soundToggle)
         {
             if (AudioManager.Instance != null)
-                musicToggle.isOn = AudioManager.Instance.MusicEnabled;
-            musicToggle.onValueChanged.AddListener(OnMusicToggleChanged);
-            RefreshToggleBgAlpha(musicToggle);
-        }
-        if (sfxToggle)
-        {
-            if (AudioManager.Instance != null)
-                sfxToggle.isOn = AudioManager.Instance.SfxEnabled;
-            sfxToggle.onValueChanged.AddListener(OnSfxToggleChanged);
-            RefreshToggleBgAlpha(sfxToggle);
+                soundToggle.isOn = AudioManager.Instance.SfxEnabled;
+            soundToggle.onValueChanged.AddListener(OnSoundToggleChanged);
+            RefreshToggleBgAlpha(soundToggle);
         }
     }
 
     private void SetupGameRulesPanel()
     {
-        if (gameRulesOpenButton) gameRulesOpenButton.onClick.AddListener(OpenGameRulesPanel);
-        if (gameRulesBackButton) gameRulesBackButton.onClick.AddListener(() => { AudioManager.Instance?.PlayPopupClose(); CloseGameRulesPanel(); });
+        if (gameRulesOpenButton) gameRulesOpenButton.onClick.AddListener(() => { AudioManager.Instance?.PlayInfoPageBtn(); OpenGameRulesPanel(); });
+        if (gameRulesBackButton) gameRulesBackButton.onClick.AddListener(() => { AudioManager.Instance?.PlayInfoPageBackToGameBtn(); CloseGameRulesPanel(); });
         if (gameRulesNextPageButton) gameRulesNextPageButton.onClick.AddListener(NextRulesPage);
         if (gameRulesPrevPageButton) gameRulesPrevPageButton.onClick.AddListener(PrevRulesPage);
     }
@@ -308,7 +242,7 @@ public class UIManager : MonoBehaviour
 
     internal void OnSpinStarted()
     {
-        AudioManager.Instance?.PlaySpinStart();
+        AudioManager.Instance?.PlaySpinningLoop();
 
         if (spinButton) spinButton.gameObject.SetActive(false);
         if (stopButton)
@@ -321,7 +255,7 @@ public class UIManager : MonoBehaviour
         if (autoPlayStartButton) autoPlayStartButton.interactable = gameManager.isAutoPlaying;
 
         // Stop win popup BG loop if a new spin starts while popup is still showing
-        AudioManager.Instance?.StopWinPopupBg();
+        AudioManager.Instance?.StopBigWinLoop();
 
         if (winDisplayCoroutine != null)
         {
@@ -333,7 +267,6 @@ public class UIManager : MonoBehaviour
             winPopupPanel.SetActive(false);
         }
         if (winPopupSpineController) winPopupSpineController.gameObject.SetActive(false);
-        if (winRingObject) winRingObject.SetActive(false);
         isSpecialWinActive = false;
 
         // --- Optimistic balance deduction ---
@@ -424,7 +357,7 @@ public class UIManager : MonoBehaviour
 
     internal void OnSpinCompleted(SpinResult result)
     {
-        if (isSpecialWinActive) return;
+        if (isSpecialWinActive || (gameManager != null && gameManager.WaitingForSpecialWin)) return;
 
         if (gameManager.isAutoPlaying)
         {
@@ -455,24 +388,6 @@ public class UIManager : MonoBehaviour
         SetBetControlsEnabled(false);
         if (spinButton) spinButton.interactable = false;
         if (stopButton) stopButton.interactable = false;
-        
-        if (gameManager != null && gameManager.lastResult != null)
-        {
-            double winAmount = gameManager.lastResult.winAmount;
-            double totalBetAmount = gameManager.currentBetAmount;
-            if (gameManager.gameConfig != null)
-            {
-                totalBetAmount *= gameManager.gameConfig.betMultiplier;
-            }
-            double multiplier = totalBetAmount > 0 ? (winAmount / totalBetAmount) : 0;
-            
-            bool skipScreen = false;
-
-            if (multiplier >= bigWinThreshold && !skipScreen)
-            {
-                if (winRingObject) winRingObject.SetActive(true);
-            }
-        }
     }
 
     internal void EnableControlsAfterWinAnimation()
@@ -522,8 +437,6 @@ public class UIManager : MonoBehaviour
 
         if (multiplier < bigWinThreshold || skipScreen)
         {
-            AudioManager.Instance?.PlayWinNormal();
-            if (winRingObject) winRingObject.SetActive(false);
             winDisplayCoroutine = null;
             yield break;
         }
@@ -535,8 +448,7 @@ public class UIManager : MonoBehaviour
 
         // Play correct audio based on Mega or Big Win threshold
         double audioMultiplier = multiplier >= megaWinThreshold ? megaWinThreshold : bigWinThreshold;
-        AudioManager.Instance?.PlayWinOpeningJingle(audioMultiplier);
-        AudioManager.Instance?.PlayWinPopupBg(audioMultiplier);
+        AudioManager.Instance?.PlayBigWinLoop();
 
         SkeletonDataAsset selectedData = null;
         if (multiplier >= megaWinThreshold)
@@ -666,7 +578,7 @@ public class UIManager : MonoBehaviour
         }
 
         // --- 3rd: PLAY OUT ANIMATION AND SYNCHRONIZE TEXT DISAPPEARANCE ---
-        AudioManager.Instance?.StopWinPopupBg();
+        AudioManager.Instance?.StopBigWinLoop();
 
         var outTrack = activeGraphic.AnimationState.SetAnimation(0, outAnimName, false);
         float outDuration = outTrack != null ? outTrack.Animation.Duration : 1f;
@@ -681,7 +593,6 @@ public class UIManager : MonoBehaviour
         // Cleanup
         if (winPopupPanel) winPopupPanel.SetActive(false);
         if (winPopupSpineController) winPopupSpineController.gameObject.SetActive(false);
-        if (winRingObject) winRingObject.SetActive(false);
 
         // --- Reset Controls ---
         isSpecialWinActive = false;
@@ -703,6 +614,7 @@ public class UIManager : MonoBehaviour
     {
         if (!gameManager.IsSpinning() && !gameManager.isAutoPlaying)
         {
+            AudioManager.Instance?.PlaySpinStopBtn();
             gameManager.RequestSpin();
         }
     }
@@ -716,6 +628,7 @@ public class UIManager : MonoBehaviour
                 return;
 
             lastRapidStopTime = Time.unscaledTime;
+            AudioManager.Instance?.PlaySpinStopBtn();
             gameManager.RequestStop();
         }
     }
@@ -867,18 +780,12 @@ public class UIManager : MonoBehaviour
 
     #region Audio Toggle Logic
 
-    private void OnMusicToggleChanged(bool isOn)
+    private void OnSoundToggleChanged(bool isOn)
     {
-        AudioManager.Instance?.PlayButton();
+        AudioManager.Instance?.PlayButtonGeneric();
         AudioManager.Instance?.SetMusicEnabled(isOn);
-        RefreshToggleBgAlpha(musicToggle);
-    }
-
-    private void OnSfxToggleChanged(bool isOn)
-    {
-        AudioManager.Instance?.PlayButton();
         AudioManager.Instance?.SetSfxEnabled(isOn);
-        RefreshToggleBgAlpha(sfxToggle);
+        RefreshToggleBgAlpha(soundToggle);
     }
 
     private static void RefreshToggleBgAlpha(Toggle toggle)
@@ -922,7 +829,10 @@ public class UIManager : MonoBehaviour
         if (gameRulesPanelRect)
         {
             gameRulesPanelRect.anchoredPosition = new Vector2(0f, gameRulesPanelRect.anchoredPosition.y);
-            AnimatePopupOpen(gameRulesPanelRect);
+            if (popupManager != null)
+            {
+                popupManager.AnimatePopupOpen(gameRulesPanelRect);
+            }
         }
 
         UpdateGameRulesDynamicTexts();
@@ -932,9 +842,9 @@ public class UIManager : MonoBehaviour
     {
         if (gameRulesPanel == null || !gameRulesPanel.activeSelf) return;
 
-        if (gameRulesPanelRect)
+        if (gameRulesPanelRect && popupManager != null)
         {
-            AnimatePopupClose(gameRulesPanelRect, () =>
+            popupManager.AnimatePopupClose(gameRulesPanelRect, () =>
             {
                 gameRulesPanel.SetActive(false);
             });
@@ -969,7 +879,7 @@ public class UIManager : MonoBehaviour
         RectTransform toPage = gameRulePages[toIndex];
         if (fromPage == null || toPage == null) return;
 
-        AudioManager.Instance?.PlayPageSwipe();
+        AudioManager.Instance?.PlayButtonGeneric();
         isPageAnimating = true;
 
         float direction = slideLeft ? 1f : -1f;
@@ -997,32 +907,7 @@ public class UIManager : MonoBehaviour
 
 
 
-    #region Popup Animations (Generic)
 
-    private void AnimatePopupOpen(RectTransform popupRect)
-    {
-        if (!popupRect) return;
-        popupRect.localScale = Vector3.zero;
-        popupRect.DOScale(1f, 0.3f).SetEase(Ease.OutBack);
-    }
-
-    private void AnimatePopupClose(RectTransform popupRect, System.Action onComplete)
-    {
-        if (!popupRect) return;
-
-        AudioManager.Instance?.PlayPopupClose();
-
-        Sequence closeSeq = DOTween.Sequence();
-        closeSeq.Append(popupRect.DOScale(1.1f, 0.1f));
-        closeSeq.Append(popupRect.DOScale(0f, 0.2f).SetEase(Ease.InBack));
-        closeSeq.OnComplete(() =>
-        {
-            popupRect.localScale = Vector3.one;
-            onComplete?.Invoke();
-        });
-    }
-
-    #endregion
 
     #region Display Updates
 
