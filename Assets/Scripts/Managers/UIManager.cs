@@ -53,15 +53,25 @@ public class UIManager : MonoBehaviour
 
     [Header("Auto Play")]
     [SerializeField] private Button autoPlayStartButton;
+    [SerializeField] private RectTransform autoPlayImageTransform;
+    [SerializeField] private float autoPlayRotateSpeed = 180f;
+    private Coroutine autoPlayRotateCoroutine;
+    [Header("Autoplay Button State Sprites")]
+    [SerializeField] private Sprite autoPlayNormalSprite;
+    [SerializeField] private Sprite autoPlayHighlightedSprite;
+    [SerializeField] private Sprite autoPlayPressedSprite;
+    [SerializeField] private Sprite autoPlaySelectedSprite;
+    [SerializeField] private Sprite autoPlayDisabledSprite;
 
     [Header("Quit Button")]
     [SerializeField] private Button gameQuitButton;
 
 
 
-    [Header("Audio Toggles")]
-    [Tooltip("Toggle for all game sounds on/off.")]
-    [SerializeField] private Toggle soundToggle;
+    [Header("Audio Buttons")]
+    [Tooltip("Buttons for toggling all game sounds on/off.")]
+    [SerializeField] private Button soundOnButton;
+    [SerializeField] private Button soundOffButton;
 
     [Header("Game Rules Panel")]
     [SerializeField] private GameObject gameRulesPanel;
@@ -205,19 +215,35 @@ public class UIManager : MonoBehaviour
 
     private void SetupAutoPlayPanel()
     {
-        FreezeAutoPlaySpine();
+        StopAutoPlayRotation();
+
+        if (autoPlayStartButton != null && autoPlayImageTransform != null)
+        {
+            var listener = autoPlayStartButton.gameObject.AddComponent<AutoPlayButtonStateListener>();
+            listener.Initialize(
+                autoPlayStartButton,
+                autoPlayImageTransform.GetComponent<Image>(),
+                autoPlayNormalSprite,
+                autoPlayHighlightedSprite,
+                autoPlayPressedSprite,
+                autoPlaySelectedSprite,
+                autoPlayDisabledSprite
+            );
+        }
     }
 
     private void SetupSettingsPanel()
     {
-        // Audio toggle — restore state from AudioManager then wire callback
-        if (soundToggle)
+        if (soundOnButton)
         {
-            if (AudioManager.Instance != null)
-                soundToggle.isOn = AudioManager.Instance.SfxEnabled;
-            soundToggle.onValueChanged.AddListener(OnSoundToggleChanged);
-            RefreshToggleBgAlpha(soundToggle);
+            soundOnButton.onClick.AddListener(() => OnSoundButtonClicked(false));
         }
+        if (soundOffButton)
+        {
+            soundOffButton.onClick.AddListener(() => OnSoundButtonClicked(true));
+        }
+
+        UpdateSoundButtonsState();
     }
 
     private void SetupGameRulesPanel()
@@ -692,7 +718,7 @@ public class UIManager : MonoBehaviour
         SetBetControlsEnabled(false);
         if (autoPlayStartButton) autoPlayStartButton.interactable = true;
 
-        PlayAutoPlaySpine();
+        StartAutoPlayRotation();
     }
 
     internal void OnAutoPlayStopped()
@@ -719,83 +745,65 @@ public class UIManager : MonoBehaviour
             if (stopButton) stopButton.interactable = false;
         }
 
-        FreezeAutoPlaySpine();
+        StopAutoPlayRotation();
     }
 
-    private SpineAnimController GetAutoPlaySpineController()
+    private void StartAutoPlayRotation()
     {
-        if (autoPlayStartButton == null) return null;
-        return autoPlayStartButton.GetComponentInChildren<SpineAnimController>(true);
-    }
-
-    private SkeletonGraphic GetAutoPlaySkeletonGraphic()
-    {
-        if (autoPlayStartButton == null) return null;
-        return autoPlayStartButton.GetComponentInChildren<SkeletonGraphic>(true);
-    }
-
-    private void FreezeAutoPlaySpine()
-    {
-        var controller = GetAutoPlaySpineController();
-        if (controller != null)
+        if (autoPlayRotateCoroutine != null)
         {
-            controller.Pause();
+            StopCoroutine(autoPlayRotateCoroutine);
         }
-        else
+        autoPlayRotateCoroutine = StartCoroutine(RotateAutoPlayCoroutine());
+    }
+
+    private void StopAutoPlayRotation()
+    {
+        if (autoPlayRotateCoroutine != null)
         {
-            var graphic = GetAutoPlaySkeletonGraphic();
-            if (graphic != null)
+            StopCoroutine(autoPlayRotateCoroutine);
+            autoPlayRotateCoroutine = null;
+        }
+    }
+
+    private IEnumerator RotateAutoPlayCoroutine()
+    {
+        while (true)
+        {
+            if (autoPlayImageTransform != null)
             {
-                if (graphic.SkeletonData == null)
-                {
-                    graphic.Initialize(false);
-                }
-                graphic.freeze = true;
+                autoPlayImageTransform.Rotate(0, 0, -autoPlayRotateSpeed * Time.deltaTime);
             }
-        }
-    }
-
-    private void PlayAutoPlaySpine()
-    {
-        var controller = GetAutoPlaySpineController();
-        if (controller != null)
-        {
-            controller.Resume();
-        }
-        else
-        {
-            var graphic = GetAutoPlaySkeletonGraphic();
-            if (graphic != null)
-            {
-                if (graphic.SkeletonData == null)
-                {
-                    graphic.Initialize(false);
-                }
-                graphic.freeze = false;
-            }
+            yield return null;
         }
     }
 
     #endregion
 
-    #region Audio Toggle Logic
+    #region Audio Button Logic
 
-    private void OnSoundToggleChanged(bool isOn)
+    private void OnSoundButtonClicked(bool enableSound)
     {
         AudioManager.Instance?.PlayButtonGeneric();
-        AudioManager.Instance?.SetMusicEnabled(isOn);
-        AudioManager.Instance?.SetSfxEnabled(isOn);
-        RefreshToggleBgAlpha(soundToggle);
+        AudioManager.Instance?.SetMusicEnabled(enableSound);
+        AudioManager.Instance?.SetSfxEnabled(enableSound);
+
+        UpdateSoundButtonsState();
     }
 
-    private static void RefreshToggleBgAlpha(Toggle toggle)
+    private void UpdateSoundButtonsState()
     {
-        if (toggle == null) return;
-        Image bgImage = toggle.targetGraphic as Image;
-        if (bgImage == null) return;
-        Color c = bgImage.color;
-        c.a = toggle.isOn ? 0f : 1f;
-        bgImage.color = c;
+        if (AudioManager.Instance != null)
+        {
+            bool isSoundEnabled = AudioManager.Instance.SfxEnabled;
+            if (soundOnButton) soundOnButton.gameObject.SetActive(isSoundEnabled);
+            if (soundOffButton) soundOffButton.gameObject.SetActive(!isSoundEnabled);
+        }
+        else
+        {
+            if (soundOnButton) soundOnButton.gameObject.SetActive(true);
+            if (soundOffButton) soundOffButton.gameObject.SetActive(false);
+        }
     }
 
     #endregion
@@ -1097,4 +1105,114 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
+}
+
+public class AutoPlayButtonStateListener : MonoBehaviour, 
+    UnityEngine.EventSystems.IPointerEnterHandler, 
+    UnityEngine.EventSystems.IPointerExitHandler, 
+    UnityEngine.EventSystems.IPointerDownHandler, 
+    UnityEngine.EventSystems.IPointerUpHandler, 
+    UnityEngine.EventSystems.ISelectHandler, 
+    UnityEngine.EventSystems.IDeselectHandler
+{
+    private Button targetButton;
+    private Image childImage;
+
+    private Sprite normalSprite;
+    private Sprite highlightedSprite;
+    private Sprite pressedSprite;
+    private Sprite selectedSprite;
+    private Sprite disabledSprite;
+
+    private bool isPointerOver;
+    private bool isPointerDown;
+    private bool isSelected;
+
+    public void Initialize(Button button, Image image, Sprite normal, Sprite highlighted, Sprite pressed, Sprite selected, Sprite disabled)
+    {
+        targetButton = button;
+        childImage = image;
+        normalSprite = normal != null ? normal : (image != null ? image.sprite : null);
+        highlightedSprite = highlighted;
+        pressedSprite = pressed;
+        selectedSprite = selected;
+        disabledSprite = disabled;
+        UpdateStateSprite();
+    }
+
+    private void Update()
+    {
+        UpdateStateSprite();
+    }
+
+    public void OnPointerEnter(UnityEngine.EventSystems.PointerEventData eventData)
+    {
+        isPointerOver = true;
+        UpdateStateSprite();
+    }
+
+    public void OnPointerExit(UnityEngine.EventSystems.PointerEventData eventData)
+    {
+        isPointerOver = false;
+        UpdateStateSprite();
+    }
+
+    public void OnPointerDown(UnityEngine.EventSystems.PointerEventData eventData)
+    {
+        if (eventData.button == UnityEngine.EventSystems.PointerEventData.InputButton.Left)
+        {
+            isPointerDown = true;
+            UpdateStateSprite();
+        }
+    }
+
+    public void OnPointerUp(UnityEngine.EventSystems.PointerEventData eventData)
+    {
+        if (eventData.button == UnityEngine.EventSystems.PointerEventData.InputButton.Left)
+        {
+            isPointerDown = false;
+            UpdateStateSprite();
+        }
+    }
+
+    public void OnSelect(UnityEngine.EventSystems.BaseEventData eventData)
+    {
+        isSelected = true;
+        UpdateStateSprite();
+    }
+
+    public void OnDeselect(UnityEngine.EventSystems.BaseEventData eventData)
+    {
+        isSelected = false;
+        UpdateStateSprite();
+    }
+
+    private void UpdateStateSprite()
+    {
+        if (childImage == null) return;
+
+        Sprite targetSprite = normalSprite;
+
+        if (targetButton != null && !targetButton.interactable)
+        {
+            targetSprite = disabledSprite != null ? disabledSprite : normalSprite;
+        }
+        else if (isPointerDown)
+        {
+            targetSprite = pressedSprite != null ? pressedSprite : normalSprite;
+        }
+        else if (isPointerOver)
+        {
+            targetSprite = highlightedSprite != null ? highlightedSprite : normalSprite;
+        }
+        else if (isSelected)
+        {
+            targetSprite = selectedSprite != null ? selectedSprite : normalSprite;
+        }
+
+        if (targetSprite != null && childImage.sprite != targetSprite)
+        {
+            childImage.sprite = targetSprite;
+        }
+    }
 }

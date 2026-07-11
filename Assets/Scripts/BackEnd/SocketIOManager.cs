@@ -88,8 +88,8 @@ public class SocketIOManager : MonoBehaviour
 
         isConnected = false;
 
-        // 2. Wait 2 seconds for the websocket close handshake to complete and the connection state to settle
-        yield return new WaitForSeconds(2f);
+        // 2. Wait 1 seconds for the websocket close handshake to complete and the connection state to settle
+        yield return new WaitForSeconds(1f);
 
         // 3. Send OnExit to platform to unmount the iframe
 #if UNITY_WEBGL && !UNITY_EDITOR
