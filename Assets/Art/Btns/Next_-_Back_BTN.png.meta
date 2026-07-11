@@ -163,12 +163,12 @@ TextureImporter:
       name: Next_-_Back_BTN_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 276
-        width: 76
-        height: 77
+        x: 16
+        y: 278
+        width: 73
+        height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -185,12 +185,12 @@ TextureImporter:
       name: Next_-_Back_BTN_1
       rect:
         serializedVersion: 2
-        x: 123
-        y: 276
-        width: 76
-        height: 77
+        x: 124
+        y: 278
+        width: 73
+        height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -207,12 +207,12 @@ TextureImporter:
       name: Next_-_Back_BTN_2
       rect:
         serializedVersion: 2
-        x: 14
-        y: 189
-        width: 77
-        height: 76
+        x: 16
+        y: 190
+        width: 73
+        height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -229,12 +229,12 @@ TextureImporter:
       name: Next_-_Back_BTN_3
       rect:
         serializedVersion: 2
-        x: 123
-        y: 189
-        width: 76
-        height: 76
+        x: 16
+        y: 102
+        width: 73
+        height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -251,12 +251,12 @@ TextureImporter:
       name: Next_-_Back_BTN_4
       rect:
         serializedVersion: 2
-        x: 14
-        y: 101
-        width: 77
-        height: 76
+        x: 16
+        y: 15
+        width: 73
+        height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -273,12 +273,12 @@ TextureImporter:
       name: Next_-_Back_BTN_5
       rect:
         serializedVersion: 2
-        x: 123
-        y: 101
-        width: 76
-        height: 76
+        x: 124
+        y: 190
+        width: 73
+        height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -295,12 +295,12 @@ TextureImporter:
       name: Next_-_Back_BTN_6
       rect:
         serializedVersion: 2
-        x: 14
-        y: 13
-        width: 77
-        height: 76
+        x: 124
+        y: 102
+        width: 73
+        height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -317,12 +317,12 @@ TextureImporter:
       name: Next_-_Back_BTN_7
       rect:
         serializedVersion: 2
-        x: 123
-        y: 13
-        width: 76
-        height: 76
+        x: 124
+        y: 15
+        width: 73
+        height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -339,7 +339,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 929c35b0c737e4921b9d32fc5e3aea47
     internalID: 0
     vertices: []
     indices: 
