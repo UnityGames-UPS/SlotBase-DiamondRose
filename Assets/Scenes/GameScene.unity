@@ -1834,6 +1834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   gameManager: {fileID: 1253991724}
   popupManager: {fileID: 1441117377}
+  jsFunctCalls: {fileID: 1706040330}
   betAmountText: {fileID: 739420103}
   betPlusButton: {fileID: 540678215}
   betMinusButton: {fileID: 945184062}

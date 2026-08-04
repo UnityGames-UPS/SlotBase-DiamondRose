@@ -75,14 +75,13 @@ public class AudioManager : MonoBehaviour
 
     private void ApplySfxVolume()
     {
-        if (audioSource != null)
+        if (!isForceMuted)
         {
-            audioSource.volume = _sfxEnabled ? 1f : 0f;
+            if (audioSource != null) audioSource.mute = !_sfxEnabled;
+            if (spareAudioSource != null) spareAudioSource.mute = !_sfxEnabled;
         }
-        if (spareAudioSource != null)
-        {
-            spareAudioSource.volume = _sfxEnabled ? 1f : 0f;
-        }
+        if (audioSource != null) audioSource.volume = _sfxEnabled ? 1f : 0f;
+        if (spareAudioSource != null) spareAudioSource.volume = _sfxEnabled ? 1f : 0f;
     }
 
     private void PlayOneShot(AudioClip clip)
@@ -185,30 +184,28 @@ public class AudioManager : MonoBehaviour
 
 
 
-    private void OnApplicationFocus(bool hasFocus)
-    {
-        HandleFocus(hasFocus);
-    }
+    private bool isForceMuted = false;
 
-    private void OnApplicationPause(bool isPaused)
+    internal void SetMuteAll(bool forceMute)
     {
-        HandleFocus(!isPaused);
-    }
+        if (forceMute == isForceMuted) return;
+        isForceMuted = forceMute;
 
-    private void HandleFocus(bool hasFocus)
-    {
-        if (!hasFocus)
+        if (forceMute)
         {
-            if (audioSource != null) audioSource.Pause();
-            if (spareAudioSource != null) spareAudioSource.Pause();
-            AudioListener.volume = 0f;
+            if (audioSource != null) audioSource.mute = true;
+            if (spareAudioSource != null) spareAudioSource.mute = true;
         }
         else
         {
-            if (audioSource != null) audioSource.UnPause();
-            if (spareAudioSource != null) spareAudioSource.UnPause();
-            AudioListener.volume = 1f;
+            if (audioSource != null) audioSource.mute = !_sfxEnabled;
+            if (spareAudioSource != null) spareAudioSource.mute = !_sfxEnabled;
         }
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        SetMuteAll(!hasFocus);
     }
 }
 

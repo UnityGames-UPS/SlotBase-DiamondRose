@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameManager gameManager;
     [SerializeField] private PopupManager popupManager;
+    [SerializeField] private JSFunctCalls jsFunctCalls;
 
 
 
@@ -134,6 +135,22 @@ public class UIManager : MonoBehaviour
     public System.Action OnSpecialWinComplete;
 
     #region Initialization
+
+    private void Awake()
+    {
+        if (jsFunctCalls == null && gameManager != null && gameManager.socketManager != null)
+        {
+            jsFunctCalls = gameManager.socketManager.JSManager;
+        }
+        if (jsFunctCalls == null)
+        {
+            jsFunctCalls = FindObjectOfType<JSFunctCalls>();
+        }
+        if (jsFunctCalls != null)
+        {
+            jsFunctCalls.RegisterVisibilityListener(gameObject.name);
+        }
+    }
 
     private void Start()
     {
@@ -919,10 +936,27 @@ public class UIManager : MonoBehaviour
 
     #region Display Updates
 
+    public void OnFocusChanged(string value)
+    {
+        bool focused = value == "1";
+        Debug.Log("UNITY FOCUS CHANGED: " + value + " (focused: " + focused + ")");
+        AudioManager.Instance?.SetMuteAll(!focused);
+        if (gameManager != null && gameManager.socketManager != null)
+        {
+            gameManager.socketManager.HandleFocusChange(focused);
+        }
+    }
+
     private void UpdateBalanceDisplay()
     {
         if (balanceText)
             balanceText.text = gameManager.playerData.balance.ToString("F2");
+    }
+
+    internal void UpdateBalanceDisplayOnSync(double newBalance)
+    {
+        if (balanceTween != null) balanceTween.Kill();
+        if (balanceText != null) balanceText.text = newBalance.ToString("F2");
     }
 
     private void UpdateWinDisplay(double amount)
